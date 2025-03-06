@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Jian An
 
-<img src="images/nja99.png.png" width="200px">
+<img src="images/nja99.png" width="200px">
 
 [[github](http://github.com/nja99)] [[portfolio](team/johndoe.md)]
 
