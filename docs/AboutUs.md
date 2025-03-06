@@ -9,50 +9,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Guo Siyan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/siyan-g.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/siyan-g)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: UI
 
-### Jane Doe
+### Janelle Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jniaorx.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/jniaorx)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Ng Jian An
 
 <img src="images/nja99.png" width="200px">
 
-[[github](http://github.com/nja99)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nja99)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Quek Zhen Hao
+<img src="images/coffeemocha.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/coffeemocha)] 
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
-### James Doe
+### Tham Yu Qing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuqing-tham.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/yuqing-tham)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
