@@ -29,24 +29,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Ng Jian An
+<img src="images/nja99.png.png" width="200px">
 
-<img src="images/coffeemocha.png" width="200px">
-
-[[github](http://github.com/coffeemocha)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nja99)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Quek Zhen Hao
+<img src="images/coffeemocha.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/coffeemocha)] 
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
 ### Tham Yu Qing
 
