@@ -436,15 +436,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should only allow use by a single user (patient care coordinator).
+5.  Should return search results within 0.5 seconds to ensure quick lookup.
+6.  Should consume less than 200MB of RAM and low CPU usage on standard hardware.
+7.  Data of the patients should be in a text file that is human editable. 
+8.  Should not require any installation by the user.
+9.  Should be able to load data without internet connection.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Above average typing speed**: Typing speeds above the [global average](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) of 41.4 words per minute
+* **Patient care coordinator**: A healthcare professional responsible for managing patient information and coordinating communication between medical staff and patients
+* **Contact**: An entry representing a patient, doctor, nurse or medical staff member within ACaringBook
+* **Guardian/NOK (Next-of-Kin)**: Primary emergency contact for a patient
 
 --------------------------------------------------------------------------------------------------------------------
 
