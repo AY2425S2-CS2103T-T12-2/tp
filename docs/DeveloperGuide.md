@@ -262,13 +262,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of contacts
+* Prefers desktop apps over other types of applications
+* Can type fast and prefers typing to mouse interactions
+* Is comfortable using command-line interface (CLI) apps for efficiency
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Our product streamlines patient coordination by providing instant access to patient details, 
+tagging patients to assigned doctors or caretakers, and tracking guardian or next-of-kin information. 
+It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication, 
+improved workflows, and enhanced patient care.
 
 
 ### User stories
@@ -276,42 +278,158 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+|----------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | Patient Care Coordinator        | add a new patient's contact information            | easily store and access important patient details for future reference and communications |
+| `* * *`  | Patient Care Coordinator        | delete patient's contact information               | remove obsolete patient data to keep the address book organized and clean |
+| `* * *`  | Patient Care Coordinator        | see a list of assigned patients when logged in     | quickly manage and retrieve patient details without navigating multiple screens |
+| `* * *`  | Patient Care Coordinator        | access Guardian or Next-of-Kin details for a patient | have all emergency contact information readily available in case of emergency |
+| `* * *`  | Patient Care Coordinator        | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
+| `* * *`  | Patient Care Coordinator        | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
+| `* * *`  | Patient Care Coordinator        | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
+| `* * *`  | Patient Care Coordinator        | tag a patient to a primary caregiver or doctor     | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
+| `* * *`  | Patient Care Coordinator        | save contact details in a file locally             | ensure patient details are preserved even after the application is closed |
+| `* * *`  | Patient Care Coordinator        | load contact details from a local file             | load patient details at startup, preventing the need to re-enter information |
+| `* *`    | Patient Care Coordinator        | search for a specific contact by name, role, etc.  | quickly locate the right person or organization when urgent communication is needed |
 *{More to be added}*
 
-### Use cases
+### Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is the ACaringBook and the Actor is the user, unless specified otherwise)
 
-**Use case: Delete a person**
+### Use case: Add a new patient’s contact information
 
-**MSS**
+**Main Success Scenario (MSS)**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new patient’s contact information.
+2. ACaringBook validates the input details.
+3. ACaringBook stores the patient’s details.
+4. ACaringBook confirms the successful addition.
 
-    Use case ends.
+**Use case ends.**
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The input format is incorrect.
+    - 2a1. ACaringBook shows an error message.
+    - 2a2. User re-enters the correct details.
+    - Use case resumes at step 2.
+- 3a. The patient already exists in the ACaringBook.
+    - 3a1. ACaringBook prompts the user to either update, delete, or keep both entries.
+    - 3a2. User makes a choice and ACaringBook proceeds accordingly.
+    - Use case resumes at step 4.
 
-  Use case ends.
+---
 
-* 3a. The given index is invalid.
+### Use case: Delete a patient’s contact information
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to list patients.
+2. ACaringBook shows a list of patients.
+3. User requests to delete a specific patient in the list.
+4. ACaringBook deletes the patient and confirms the deletion.
+
+**Use case ends.**
+
+**Extensions**
+
+- 2a. The list is empty.
+    - Use case ends.
+- 3a. The given index is invalid.
+    - 3a1. ACaringBook shows an error message.
+    - Use case resumes at step 2.
+
+---
+
+### Use case: View list of patients
+
+**MSS**
+
+1. User requests to view a list of patients.
+2. ACaringBook displays all patients in a tabular format.
+
+**Use case ends.**
+
+**Extensions**
+
+- 2a. No patients are found in the ACaringBook.
+    - 2a1. ACaringBook displays "No patient data is found."
+    - Use case ends.
+- 2b. Patient data is corrupted.
+    - 2b1. ACaringBook displays "Patient data corrupted!"
+    - Use case ends.
+
+---
+
+### Use case: Find Guardian/NOK of a patient
+
+**MSS**
+
+1. User requests to find the Guardian/NOK of a specific patient.
+2. ACaringBook retrieves the Guardian/NOK details.
+3. ACaringBook displays the details.
+
+**Use case ends.**
+
+**Extensions**
+
+- 2a. The patient name is missing.
+    - 2a1. ACaringBook shows an error message: "Patient NAME is required."
+    - Use case resumes at step 1.
+- 2b. The patient is not found in the ACaringBook.
+    - 2b1. ACaringBook shows an error message: "Patient not found."
+    - Use case ends.
+
+---
+
+### Use case: Add healthcare staff contact
+
+**MSS**
+
+1. User requests to add a new healthcare staff contact.
+2. ACaringBook validates the input details.
+3. ACaringBook stores the staff contact.
+4. ACaringBook confirms the successful addition.
+
+**Use case ends.**
+
+**Extensions**
+
+- 2a. The input format is incorrect.
+    - 2a1. ACaringBook shows an error message.
+    - 2a2. User re-enters the correct details.
+    - Use case resumes at step 2.
+- 3a. The staff contact already exists in the ACaringBook.
+    - 3a1. ACaringBook rejects the entry and displays an error message: "Duplicate entry. This contact already exists."
+    - Use case ends.
+
+### Use case: Delete healthcare staff contact
+
+**MSS**
+
+1. User requests to delete a healthcare staff contact.
+2. ACaringBook validates the input staff name.
+3. ACaringBook checks if the staff exists.
+4. ACaringBook deletes the contact.
+5. ACaringBook confirms the successful deletion.
+
+**Use case ends.**
+
+**Extensions**
+
+- 2a. The input staff name is missing.
+    - 2a1. ACaringBook shows an error message: "Error: Missing required fields. Format: delete staff NAME."
+    - 2a2. User re-enters the correct staff name.
+    - Use case resumes at step 2.
+- 3a. The staff member with the provided name does not exist.
+    - 3a1. ACaringBook shows an error message: "Error: Staff contact not found. Name: John_Doe does not exist."
+    - Use case ends.
+- 4a. An error occurs while deleting the staff contact.
+    - 4a1. ACaringBook shows an error message: "Error: Failed to delete the staff contact. Please try again."
+    - Use case ends.
+
+---
+
 
 *{More to be added}*
 
