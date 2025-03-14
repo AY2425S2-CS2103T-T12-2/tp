@@ -8,5 +8,5 @@ An Address Book app for Patient Care Coordinators.
   * Allows a patient care coordinator to see a list of assigned patients
 * The project is designed for patient care coordinators to store and reference patient contact information as efficiently as possible.
   * It comes with a **high level of quality user and developer documentation for easy implementation and usage**.
-* It is named `A Caring Book` because we **care** about our healthcare workers and patients
+* It is named `A Caring Book` because we **care** about our healthcare workers and patients.  
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
