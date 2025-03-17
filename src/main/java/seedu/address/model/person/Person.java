@@ -4,18 +4,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
-
+public abstract class Person {
     // Identity fields
     private final Role role;
     private final Name name;
@@ -71,14 +68,7 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
-    }
+    public abstract boolean isSamePerson(Person otherPerson);
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -97,29 +87,10 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return role.equals(otherPerson.role)
-                && name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+            && name.equals(otherPerson.name)
+            && phone.equals(otherPerson.phone)
+            && email.equals(otherPerson.email)
+            && address.equals(otherPerson.address)
+            && tags.equals(otherPerson.tags);
     }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(role, name, phone, email, address, tags);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("role", role)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
-    }
-
 }

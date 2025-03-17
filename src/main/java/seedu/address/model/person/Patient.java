@@ -13,7 +13,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient extends Person {
-
     private final String guardian;
     private final String doctorInCharge;
     private final Department department;
@@ -23,7 +22,7 @@ public class Patient extends Person {
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                String doctorInCharge, String guardian, Department department) {
-        super(name, phone, email, address, tags);
+        super(new Role("PATIENT"), name, phone, email, address, tags);
         requireAllNonNull(doctorInCharge);
         this.doctorInCharge = doctorInCharge;
         this.guardian = guardian;
@@ -52,7 +51,7 @@ public class Patient extends Person {
         }
 
         return otherPerson instanceof Patient
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(this.getName());
     }
 
     /**
@@ -85,14 +84,14 @@ public class Patient extends Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .add("name", getName())
-            .add("phone", getPhone())
-            .add("email", getEmail())
-            .add("address", getAddress())
-            .add("tags", getTags())
-            .add("doctorInCharge", getDoctorInCharge())
-            .add("guardian", getGuardian()) // Display null if no guardian
-            .add("department", getDepartment())
+            .add("name", this.getName())
+            .add("phone", this.getPhone())
+            .add("email", this.getEmail())
+            .add("address", this.getAddress())
+            .add("tags", this.getTags())
+            .add("doctorInCharge", doctorInCharge)
+            .add("guardian", guardian) // Display null if no guardian
+            .add("department", department)
             .toString();
     }
 }

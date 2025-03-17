@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,19 +13,32 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class HealthcareStaff extends Person {
-    private final ProviderRoleType providerRoleType;
+    private final ProviderRole providerRole;
 
     /**
      * Every field must be present.
      */
-    public HealthcareStaff(Name name, ProviderRoleType providerRoleType,
+    public HealthcareStaff(Name name, ProviderRole providerRole,
                            Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
-        this.providerRoleType = providerRoleType;
+        super(new Role("STAFF"), name, phone, email, address, tags);
+        requireAllNonNull(providerRole);
+        this.providerRole = providerRole;
     }
 
-    public ProviderRoleType getProviderRoleType() {
-        return providerRoleType;
+    public ProviderRole getProviderRole() {
+        return providerRole;
+    }
+
+    /**
+     * Returns true if both healthcare staff have the same identity (same name).
+     */
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson instanceof HealthcareStaff
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -32,19 +47,21 @@ public class HealthcareStaff extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        // instanceof handles nulls
+        if (other == this) {
+            return true;
+        }
+
         if (!(other instanceof HealthcareStaff)) {
             return false;
         }
 
         HealthcareStaff otherPerson = (HealthcareStaff) other;
-        return super.equals(other) && providerRoleType.equals(otherPerson.providerRoleType);
+        return super.equals(other) && providerRole.equals(otherPerson.providerRole);
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(this.getName(), providerRoleType, this.getPhone(),
+        return Objects.hash(this.getName(), providerRole, this.getPhone(),
             this.getEmail(), this.getAddress(), this.getTags());
     }
 
@@ -52,7 +69,7 @@ public class HealthcareStaff extends Person {
     public String toString() {
         return new ToStringBuilder(this)
             .add("name", this.getName())
-            .add("providerRoleType", providerRoleType)
+            .add("providerRoleType", providerRole)
             .add("phone", this.getPhone())
             .add("email", this.getEmail())
             .add("address", this.getAddress())
