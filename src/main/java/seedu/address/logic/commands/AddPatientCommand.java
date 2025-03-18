@@ -2,53 +2,59 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addpatient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the ACaringBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the Caring Book. "
             + "Parameters: "
-            + PREFIX_ROLE + "ROLE "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DOCTOR + "DOCTOR "
+            + PREFIX_GUARDIAN + "GUARDIAN "
+            + PREFIX_DEPARTMENT + "DEPARTMENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "patient "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_DOCTOR + "Dr Tan Chee Hwa "
+            + PREFIX_GUARDIAN + "Mr Hao Doe "
+            + PREFIX_DEPARTMENT + "Gastroenterology "
+            + PREFIX_TAG + "elder "
+            + PREFIX_TAG + "pending payment";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
 
-    private final Person toAdd;
+    private final Patient toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddPatientCommand(Patient patient) {
+        requireNonNull(patient);
+        toAdd = patient;
     }
 
     @Override
@@ -70,11 +76,11 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddPatientCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
+        AddPatientCommand otherAddCommand = (AddPatientCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
