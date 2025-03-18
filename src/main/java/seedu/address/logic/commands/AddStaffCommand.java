@@ -12,16 +12,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.HealthcareStaff;
 
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddStaffCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the ACaringBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the Caring Book. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_NAME + "NAME "
@@ -30,25 +30,25 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "patient "
+            + PREFIX_ROLE + "doctor "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "elder "
+            + PREFIX_TAG + "pending payment";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
 
-    private final Person toAdd;
+    private final HealthcareStaff toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddStaffCommand(HealthcareStaff healthcareStaff) {
+        requireNonNull(healthcareStaff);
+        toAdd = healthcareStaff;
     }
 
     @Override
@@ -70,11 +70,11 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddPatientCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
+        AddStaffCommand otherAddCommand = (AddStaffCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
