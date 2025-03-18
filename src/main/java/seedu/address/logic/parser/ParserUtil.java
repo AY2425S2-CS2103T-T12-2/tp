@@ -10,9 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProviderRole;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
@@ -109,6 +111,67 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String doctor} into an {@code doctor}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code doctor} is invalid.
+     */
+    public static String parseDoctor(String doctor) throws ParseException {
+        requireNonNull(doctor);
+        String trimmedDoctor = doctor.trim();
+        return trimmedDoctor;
+    }
+
+    /**
+     * Parses a {@code String guardian} into an {@code guardian}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code guardian} is invalid.
+     */
+    public static String parseGuardian(String guardian) throws ParseException {
+        requireNonNull(guardian);
+        String trimmedGuardian = guardian.trim();
+        return trimmedGuardian;
+    }
+
+    /**
+     * Parses a {@code String department} into an {@code Department}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code department} is invalid.
+     */
+    public static Department parseDepartment(String department) throws ParseException {
+        requireNonNull(department);
+        String trimmedDepartment = department.trim();
+        if (!Department.isValidDepartment(trimmedDepartment)) {
+            throw new ParseException(Department.MESSAGE_CONSTRAINTS);
+        }
+        return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String roleType} into a {@code ProviderRole}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roleType} is invalid.
+     */
+    public static ProviderRole parseRoleType(String roleType) throws ParseException {
+        requireNonNull(roleType);
+        String trimmedRoleType = roleType.trim();
+
+        switch (trimmedRoleType) {
+        case "doctor":
+            return new ProviderRole("doctor");
+        case "nurse":
+            return new ProviderRole("nurse");
+        case "therapist":
+            return new ProviderRole("therapist");
+        default:
+            throw new ParseException(ProviderRole.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
