@@ -22,8 +22,10 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
@@ -103,7 +105,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                "Mr Tan Tan", "Orphan", new Department("Cancer"));
     }
 
     @Override
@@ -140,6 +144,9 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private String guardian;
+        private String docInCharge;
+        private Department department;
 
         public EditPersonDescriptor() {}
 
@@ -192,6 +199,30 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public Optional<Department> getDepartment() {
+            return Optional.ofNullable(department);
+        }
+
+        public void setGuardian(String guardian) {
+            this.guardian = guardian;
+        }
+
+        public Optional<String> getGuardian() {
+            return Optional.ofNullable(guardian);
+        }
+
+        public void setDocInCharge(String docInCharge) {
+            this.docInCharge = docInCharge;
+        }
+
+        public Optional<String> getDocInCharge() {
+            return Optional.ofNullable(docInCharge);
         }
 
         /**
