@@ -11,12 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +25,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String role;
+    private final String role;  // NEW: Stores role (STAFF/PATIENT)
     private final String name;
     private final String phone;
     private final String email;
@@ -38,10 +37,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("role") String role,
-                             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("name") String name, 
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, 
+                             @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        this.role = role;
+        this.role = role; // Store role from JSON
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,7 +56,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        role = source.getRole().toString();
+        role = source.getRole().toString(); // Save role when converting to JSON
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -109,8 +110,13 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                "dr tan", "orphan", new Department("cancer"));
-    }
 
+        // FIX: Ensure correct role is restored
+        if (role == null) {
+            throw new IllegalValueException("Missing role field in JSON.");
+        }
+
+        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelTags);
+    }
 }
+
