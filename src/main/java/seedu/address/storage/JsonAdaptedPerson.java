@@ -25,7 +25,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String role;  // NEW: Stores role (STAFF/PATIENT)
+    private final String role; // NEW: Stores role (STAFF/PATIENT)
     private final String name;
     private final String phone;
     private final String email;
@@ -37,9 +37,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("role") String role,
-                             @JsonProperty("name") String name, 
+                             @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, 
+                             @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.role = role; // Store role from JSON
