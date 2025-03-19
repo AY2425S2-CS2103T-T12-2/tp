@@ -5,9 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.HealthcareStaff;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 
 /**
  * The API of the Model component.
@@ -17,10 +16,10 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that filters Patient instance of person */
-    Predicate<Person> PREDICATE_SHOW_ALL_PATIENTS = person -> person instanceof Patient;
+    Predicate<Person> PREDICATE_SHOW_ALL_PATIENTS = person -> person.getRole().equals(new Role("PATIENT"));
 
-    /** {@code Predicate} that filters HeathcareStaff instance of person */
-    Predicate<Person> PREDICATE_SHOW_ALL_STAFF = person -> person instanceof HealthcareStaff;
+    /** {@code Predicate} that filters HealthcareStaff instance of person */
+    Predicate<Person> PREDICATE_SHOW_ALL_STAFF = person -> person.getRole().equals(new Role("STAFF"));
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
