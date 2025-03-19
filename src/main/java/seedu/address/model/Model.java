@@ -8,7 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ProviderRole;
 
 /**
  * The API of the Model component.
@@ -20,9 +19,9 @@ public interface Model {
     /** {@code Predicate} that filters Patient instance of person */
     Predicate<Person> PREDICATE_SHOW_ALL_PATIENTS = person -> person instanceof Patient;
 
-    /** {@code Predicate} that filters DOCTOR instance of person */
-    Predicate<Person> PREDICATE_SHOW_ALL_DOCTORS = person -> person instanceof HealthcareStaff
-            && ((HealthcareStaff) person).getProviderRole().equals(new ProviderRole("doctor"));
+    /** {@code Predicate} that filters HeathcareStaff instance of person */
+    Predicate<Person> PREDICATE_SHOW_ALL_STAFF = person -> person instanceof HealthcareStaff;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
