@@ -3,7 +3,7 @@ layout: page
 title: User Guide for TP T12-2
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+A Caring Book is a **desktop app for managing patient and staff contact details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, A Caring Book can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Content
 {:toc}
@@ -125,8 +125,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
+  ![result for 'find alex david'](images/findSarahPeterResult.png)
 
 ### Deleting a person : `delete`
 
