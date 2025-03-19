@@ -21,8 +21,8 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PATIENTS = person -> person instanceof Patient;
 
     /** {@code Predicate} that filters DOCTOR instance of person */
-    Predicate<Person> PREDICATE_SHOW_ALL_DOCTORS = person -> person instanceof HealthcareStaff
-            && ((HealthcareStaff) person).getProviderRole().equals(new ProviderRole("doctor"));
+    Predicate<Person> PREDICATE_SHOW_ALL_STAFF = person -> person instanceof HealthcareStaff;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

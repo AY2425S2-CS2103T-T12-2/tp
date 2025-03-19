@@ -7,10 +7,10 @@ import seedu.address.model.Model;
 /**
  * Lists all doctors in the address book to the user.
  */
-public class ListDoctorsCommand extends Command {
-    public static final String COMMAND_WORD = "listdoctors";
+public class ListStaffCommand extends Command {
+    public static final String COMMAND_WORD = "liststaff";
 
-    public static final String MESSAGE_SUCCESS = "Listed all doctors.";
+    public static final String MESSAGE_SUCCESS = "Listed all staff.";
 
     /**
      * Executes the command to filter and display only doctors from the address book.
@@ -21,7 +21,7 @@ public class ListDoctorsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_DOCTORS);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
