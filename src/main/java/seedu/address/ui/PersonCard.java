@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import java.util.concurrent.Flow;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
