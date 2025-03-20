@@ -35,7 +35,8 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
    * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
+
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -50,10 +51,10 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -80,11 +81,11 @@ Format: `help`
 
 
 
-### Adding a person: `add`
+### Adding a patient: `addpatient`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -92,9 +93,8 @@ A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 do/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
 ### Adding a staff: `addstaff`
 
@@ -110,12 +110,11 @@ Examples:
 * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
 
+### Listing all persons : `list`
 
-### Listing all staffs : `liststaff`
+Shows a list of all persons in the address book.
 
-Shows a list of all staff in the address book.
-
-Format: `liststaff`
+Format: `list`
 
 ### Listing all patients : `listpatient`
 
@@ -123,11 +122,11 @@ Shows a list of all patients in the address book.
 
 Format: `listpatient`
 
-### Listing all persons : `list`
+### Listing all staffs : `liststaff`
 
-Shows a list of all persons in the address book.
+Shows a list of all staff in the address book.
 
-Format: `list`
+Format: `liststaff`
 
 ### Editing a person : `edit`
 
@@ -227,12 +226,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 do/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
+**Add Staff** | `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**List Patients** | `listpatient`
+**List Staff** | `liststaff`
 **Help** | `help`
