@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for TP T12-2
+title: User Guide for A Caring Book (TP T12-2)
 ---
 
 A Caring Book is a **desktop app for managing patient and staff contact details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, A Caring Book can get your contact management tasks done faster than traditional GUI apps.
@@ -26,10 +26,16 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
+
+   * `liststaff` : Lists all staffs.
+
+   * `listpatient` : Lists all patients.
+
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -73,6 +79,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -84,8 +91,37 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+
+### Adding a staff: `addstaff`
+
+Adds a staff to the address book.
+
+Format: `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A staff can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
+
+
+### Listing all staffs : `liststaff`
+
+Shows a list of all staff in the address book.
+
+Format: `liststaff`
+
+### Listing all patients : `listpatient`
+
+Shows a list of all patients in the address book.
+
+Format: `listpatient`
 
 ### Listing all persons : `list`
 
@@ -191,6 +227,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
