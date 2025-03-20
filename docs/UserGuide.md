@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for TP T12-2
+title: User Guide for A Caring Book (TP T12-2)
 ---
 
 A Caring Book is a **desktop app for managing patient and staff contact details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, A Caring Book can get your contact management tasks done faster than traditional GUI apps.
@@ -26,10 +26,16 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
+
+   * `liststaff` : Lists all staffs.
+
+   * `listpatient` : Lists all patients.
+
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
+   * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -44,10 +50,10 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -73,19 +79,49 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+
+### Adding a patient: `addpatient`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 do/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
+
+
+### Adding a staff: `addstaff`
+
+Adds a staff to the address book.
+
+Format: `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A staff can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
+
+
+### Listing all staffs : `liststaff`
+
+Shows a list of all staff in the address book.
+
+Format: `liststaff`
+
+### Listing all patients : `listpatient`
+
+Shows a list of all patients in the address book.
+
+Format: `listpatient`
 
 ### Listing all persons : `list`
 
@@ -191,10 +227,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 do/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
+**Add Staff** | `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**List Patients** | `listpatient`
+**List Staff** | `liststaff`
 **Help** | `help`
