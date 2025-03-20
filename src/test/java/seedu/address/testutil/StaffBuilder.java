@@ -54,6 +54,13 @@ public class StaffBuilder {
         tags = new HashSet<>(staffToCopy.getTags());
     }
 
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public StaffBuilder withRole(String role) {
+        this.role = new ProviderRole(role);
+        return this;
+    }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
