@@ -36,6 +36,7 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
    * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
    * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
+
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -95,7 +96,6 @@ Examples:
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Hong Doe dp/Conology`
 * `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 do/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
-
 ### Adding a staff: `addstaff`
 
 Adds a staff to the address book.
@@ -110,12 +110,11 @@ Examples:
 * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
 
+### Listing all persons : `list`
 
-### Listing all staffs : `liststaff`
+Shows a list of all persons in the address book.
 
-Shows a list of all staff in the address book.
-
-Format: `liststaff`
+Format: `list`
 
 ### Listing all patients : `listpatient`
 
@@ -123,11 +122,11 @@ Shows a list of all patients in the address book.
 
 Format: `listpatient`
 
-### Listing all persons : `list`
+### Listing all staffs : `liststaff`
 
-Shows a list of all persons in the address book.
+Shows a list of all staff in the address book.
 
-Format: `list`
+Format: `liststaff`
 
 ### Editing a person : `edit`
 
