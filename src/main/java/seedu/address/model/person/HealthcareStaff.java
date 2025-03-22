@@ -20,9 +20,9 @@ public class HealthcareStaff extends Person {
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
                            Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(new Role("STAFF"), name, phone, email, address, tags);
-        requireAllNonNull(providerRole);
-        this.providerRole = providerRole;
+        super(new Role("STAFF"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
+                address != null ? address : new Address("NA"), tags);
+        this.providerRole = providerRole != null ? providerRole : new ProviderRole("NA");
     }
 
     public ProviderRole getProviderRole() {

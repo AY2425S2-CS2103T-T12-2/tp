@@ -15,7 +15,9 @@ public class ProviderRole {
     public enum ProviderRoleType {
         DOCTOR,
         NURSE,
-        THERAPIST
+        THERAPIST,
+
+        NA,
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Healthcare Staff's Role"

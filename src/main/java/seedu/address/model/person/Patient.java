@@ -22,11 +22,11 @@ public class Patient extends Person {
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                String doctorInCharge, String guardian, Department department) {
-        super(new Role("PATIENT"), name, phone, email, address, tags);
-        requireAllNonNull(doctorInCharge);
-        this.doctorInCharge = doctorInCharge;
-        this.guardian = guardian;
-        this.department = department;
+        super(new Role("PATIENT"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
+                address != null ? address : new Address("NA"), tags);
+        this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "";
+        this.guardian = guardian != null ? guardian : "";
+        this.department = department != null ? department : new Department("NA");
     }
 
     public String getDoctorInCharge() {
