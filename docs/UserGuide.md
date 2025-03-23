@@ -163,6 +163,26 @@ Examples:
 * `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
   ![result for 'find alex david'](images/findSarahPeterResult.png)
 
+### Finding a patient by department
+
+Find patients whose departments match with the keyword.
+
+Format: `findpatient KEYWORD`
+
+* The search is case-insensitive. e.g `Conology` will match `conology`
+* Only one keyword is allowed.
+* Only the department of the patient is searched.
+* Only full words will be matched e.g. `con` will not match `conology`.
+* All patients in the department will be returned e.g. `findpatient conology` will return a list of Conology patients.
+
+Examples:
+If these two `addstaff` commands are executed,
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
+
+then
+* `findpatient conology` returns `John Doe` and `Betsy Crowe`.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
