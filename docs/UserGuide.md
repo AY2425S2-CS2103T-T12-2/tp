@@ -15,11 +15,11 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
