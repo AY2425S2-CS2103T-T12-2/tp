@@ -47,23 +47,22 @@ public class HealthcareStaff extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof HealthcareStaff)) {
-            return false;
-        }
-
-        HealthcareStaff otherPerson = (HealthcareStaff) other;
-        return super.equals(other) && providerRole.equals(otherPerson.providerRole);
+        if (this == other) return true;
+        if (!(other instanceof HealthcareStaff)) return false;
+        HealthcareStaff otherStaff = (HealthcareStaff) other;
+        return getName().equals(otherStaff.getName())
+                && providerRole.equals(otherStaff.providerRole)
+                && getPhone().equals(otherStaff.getPhone())
+                && getEmail().equals(otherStaff.getEmail())
+                && getAddress().equals(otherStaff.getAddress())
+                && getTags().equals(otherStaff.getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), providerRole, this.getPhone(),
-            this.getEmail(), this.getAddress(), this.getTags());
+        return Objects.hash(getName(), providerRole, getPhone(), getEmail(), getAddress(), getTags());
     }
+
 
     @Override
     public String toString() {

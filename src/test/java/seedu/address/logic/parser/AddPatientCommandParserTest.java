@@ -135,4 +135,55 @@ class AddPatientCommandParserTest {
 
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
+
+    @Test
+    void parse_missingEmail_usesDefaultEmail() throws Exception {
+        String userInput = " " + PREFIX_NAME + "John Doe "
+                + PREFIX_PHONE + "98765432 "
+                + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+                + PREFIX_DOCTOR + "Dr.Smith "
+                + PREFIX_GUARDIAN + "Jane Doe "
+                + PREFIX_DEPARTMENT + "Cardiology ";
+
+        AddPatientCommand expectedCommand = new AddPatientCommand(
+                new Patient(
+                        new Name("John Doe"),
+                        new Phone("98765432"),
+                        new Email("NA@placeholder.com"), // Uses default email
+                        new Address("311, Clementi Ave 2, #02-25"),
+                        Set.of(),
+                        "Dr.Smith",
+                        "Jane Doe",
+                        new Department("Cardiology")
+                )
+        );
+
+        assertEquals(expectedCommand, parser.parse(userInput));
+    }
+
+    @Test
+    void parse_missingAddress_usesDefaultAddress() throws Exception {
+        String userInput = " " + PREFIX_NAME + "John Doe "
+                + PREFIX_PHONE + "98765432 "
+                + PREFIX_EMAIL + "johnd@example.com "
+                + PREFIX_DOCTOR + "Dr.Smith "
+                + PREFIX_GUARDIAN + "Jane Doe "
+                + PREFIX_DEPARTMENT + "Cardiology ";
+
+        AddPatientCommand expectedCommand = new AddPatientCommand(
+                new Patient(
+                        new Name("John Doe"),
+                        new Phone("98765432"),
+                        new Email("johnd@example.com"),
+                        new Address("NA"),
+                        Set.of(),
+                        "Dr.Smith",
+                        "Jane Doe",
+                        new Department("Cardiology")
+                )
+        );
+
+        assertEquals(expectedCommand, parser.parse(userInput));
+    }
+
 }
