@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -16,28 +15,20 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -196,10 +187,12 @@ public class EditCommandTest {
         model.addPerson(healthcareStaff);
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withProviderRole("NURSE").build();
-        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList().size() - 1), descriptor);
+        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList()
+                        .size() - 1), descriptor);
 
         HealthcareStaff updatedStaff = new HealthcareStaff(healthcareStaff.getName(), new ProviderRole("NURSE"),
-                healthcareStaff.getPhone(), healthcareStaff.getEmail(), healthcareStaff.getAddress(), healthcareStaff.getTags());
+                healthcareStaff.getPhone(), healthcareStaff.getEmail(), healthcareStaff.getAddress(),
+                healthcareStaff.getTags());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(updatedStaff));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -216,13 +209,15 @@ public class EditCommandTest {
         model.addPerson(patient);
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDocInCharge("Dr Doa").build();
-        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList().size() - 1), descriptor);
+        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList()
+                        .size() - 1), descriptor);
 
-        Patient updatedPatient = new Patient(patient.getName(), patient.getPhone(), patient.getEmail()
-                , patient.getAddress(), patient.getTags(), "Dr Doa", patient.getGuardian()
-                , patient.getDepartment());
+        Patient updatedPatient = new Patient(patient.getName(), patient.getPhone(), patient.getEmail(),
+                patient.getAddress(), patient.getTags(), "Dr Doa", patient.getGuardian(),
+                patient.getDepartment());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(updatedPatient));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(updatedPatient));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(patient, updatedPatient);
 

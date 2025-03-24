@@ -60,17 +60,21 @@ public class Patient extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof Patient)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Patient)) {
+            return false;
+        }
         Patient otherPatient = (Patient) other;
-        return getName().equals(otherPatient.getName()) &&
-                getPhone().equals(otherPatient.getPhone()) &&
-                getEmail().equals(otherPatient.getEmail()) &&
-                getAddress().equals(otherPatient.getAddress()) &&
-                getTags().equals(otherPatient.getTags()) &&
-                getDoctorInCharge().equals(otherPatient.getDoctorInCharge()) &&
-                getGuardian().equals(otherPatient.getGuardian()) &&
-                getDepartment().equals(otherPatient.getDepartment());
+        return getName().equals(otherPatient.getName())
+                && getPhone().equals(otherPatient.getPhone())
+                && getEmail().equals(otherPatient.getEmail())
+                && getAddress().equals(otherPatient.getAddress())
+                && getTags().equals(otherPatient.getTags())
+                && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
+                && getGuardian().equals(otherPatient.getGuardian())
+                && getDepartment().equals(otherPatient.getDepartment());
     }
 
     @Override

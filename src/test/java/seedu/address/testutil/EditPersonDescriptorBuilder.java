@@ -4,8 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.swing.*;
-
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -52,11 +50,17 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
     }
 
+    /**
+     * Sets the {@code ProviderRole} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withProviderRole(String providerRole) {
         descriptor.setProviderRole(new ProviderRole(providerRole));
         return this;
     }
 
+    /**
+     * Sets the {@code DocInCharge} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withDocInCharge(String docInCharge) {
         descriptor.setDocInCharge("docInCharge");
         return this;
