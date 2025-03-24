@@ -163,6 +163,27 @@ Examples:
 * `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
   ![result for 'find alex david'](images/findSarahPeterResult.png)
 
+### Finding a healthcare provider by role
+
+Find healthcare staff whose roles matches with the keyword.
+
+Format: `findstaff KEYWORD`
+
+* The search is case-insensitive. e.g `Doctor` will match `doctor`
+* Only one keyword is allowed. 
+* Only the role of the healthcare provider is searched.
+* Only full words will be matched e.g. `doc` will not match `doctor`.
+* All healthcare staff matching the role will be returned e.g. `findstaff doctor` will return a list of all doctors.
+
+Examples:
+If these two `addstaff` commands are executed, 
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
+
+then 
+* `findstaff doctor` returns `Mary Jane`
+* `findstaff nurse` returns `Mark Markerburg`.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
