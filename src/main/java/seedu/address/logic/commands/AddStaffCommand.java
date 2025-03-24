@@ -65,8 +65,12 @@ public class AddStaffCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof AddStaffCommand)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof AddStaffCommand)) {
+            return false;
+        }
         AddStaffCommand otherCommand = (AddStaffCommand) other;
         return toAdd.equals(otherCommand.toAdd);
     }

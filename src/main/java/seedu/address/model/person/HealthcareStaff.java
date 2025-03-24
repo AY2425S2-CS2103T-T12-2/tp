@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 import java.util.Set;
 
@@ -47,8 +45,12 @@ public class HealthcareStaff extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof HealthcareStaff)) return false;
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof HealthcareStaff)) {
+            return false;
+        }
         HealthcareStaff otherStaff = (HealthcareStaff) other;
         return getName().equals(otherStaff.getName())
                 && providerRole.equals(otherStaff.providerRole)

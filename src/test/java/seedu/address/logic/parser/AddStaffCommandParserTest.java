@@ -3,32 +3,19 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.Stack;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
 import seedu.address.model.tag.Tag;
@@ -136,7 +123,7 @@ public class AddStaffCommandParserTest {
         ProviderRole role = new ProviderRole("NA");
         Phone phone = new Phone("12345678");
         Email email = new Email("johndoe@example.com");
-        Address address = new Address("123 Main St");  // Expecting default address
+        Address address = new Address("123 Main St"); // Expecting default address
         Set<Tag> tags = Set.of(new Tag("critical"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
@@ -148,7 +135,6 @@ public class AddStaffCommandParserTest {
         // Assert
         assertEquals(expectedCommand, actualCommand);
     }
-
     @Test
     public void parse_missingAddress_usesDefaultAddress() throws ParseException {
         // Arrange
@@ -158,7 +144,7 @@ public class AddStaffCommandParserTest {
         ProviderRole role = new ProviderRole("doctor");
         Phone phone = new Phone("12345678");
         Email email = new Email("johndoe@example.com");
-        Address address = new Address("NA");  // Expecting default address
+        Address address = new Address("NA"); // Expecting default address
         Set<Tag> tags = Set.of(new Tag("critical"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
@@ -170,7 +156,6 @@ public class AddStaffCommandParserTest {
         // Assert
         assertEquals(expectedCommand, actualCommand);
     }
-
     @Test
     public void parse_missingEmail_usesDefaultEmail() throws ParseException {
         // Arrange
