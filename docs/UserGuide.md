@@ -1,9 +1,9 @@
 ---
 layout: page
-title: User Guide for TP T12-2
+title: User Guide for A Caring Book (TP T12-2)
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+A Caring Book is a **desktop app for managing patient and staff contact details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, A Caring Book can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Content
 {:toc}
@@ -15,20 +15,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
+
+   * `liststaff` : Lists all staffs.
+
+   * `listpatient` : Lists all patients.
+
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
+
+   * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -44,10 +51,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -73,25 +80,53 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+
+### Adding a patient: `addpatient`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 do/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
+
+### Adding a staff: `addstaff`
+
+Adds a staff to the address book.
+
+Format: `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A staff can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Listing all patients : `listpatient`
+
+Shows a list of all patients in the address book.
+
+Format: `listpatient`
+
+### Listing all staffs : `liststaff`
+
+Shows a list of all staff in the address book.
+
+Format: `liststaff`
 
 ### Editing a person : `edit`
 
@@ -125,8 +160,51 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
+  ![result for 'find alex david'](images/findSarahPeterResult.png)
+
+
+### Finding a patient by department
+
+Find patients whose departments match with the keyword.
+
+Format: `findpatient KEYWORD`
+
+* The search is case-insensitive. e.g `Conology` will match `conology`
+* Only one keyword is allowed.
+* Only the department of the patient is searched.
+* Only full words will be matched e.g. `con` will not match `conology`.
+* All patients in the department will be returned e.g. `findpatient conology` will return a list of Conology patients.
+
+Examples:
+If these two `addstaff` commands are executed,
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
+
+then
+* `findpatient conology` returns `John Doe` and `Betsy Crowe`.
+
+### Finding a healthcare provider by role
+
+Find healthcare staff whose roles matches with the keyword.
+
+Format: `findstaff KEYWORD`
+
+* The search is case-insensitive. e.g `Doctor` will match `doctor`
+* Only one keyword is allowed. 
+* Only the role of the healthcare provider is searched.
+* Only full words will be matched e.g. `doc` will not match `doctor`.
+* All healthcare staff matching the role will be returned e.g. `findstaff doctor` will return a list of all doctors.
+
+Examples:
+If these two `addstaff` commands are executed, 
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
+
+then 
+* `findstaff doctor` returns `Mary Jane`
+* `findstaff nurse` returns `Mark Markerburg`.
+
 
 ### Deleting a person : `delete`
 
@@ -191,10 +269,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 do/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
+**Add Staff** | `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**List Patients** | `listpatient`
+**List Staff** | `liststaff`
 **Help** | `help`
