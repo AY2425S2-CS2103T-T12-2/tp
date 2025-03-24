@@ -15,11 +15,11 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -163,6 +163,7 @@ Examples:
 * `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
   ![result for 'find alex david'](images/findSarahPeterResult.png)
 
+
 ### Finding a patient by department
 
 Find patients whose departments match with the keyword.
@@ -182,6 +183,28 @@ If these two `addstaff` commands are executed,
 
 then
 * `findpatient conology` returns `John Doe` and `Betsy Crowe`.
+
+### Finding a healthcare provider by role
+
+Find healthcare staff whose roles matches with the keyword.
+
+Format: `findstaff KEYWORD`
+
+* The search is case-insensitive. e.g `Doctor` will match `doctor`
+* Only one keyword is allowed. 
+* Only the role of the healthcare provider is searched.
+* Only full words will be matched e.g. `doc` will not match `doctor`.
+* All healthcare staff matching the role will be returned e.g. `findstaff doctor` will return a list of all doctors.
+
+Examples:
+If these two `addstaff` commands are executed, 
+* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
+
+then 
+* `findstaff doctor` returns `Mary Jane`
+* `findstaff nurse` returns `Mark Markerburg`.
+
 
 ### Deleting a person : `delete`
 
