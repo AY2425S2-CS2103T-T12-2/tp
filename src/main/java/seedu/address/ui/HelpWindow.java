@@ -15,11 +15,13 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private static final String DARK_THEME = "view/HelpWindow_Dark.css";
+    private static final String LIGHT_THEME = "view/HelpWindow_Light.css";
 
     @FXML
     private Button copyButton;
@@ -32,16 +34,17 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root) {
+    public HelpWindow(Stage root, boolean isDarkTheme) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        updateTheme(isDarkTheme);
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
-        this(new Stage());
+    public HelpWindow(boolean isDarkTheme) {
+        this(new Stage(), isDarkTheme);
     }
 
     /**
@@ -66,6 +69,23 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Updates the theme of the HelpWindow based on the provided theme state.
+     * This method clears the existing stylesheets and applies the appropriate theme
+     * (dark or light) based on the {@code isDarkTheme} parameter.
+     *
+     * @param isDarkTheme A boolean value representing the desired theme state.
+     *                    {@code true} for dark theme, {@code false} for light theme.
+     */
+    public void updateTheme(boolean isDarkTheme) {
+        getRoot().getScene().getStylesheets().clear();
+        if (isDarkTheme) {
+            getRoot().getScene().getStylesheets().add(LIGHT_THEME);
+        } else {
+            getRoot().getScene().getStylesheets().add(DARK_THEME);
+        }
     }
 
     /**

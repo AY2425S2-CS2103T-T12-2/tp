@@ -71,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(isDarkTheme);
     }
 
     public Stage getPrimaryStage() {
@@ -174,6 +174,8 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             primaryStage.getScene().getStylesheets().add(DARK_THEME);
         }
+
+        helpWindow.updateTheme(isDarkTheme);
     }
 
     /**
