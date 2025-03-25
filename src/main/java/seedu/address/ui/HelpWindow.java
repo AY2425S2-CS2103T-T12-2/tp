@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,7 +38,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root, boolean isDarkTheme) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        updateTheme(isDarkTheme);
+        updateStyleSheets(isDarkTheme);
     }
 
     /**
@@ -79,12 +80,13 @@ public class HelpWindow extends UiPart<Stage> {
      * @param isDarkTheme A boolean value representing the desired theme state.
      *                    {@code true} for dark theme, {@code false} for light theme.
      */
-    public void updateTheme(boolean isDarkTheme) {
-        getRoot().getScene().getStylesheets().clear();
+    public void updateStyleSheets(boolean isDarkTheme) {
+        ObservableList<String> stylesheets = getRoot().getScene().getStylesheets();
+        stylesheets.clear();
         if (isDarkTheme) {
-            getRoot().getScene().getStylesheets().add(LIGHT_THEME);
+            stylesheets.add(DARK_THEME);
         } else {
-            getRoot().getScene().getStylesheets().add(DARK_THEME);
+            stylesheets.add(LIGHT_THEME);
         }
     }
 

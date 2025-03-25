@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -40,10 +42,13 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private CheckMenuItem darkModeMenuItem;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -138,14 +143,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setDefaultTheme(GuiSettings guiSettings) {
         isDarkTheme = guiSettings.isDarkTheme();
-
-        primaryStage.getScene().getStylesheets().clear();
-        primaryStage.getScene().getStylesheets().add(EXTENSIONS_CSS);
-        if (isDarkTheme) {
-            primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
-        } else {
-            primaryStage.getScene().getStylesheets().add(DARK_THEME);
-        }
+        logger.info("Initializing theme: " + (isDarkTheme ? "Dark" : "Light"));
+        updateStyleSheets(isDarkTheme);
     }
 
     /**
@@ -161,21 +160,32 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Update stylesheets based on parameter {@code isDarkTheme}
+     *
+     * @param isDarkTheme
+     */
+    private void updateStyleSheets(boolean isDarkTheme) {
+        ObservableList<String> stylesheets = primaryStage.getScene().getStylesheets();
+        darkModeMenuItem.setSelected(isDarkTheme);
+        stylesheets.clear();
+        stylesheets.add(EXTENSIONS_CSS);
+        if (isDarkTheme) {
+            stylesheets.add(DARK_THEME);
+        } else {
+            stylesheets.add(LIGHT_THEME);
+        }
+        logger.fine("Stylesheets updated to " + (isDarkTheme ? "Dark Theme" : "Light Theme"));
+    }
+
+    /**
      * Toggle between Dark Theme and Light Theme
      */
     @FXML
     public void toggleDarkTheme() {
         isDarkTheme = !isDarkTheme;
-        primaryStage.getScene().getStylesheets().clear();
-        primaryStage.getScene().getStylesheets().add(EXTENSIONS_CSS);
-
-        if (isDarkTheme) {
-            primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
-        } else {
-            primaryStage.getScene().getStylesheets().add(DARK_THEME);
-        }
-
-        helpWindow.updateTheme(isDarkTheme);
+        logger.info("Toggling theme. New theme: " + (isDarkTheme ? "Dark" : "Light"));
+        updateStyleSheets(isDarkTheme);
+        helpWindow.updateStyleSheets(isDarkTheme);
     }
 
     /**

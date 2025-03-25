@@ -150,6 +150,10 @@
     -fx-background-color: black;
 }
 
+.check-menu-item {
+    -fx-mark-color: white;
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
