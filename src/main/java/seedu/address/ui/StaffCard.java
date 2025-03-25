@@ -45,10 +45,10 @@ public class StaffCard extends UiPart<Region> {
         super(FXML);
         this.staff = staff;
         id.setText(displayedIndex + ". ");
-        name.setText(staff.getName().fullName);  // assuming staff has a getName() method
-        phone.setText(staff.getPhone().value);  // assuming staff has a getPhone() method
-        email.setText(staff.getEmail().value);  // assuming staff has a getEmail() method
-        address.setText(staff.getAddress().value);  // assuming staff has a getAddress() method
-        // department.setText(staff.getDepartment().value);  // assuming staff has a getDepartment() method
+        name.setText(staff.getName().fullName);
+        phone.setText(staff.getPhone().value);
+        email.setText(staff.getEmail().value);
+        address.setText(staff.getAddress().value);
+        // department.setText(staff.getDepartment().value);
     }
 }
