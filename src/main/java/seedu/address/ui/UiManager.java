@@ -21,6 +21,7 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/caringbook.png";
+    private static final String EXTENSIONS_CSS = "/view/Extensions.css";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -55,7 +56,13 @@ public class UiManager implements Ui {
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(
+            mainWindow.getPrimaryStage(),
+            type,
+            title,
+            headerText,
+            contentText,
+            mainWindow.getTheme());
     }
 
     /**
@@ -63,9 +70,10 @@ public class UiManager implements Ui {
      * This method only returns after the user has closed the alert dialog.
      */
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+                                               String contentText, String theme) {
         final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        alert.getDialogPane().getStylesheets().add(EXTENSIONS_CSS);
+        alert.getDialogPane().getStylesheets().add(theme);
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);

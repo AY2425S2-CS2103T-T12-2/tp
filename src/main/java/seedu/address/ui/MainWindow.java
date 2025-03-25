@@ -24,11 +24,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME = "view/LightTheme.css";
+    private static final String DARK_THEME = "view/DarkTheme.css";
+    private static final String EXTENSIONS_CSS = "view/Extensions.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isDarkTheme;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -60,8 +64,10 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        GuiSettings guiSettings = logic.getGuiSettings();
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindowDefaultSize(guiSettings);
+        setDefaultTheme(guiSettings);
 
         setAccelerators();
 
@@ -70,6 +76,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public String getTheme() {
+        return isDarkTheme ? DARK_THEME : LIGHT_THEME;
     }
 
     private void setAccelerators() {
@@ -124,6 +134,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the Default Theme based on {@code guiSettings}
+     */
+    private void setDefaultTheme(GuiSettings guiSettings) {
+        isDarkTheme = guiSettings.isDarkTheme();
+
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(EXTENSIONS_CSS);
+        if (isDarkTheme) {
+            primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
+        } else {
+            primaryStage.getScene().getStylesheets().add(DARK_THEME);
+        }
+    }
+
+    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -132,6 +157,22 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Toggle between Dark Theme and Light Theme
+     */
+    @FXML
+    public void toggleDarkTheme() {
+        isDarkTheme = !isDarkTheme;
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(EXTENSIONS_CSS);
+
+        if (isDarkTheme) {
+            primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
+        } else {
+            primaryStage.getScene().getStylesheets().add(DARK_THEME);
         }
     }
 
@@ -157,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), isDarkTheme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
