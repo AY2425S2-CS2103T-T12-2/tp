@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.HealthcareStaff;
 
 /**
@@ -12,6 +15,8 @@ import seedu.address.model.person.HealthcareStaff;
 public class StaffCard extends UiPart<Region> {
 
     private static final String FXML = "StaffCard.fxml";
+
+    private static final Logger logger = LogsCenter.getLogger(StaffCard.class);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -50,5 +55,6 @@ public class StaffCard extends UiPart<Region> {
         email.setText(staff.getEmail().value);
         address.setText(staff.getAddress().value);
         // department.setText(staff.getDepartment().value);
+        logger.info("person card initialised: " + staff);
     }
 }

@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Priority?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="A Caring Book" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="A Caring Book" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/caringbook.png" />
   </icons>
@@ -25,7 +24,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" prefHeight="0.0" prefWidth="762.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -34,32 +33,32 @@
           </Menu>
         </MenuBar>
 
-        <HBox VBox.vgrow="ALWAYS">
+        <HBox prefHeight="450.0" prefWidth="764.0" VBox.vgrow="ALWAYS">
           <!-- List Panel on the Left -->
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="380" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="171.0" prefHeight="450.0" prefWidth="705.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
+              <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="personListPanelPlaceholder" prefHeight="428.0" prefWidth="517.0" VBox.vgrow="ALWAYS" />
           </VBox>
 
           <!-- Right Side Stack of Result Display and Command Box -->
-          <VBox fx:id="rightPanel" spacing="10" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="rightPanel" prefHeight="450.0" prefWidth="631.0" spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <!-- Result Display Panel -->
-            <VBox fx:id="resultDisplayPanel" styleClass="pane-with-border">
+            <VBox fx:id="resultDisplayPanel" prefHeight="455.0" prefWidth="345.0" styleClass="pane-with-border">
               <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
+                <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
-              <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </VBox>
         </HBox>
         <!-- Command Box Panel -->
-        <VBox fx:id="commandBoxPanel" styleClass="pane-with-border">
+        <VBox fx:id="commandBoxPanel" prefHeight="50.0" prefWidth="762.0" styleClass="pane-with-border">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
-          <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
