@@ -29,7 +29,7 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
    * `liststaff` : Lists all staffs.
 
-   * `listpatient` : Lists all patients.
+   * `listpatients` : Lists all patients.
 
    * `list` : Lists all contacts.
 
@@ -116,11 +116,11 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Listing all patients : `listpatient`
+### Listing all patients : `listpatients`
 
 Shows a list of all patients in the address book.
 
-Format: `listpatient`
+Format: `listpatients`
 
 ### Listing all staffs : `liststaff`
 
@@ -177,7 +177,7 @@ Format: `findpatient KEYWORD`
 * All patients in the department will be returned e.g. `findpatient conology` will return a list of Conology patients.
 
 Examples:
-If these two `addstaff` commands are executed,
+If these two `addpatient` commands are executed,
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Hong Doe dp/Conology`
 * `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
@@ -275,7 +275,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Patient By Department** | `findpatient KEYWORD`<br> e.g., `findpatient surgery`
+**Find Staff By Role** | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
 **List** | `list`
-**List Patients** | `listpatient`
+**List Patients** | `listpatients`
 **List Staff** | `liststaff`
 **Help** | `help`
