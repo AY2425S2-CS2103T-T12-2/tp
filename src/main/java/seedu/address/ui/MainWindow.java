@@ -136,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        logger.info("Main window initialized.");
     }
 
     /**
@@ -209,6 +211,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("Exiting main window...");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY(), isDarkTheme);
         logic.setGuiSettings(guiSettings);
