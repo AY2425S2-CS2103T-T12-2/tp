@@ -13,12 +13,12 @@ import seedu.address.model.person.ProviderRoleContainsKeywordPredicate;
  */
 public class FindByStaffRoleCommand extends Command {
 
-    public static final String COMMAND_WORD = "findstaff";
+    public static final CommandType COMMAND_TYPE = CommandType.FINDSTAFF;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all staff whose role contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Finds all staff whose role contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD\n"
-        + "Example: " + COMMAND_WORD + " doctor";
+        + "Example: " + COMMAND_TYPE + " doctor";
 
     private final ProviderRoleContainsKeywordPredicate predicate;
 

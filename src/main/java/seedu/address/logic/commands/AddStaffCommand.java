@@ -19,9 +19,9 @@ import seedu.address.model.person.HealthcareStaff;
  */
 public class AddStaffCommand extends Command {
 
-    public static final String COMMAND_WORD = "addstaff";
+    public static final CommandType COMMAND_TYPE = CommandType.ADDSTAFF;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the Caring Book. "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Adds a staff to the Caring Book. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_NAME + "NAME "
@@ -29,7 +29,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_TYPE + " "
             + PREFIX_ROLE + "doctor "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
