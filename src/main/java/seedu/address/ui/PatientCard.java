@@ -48,5 +48,6 @@ public class PatientCard extends UiPart<Region> {
         doctor.setText("Doctor: " + patient.getDoctorInCharge());
         department.setText("Department: " + patient.getDepartment().toString());
         nok.setText("NOK: " + patient.getGuardian());
+
     }
 }
