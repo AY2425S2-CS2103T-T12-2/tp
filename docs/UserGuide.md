@@ -85,7 +85,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS dr/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​`
+Format: `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -100,7 +100,7 @@ Examples:
 
 Adds a staff to the address book.
 
-Format: `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A staff can have any number of tags (including 0)
@@ -132,11 +132,12 @@ Format: `liststaff`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Role field is only available for healthcare staff, doctor_in_charge, guardian and department fields are only avaliable for patients.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
@@ -269,11 +270,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
-**Add Staff** | `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN dp/DEPARTMENT] [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
+**Add Staff** | `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Patient By Department** | `findpatient KEYWORD`<br> e.g., `findpatient surgery`
 **Find Staff By Role** | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
