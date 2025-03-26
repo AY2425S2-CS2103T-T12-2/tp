@@ -160,29 +160,12 @@ class JsonAdaptedPerson {
         if (role == null) {
             throw new IllegalValueException("Missing role field in JSON.");
         } else if (role.equalsIgnoreCase("PATIENT")) {
-            return new Patient(
-                modelName,
-                modelPhone,
-                modelEmail,
-                modelAddress,
-                modelRemark,
-                modelTags,
-                doctorInCharge != null ? doctorInCharge : "",
-                guardian != null ? guardian : "",
-                department != null ? new Department(department) : new Department("")
-            );
+            return new Patient(modelName, modelPhone, modelEmail, modelAddress,
+                new Remark(remark), modelTags, doctorInCharge, guardian, new Department(department));
         } else if (role.equalsIgnoreCase("STAFF")) {
-            return new HealthcareStaff(
-                modelName,
-                new ProviderRole(providerRole != null ? providerRole : ""),
-                modelPhone,
-                modelEmail,
-                modelAddress,
-                modelRemark,
-                modelTags
-            );
+            return new HealthcareStaff(modelName, new ProviderRole(providerRole),
+                modelPhone, modelEmail, modelAddress, new Remark(remark), modelTags);
         }
-
 
         return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
