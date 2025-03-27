@@ -92,6 +92,9 @@ public class AddressBookParser {
         case EXIT:
             return new ExitCommand();
 
+        case REMARK:
+            return new RemarkCommandParser().parse(arguments);
+
         case HELP:
             return new HelpCommand();
 

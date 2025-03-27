@@ -19,12 +19,16 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindByPatientDepartmentCommand;
+import seedu.address.logic.commands.FindByStaffRoleCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ProviderRoleContainsKeywordPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -74,6 +78,24 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_TYPE + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findpatient() throws Exception {
+        List<String> keyword = Arrays.asList("nurse");
+        FindByPatientDepartmentCommand command = (FindByPatientDepartmentCommand) parser.parseCommand(
+            FindByPatientDepartmentCommand.COMMAND_WORD
+                + " " + keyword.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindByPatientDepartmentCommand(new DepartmentContainsKeywordsPredicate(keyword)) , command);
+    }
+
+    @Test
+    public void parseCommand_findstaff() throws Exception {
+        List<String> keyword = Arrays.asList("cardio");
+        FindByStaffRoleCommand command = (FindByStaffRoleCommand) parser.parseCommand(
+            FindByStaffRoleCommand.COMMAND_WORD
+                + " " + keyword.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindByStaffRoleCommand(new ProviderRoleContainsKeywordPredicate(keyword)) , command);
     }
 
     @Test

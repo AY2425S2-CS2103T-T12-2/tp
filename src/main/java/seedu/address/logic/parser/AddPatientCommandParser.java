@@ -21,6 +21,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,12 +49,14 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Remark remark = new Remark("");
         String docInCharge = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
-        String guardian = ParserUtil.parseGuardian(argMultimap.getValue(PREFIX_GUARDIAN).get());
+        String guardian = ParserUtil.parseGuardian(argMultimap
+                              .getValue(PREFIX_GUARDIAN).get());
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Patient patient = new Patient(name, phone, email, address, tagList, docInCharge, guardian, department);
+        Patient patient = new Patient(name, phone, email, address, remark, tagList, docInCharge, guardian, department);
 
         return new AddPatientCommand(patient);
     }

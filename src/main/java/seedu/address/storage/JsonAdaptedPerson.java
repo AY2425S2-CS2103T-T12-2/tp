@@ -11,10 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
@@ -30,6 +35,12 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String remark;
+    private final String guardian;
+    private final String doctorInCharge;
+    private final String department;
+    private final String providerRole;
+
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -41,12 +52,23 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("guardian") String guardian,
+                             @JsonProperty("doctorInCharge") String doctorInCharge,
+                             @JsonProperty("department") String department,
+                             @JsonProperty("providerRole") String providerRole,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.role = role; // Store role from JSON
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = remark;
+        this.guardian = guardian;
+        this.doctorInCharge = doctorInCharge;
+        this.department = department;
+        this.providerRole = providerRole;
+
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -61,9 +83,29 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        String derivedProviderRole = null;
+
+        if (source instanceof Patient) {
+            Patient p = (Patient) source;
+            guardian = p.getGuardian();
+            doctorInCharge = p.getDoctorInCharge();
+            department = p.getDepartment().toString();
+        } else if (source instanceof HealthcareStaff) {
+            HealthcareStaff s = (HealthcareStaff) source;
+            derivedProviderRole = s.getProviderRole().toString();
+            guardian = null;
+            doctorInCharge = null;
+            department = null;
+        } else {
+            guardian = null;
+            doctorInCharge = null;
+            department = null;
+        }
+        this.providerRole = derivedProviderRole;
     }
 
     /**
@@ -104,19 +146,46 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+        final Remark modelRemark = new Remark(remark);
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         // FIX: Ensure correct role is restored
         if (role == null) {
             throw new IllegalValueException("Missing role field in JSON.");
+        } else if (role.equalsIgnoreCase("PATIENT")) {
+            return new Patient(
+                modelName,
+                modelPhone,
+                modelEmail,
+                modelAddress,
+                modelRemark,
+                modelTags,
+                doctorInCharge != null ? doctorInCharge : "",
+                guardian != null ? guardian : "",
+                department != null ? new Department(department) : new Department("")
+            );
+        } else if (role.equalsIgnoreCase("STAFF")) {
+            return new HealthcareStaff(
+                modelName,
+                new ProviderRole(providerRole != null ? providerRole : ""),
+                modelPhone,
+                modelEmail,
+                modelAddress,
+                modelRemark,
+                modelTags
+            );
         }
 
-        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 }
 

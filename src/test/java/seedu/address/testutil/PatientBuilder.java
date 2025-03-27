@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,6 +23,7 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "";
     public static final String DEFAULT_DOCTOR = "Dr Lee";
     public static final String DEFAULT_NOK = "Mrs Bee Bee";
     public static final String DEFAULT_DEPARTMENT = "Chronology";
@@ -31,6 +33,7 @@ public class PatientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Remark remark;
     private Set<Tag> tags;
     private Department department;
     private String doctor;
@@ -44,6 +47,7 @@ public class PatientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         department = new Department(DEFAULT_DEPARTMENT);
         doctor = DEFAULT_DOCTOR;
@@ -59,6 +63,7 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
+        remark = patientToCopy.getRemark();
         tags = new HashSet<>(patientToCopy.getTags());
         department = patientToCopy.getDepartment();
         doctor = patientToCopy.getDoctorInCharge();
@@ -132,7 +137,7 @@ public class PatientBuilder {
 
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags, doctor, nok, department);
+        return new Patient(name, phone, email, address, remark, tags, doctor, nok, department);
     }
 
 }

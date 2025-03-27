@@ -19,8 +19,8 @@ public class HealthcareStaff extends Person {
      * Every field must be present.
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
-                           Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(new Role("STAFF"), name, phone, email, address, tags);
+                           Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        super(new Role("STAFF"), name, phone, email, address, remark, tags);
         requireAllNonNull(providerRole);
         this.providerRole = providerRole;
     }

@@ -29,13 +29,13 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
    * `liststaff` : Lists all staffs.
 
-   * `listpatient` : Lists all patients.
+   * `listpatients` : Lists all patients.
 
    * `list` : Lists all contacts.
 
    * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
-   * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
+   * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -85,7 +85,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​`
+Format: `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -93,14 +93,14 @@ A person can have any number of tags (including 0)
 
 Examples:
 
-* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 do/Dr Mak g/Mrs Hong Doe dp/Conology`
-* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 do/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
+* `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Hong Doe dp/Conology`
+* `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
 ### Adding a staff: `addstaff`
 
 Adds a staff to the address book.
 
-Format: `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A staff can have any number of tags (including 0)
@@ -116,11 +116,11 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Listing all patients : `listpatient`
+### Listing all patients : `listpatients`
 
 Shows a list of all patients in the address book.
 
-Format: `listpatient`
+Format: `listpatients`
 
 ### Listing all staffs : `liststaff`
 
@@ -132,11 +132,12 @@ Format: `liststaff`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Role field is only available for healthcare staff, doctor_in_charge, guardian and department fields are only avaliable for patients.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
@@ -177,7 +178,7 @@ Format: `findpatient KEYWORD`
 * All patients in the department will be returned e.g. `findpatient conology` will return a list of Conology patients.
 
 Examples:
-If these two `addstaff` commands are executed,
+If these two `addpatient` commands are executed,
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak g/Mrs Hong Doe dp/Conology`
 * `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
@@ -269,13 +270,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS do/DOCTOR_IN_CHARGE g/GUARDIAN dp/DEPARTMENT [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 do/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
-**Add Staff** | `addstaff r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Patient** | `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN dp/DEPARTMENT] [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
+**Add Staff** | `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find Patient By Department** | `findpatient KEYWORD`<br> e.g., `findpatient surgery`
+**Find Staff By Role** | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
 **List** | `list`
-**List Patients** | `listpatient`
+**List Patients** | `listpatients`
 **List Staff** | `liststaff`
 **Help** | `help`

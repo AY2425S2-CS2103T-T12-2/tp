@@ -18,6 +18,7 @@ import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 public class AddStaffCommandParserTest {
@@ -40,9 +41,10 @@ public class AddStaffCommandParserTest {
         Phone phone = new Phone("12345678");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
+        Remark remark = new Remark("");
         Set<Tag> tags = Set.of(new Tag("critical"));
 
-        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, remark, tags);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
@@ -103,9 +105,10 @@ public class AddStaffCommandParserTest {
         Phone phone = new Phone("12345678");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
+        Remark remark = new Remark("");
         Set<Tag> tags = Set.of(new Tag("critical"), new Tag("urgent"));
 
-        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, remark, tags);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
