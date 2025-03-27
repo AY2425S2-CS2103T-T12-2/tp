@@ -23,4 +23,7 @@ Person *--> Remark
 
 HealthcareStaff -left-|> Person
 HealthcareStaff *--> ProviderRole
+
+Patient -right-|> Person
+Patient *--> Department
 @enduml
