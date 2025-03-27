@@ -83,7 +83,7 @@ Format: `help`
 
 ### Adding a patient: `addpatient`
 
-Adds a person to the address book.
+Adds a patient to the address book.
 
 Format: `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
