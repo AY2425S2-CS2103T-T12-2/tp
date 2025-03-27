@@ -30,8 +30,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
@@ -124,7 +124,8 @@ public class EditCommand extends Command {
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
                     updatedDocInCharge, updatedGuardian, updatedDepartment);
         } else {
-            return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+            return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                           updatedRemark, updatedTags);
         }
     }
 

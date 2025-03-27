@@ -192,7 +192,7 @@ public class EditCommandTest {
 
         HealthcareStaff updatedStaff = new HealthcareStaff(healthcareStaff.getName(), new ProviderRole("NURSE"),
                 healthcareStaff.getPhone(), healthcareStaff.getEmail(), healthcareStaff.getAddress(),
-                healthcareStaff.getTags());
+                healthcareStaff.getRemark(), healthcareStaff.getTags());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(updatedStaff));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -213,7 +213,7 @@ public class EditCommandTest {
                         .size() - 1), descriptor);
 
         Patient updatedPatient = new Patient(patient.getName(), patient.getPhone(), patient.getEmail(),
-                patient.getAddress(), patient.getTags(), "Dr Doa", patient.getGuardian(),
+                patient.getAddress(), patient.getRemark(), patient.getTags(), "Dr Doa", patient.getGuardian(),
                 patient.getDepartment());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
