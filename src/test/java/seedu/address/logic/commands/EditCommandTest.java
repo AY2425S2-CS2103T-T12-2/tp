@@ -25,9 +25,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.HealthcareStaff;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ProviderRole;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StaffBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -172,6 +177,51 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+    }
+
+    @Test
+    public void execute_editHealthcareStaffRole_success() {
+        HealthcareStaff healthcareStaff = new StaffBuilder().withName("John Doe").withPhone("98765432")
+                .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
+                .withRole("Doctor").withTags("experienced", "available").build();
+        model.addPerson(healthcareStaff);
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withProviderRole("NURSE").build();
+        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList()
+                        .size() - 1), descriptor);
+
+        HealthcareStaff updatedStaff = new HealthcareStaff(healthcareStaff.getName(), new ProviderRole("NURSE"),
+                healthcareStaff.getPhone(), healthcareStaff.getEmail(), healthcareStaff.getAddress(),
+                healthcareStaff.getTags());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(updatedStaff));
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(healthcareStaff, updatedStaff);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_editPatientDocInCharge_success() {
+        Patient patient = new PatientBuilder().withName("John Doe").withPhone("98765432")
+                .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25").withDoc("Dr Doa")
+                .withDepartment("Cardiology").withTags("experienced", "available").build();
+        model.addPerson(patient);
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDocInCharge("Dr Doa").build();
+        EditCommand editCommand = new EditCommand(Index.fromZeroBased(model.getFilteredPersonList()
+                        .size() - 1), descriptor);
+
+        Patient updatedPatient = new Patient(patient.getName(), patient.getPhone(), patient.getEmail(),
+                patient.getAddress(), patient.getTags(), "Dr Doa", patient.getGuardian(),
+                patient.getDepartment());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(updatedPatient));
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(patient, updatedPatient);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
