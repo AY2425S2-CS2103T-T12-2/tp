@@ -8,22 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddPatientCommand;
-import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.CommandType;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindByPatientDepartmentCommand;
-import seedu.address.logic.commands.FindByStaffRoleCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ListStaffCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,52 +49,53 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        CommandType commandType = CommandType.fromString(commandWord);
 
-        switch (commandWord) {
+        switch (commandType) {
 
-        case AddCommand.COMMAND_WORD:
+        case ADD:
             return new AddCommandParser().parse(arguments);
 
-        case AddPatientCommand.COMMAND_WORD:
+        case ADDPATIENT:
             return new AddPatientCommandParser().parse(arguments);
 
-        case AddStaffCommand.COMMAND_WORD:
+        case ADDSTAFF:
             return new AddStaffCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EDIT:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DELETE:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
+        case CLEAR:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FIND:
             return new FindCommandParser().parse(arguments);
 
-        case FindByPatientDepartmentCommand.COMMAND_WORD:
+        case FINDPATIENT:
             return new FindByPatientDepartmentCommandParser().parse(arguments);
 
-        case FindByStaffRoleCommand.COMMAND_WORD:
+        case FINDSTAFF:
             return new FindByStaffRoleCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
+        case LIST:
             return new ListCommand();
 
-        case ListStaffCommand.COMMAND_WORD:
+        case LISTSTAFF:
             return new ListStaffCommand();
 
-        case ListPatientsCommand.COMMAND_WORD:
+        case LISTPATIENTS:
             return new ListPatientsCommand();
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
+        case EXIT:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
+        case REMARK:
+            return new RemarkCommandParser().parse(arguments);
+
+        case HELP:
             return new HelpCommand();
 
         default:

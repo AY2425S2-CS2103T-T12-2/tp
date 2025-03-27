@@ -20,14 +20,14 @@ import seedu.address.model.person.Remark;
  */
 public class RemarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final CommandType COMMAND_TYPE = CommandType.REMARK;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_TYPE + " 1 "
             + PREFIX_REMARK + "Likes to swim.";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";

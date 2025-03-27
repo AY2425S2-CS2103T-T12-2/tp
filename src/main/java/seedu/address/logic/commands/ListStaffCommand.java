@@ -8,7 +8,7 @@ import seedu.address.model.Model;
  * Lists all doctors in the address book to the user.
  */
 public class ListStaffCommand extends Command {
-    public static final String COMMAND_WORD = "liststaff";
+    public static final CommandType COMMAND_TYPE = CommandType.LISTSTAFF;
 
     public static final String MESSAGE_SUCCESS = "Listed all staff.";
 

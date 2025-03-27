@@ -12,12 +12,12 @@ import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
  * Keyword matching is case-insensitive.
  */
 public class FindByPatientDepartmentCommand extends Command {
-    public static final String COMMAND_WORD = "findpatient";
+    public static final CommandType COMMAND_TYPE = CommandType.FINDPATIENT;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose department contain "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Finds all patients whose department contain "
         + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD\n"
-        + "Example: " + COMMAND_WORD + " Conology";
+        + "Example: " + COMMAND_TYPE + " Conology";
 
     private final DepartmentContainsKeywordsPredicate predicate;
 
