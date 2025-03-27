@@ -19,6 +19,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
@@ -40,6 +41,7 @@ class JsonAdaptedPerson {
     private final String doctorInCharge;
     private final String department;
     private final String providerRole;
+
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -67,6 +69,7 @@ class JsonAdaptedPerson {
         this.doctorInCharge = doctorInCharge;
         this.department = department;
         this.providerRole = providerRole;
+      
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -182,7 +185,6 @@ class JsonAdaptedPerson {
                 modelTags
             );
         }
-
 
         return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
