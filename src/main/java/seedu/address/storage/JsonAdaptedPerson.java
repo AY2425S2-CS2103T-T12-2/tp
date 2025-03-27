@@ -19,7 +19,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
-
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
@@ -69,7 +68,7 @@ class JsonAdaptedPerson {
         this.doctorInCharge = doctorInCharge;
         this.department = department;
         this.providerRole = providerRole;
-      
+
         if (tags != null) {
             this.tags.addAll(tags);
         }
