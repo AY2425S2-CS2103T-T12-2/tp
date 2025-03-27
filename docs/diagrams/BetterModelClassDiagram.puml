@@ -21,6 +21,6 @@ Person *--> Email
 Person *--> Address
 Person *--> Remark
 
-HealthcareStaff -left-> Person
+HealthcareStaff -left-|> Person
 HealthcareStaff *--> ProviderRole
 @enduml
