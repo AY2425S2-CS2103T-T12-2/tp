@@ -19,6 +19,7 @@ import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,9 +51,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
                 ? new Email("NA@placeholder.com") : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
                 ? new Address("NA") : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        HealthcareStaff healthcareStaff = new HealthcareStaff(name, providerRole, phone, email, address, tagList);
+        HealthcareStaff healthcareStaff = new HealthcareStaff(name, providerRole, phone, email,
+            address, remark, tagList);
 
         return new AddStaffCommand(healthcareStaff);
     }

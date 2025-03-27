@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="patientCard" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Personal Information -->
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="idLabel" text="ID:" styleClass="cell_small_label"/>
+        <Label fx:id="id" styleClass="cell_big_label"/>
+        <Label fx:id="nameLabel" text="Name:" styleClass="cell_small_label"/>
+        <Label fx:id="name" styleClass="cell_big_label"/>
+    </HBox>
+
+    <!-- Contact Information -->
+    <VBox spacing="5">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="phoneLabel" text="HP:" styleClass="cell_small_label"/>
+            <Label fx:id="phone" styleClass="cell_small_label"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="emailLabel" text="Email:" styleClass="cell_small_label"/>
+            <Label fx:id="email" styleClass="cell_small_label"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="addressLabel" text="Address:" styleClass="cell_small_label"/>
+            <Label fx:id="address" styleClass="cell_small_label"/>
+        </HBox>
+    </VBox>
+
+    <!-- Medical Information -->
+    <VBox spacing="5">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="doctorLabel" text="Doctor:" styleClass="cell_small_label"/>
+            <Label fx:id="doctor" styleClass="cell_small_label"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="departmentLabel" text="Department:" styleClass="cell_small_label"/>
+            <Label fx:id="department" styleClass="cell_small_label"/>
+        </HBox>
+    </VBox>
+
+    <!-- Next of Kin Information -->
+    <VBox spacing="5">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="nokLabel" text="NOK:" styleClass="cell_small_label"/>
+            <Label fx:id="nok" styleClass="cell_small_label"/>
+        </HBox>
+    </VBox>
+</VBox>

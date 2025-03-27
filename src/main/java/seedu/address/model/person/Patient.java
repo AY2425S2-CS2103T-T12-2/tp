@@ -18,10 +18,10 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                String doctorInCharge, String guardian, Department department) {
         super(new Role("PATIENT"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
-                address != null ? address : new Address("NA"), tags);
+                address != null ? address : new Address("NA"), remark, tags);
         this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "";
         this.guardian = guardian != null ? guardian : "";
         this.department = department != null ? department : new Department("NA");
@@ -67,10 +67,14 @@ public class Patient extends Person {
         }
 
         Patient otherPatient = (Patient) other;
-        return super.equals(other)
-                && doctorInCharge.equals(otherPatient.doctorInCharge)
-                && guardian.equals(otherPatient.guardian)
-                && department.equals(otherPatient.department);
+        return getName().equals(otherPatient.getName())
+                && getPhone().equals(otherPatient.getPhone())
+                && getEmail().equals(otherPatient.getEmail())
+                && getAddress().equals(otherPatient.getAddress())
+                && getTags().equals(otherPatient.getTags())
+                && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
+                && getGuardian().equals(otherPatient.getGuardian())
+                && getDepartment().equals(otherPatient.getDepartment());
     }
 
     @Override

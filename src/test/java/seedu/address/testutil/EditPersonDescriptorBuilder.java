@@ -7,9 +7,12 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ProviderRole;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,11 +35,35 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        if (person instanceof HealthcareStaff) {
+            HealthcareStaff staff = (HealthcareStaff) person;
+            descriptor.setProviderRole(staff.getProviderRole());
+        }
+        if (person instanceof Patient) {
+            Patient patient = (Patient) person;
+            descriptor.setDocInCharge(patient.getDoctorInCharge());
+        }
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+    }
+
+    /**
+     * Sets the {@code ProviderRole} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withProviderRole(String providerRole) {
+        descriptor.setProviderRole(new ProviderRole(providerRole));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DocInCharge} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDocInCharge(String docInCharge) {
+        descriptor.setDocInCharge("docInCharge");
+        return this;
     }
 
     /**

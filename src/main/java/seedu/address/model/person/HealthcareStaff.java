@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,9 +19,9 @@ public class HealthcareStaff extends Person {
      * Every field must be present.
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
-                           Phone phone, Email email, Address address, Set<Tag> tags) {
+                           Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         super(new Role("STAFF"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
-                address != null ? address : new Address("NA"), tags);
+                address != null ? address : new Address("NA"), remark, tags);
         this.providerRole = providerRole != null ? providerRole : new ProviderRole("NA");
     }
 
@@ -64,7 +66,6 @@ public class HealthcareStaff extends Person {
     public int hashCode() {
         return Objects.hash(getName(), providerRole, getPhone(), getEmail(), getAddress(), getTags());
     }
-
 
     @Override
     public String toString() {
