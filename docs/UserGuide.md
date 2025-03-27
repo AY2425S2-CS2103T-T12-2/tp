@@ -83,7 +83,7 @@ Format: `help`
 
 ### Adding a patient: `addpatient`
 
-Adds a person to the address book.
+Adds a patient to the address book.
 
 Format: `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`
 
@@ -161,8 +161,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find sarah peter` returns `Sarah Connor`, `Peter Parker`<br>
-  ![result for 'find alex david'](images/findSarahPeterResult.png)
+* `find alex charlotte` returns `Alex Yeoh`, `Charlotte Oliveiro`<br>
+  ![result for 'find alex charlotte'](images/findAlexCharlotteResult.png)
 
 
 ### Finding a patient by department
