@@ -20,9 +20,9 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                String doctorInCharge, String guardian, Department department) {
-        super(new Role("PATIENT"), name, phone, email, address, tags);
+        super(new Role("PATIENT"), name, phone, email, address, remark, tags);
         requireAllNonNull(doctorInCharge);
         this.doctorInCharge = doctorInCharge;
         this.guardian = guardian;

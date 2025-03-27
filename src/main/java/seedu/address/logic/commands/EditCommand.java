@@ -31,6 +31,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
@@ -106,6 +107,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof HealthcareStaff) {
@@ -113,16 +115,17 @@ public class EditCommand extends Command {
             ProviderRole updatedProviderRole = editPersonDescriptor.getProviderRole().orElse(staffToEdit
                     .getProviderRole());
             return new HealthcareStaff(updatedName, updatedProviderRole,
-                    updatedPhone, updatedEmail, updatedAddress, updatedTags);
+                    updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
             String updatedGuardian = editPersonDescriptor.getGuardian().orElse(patientToEdit.getGuardian());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
                     updatedDocInCharge, updatedGuardian, updatedDepartment);
         } else {
-            return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                           updatedRemark, updatedTags);
         }
     }
 
