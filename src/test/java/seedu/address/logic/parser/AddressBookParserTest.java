@@ -84,7 +84,7 @@ public class AddressBookParserTest {
     public void parseCommand_findpatient() throws Exception {
         List<String> keyword = Arrays.asList("nurse");
         FindByPatientDepartmentCommand command = (FindByPatientDepartmentCommand) parser.parseCommand(
-            FindByPatientDepartmentCommand.COMMAND_WORD
+            FindByPatientDepartmentCommand.COMMAND_TYPE
                 + " " + keyword.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindByPatientDepartmentCommand(new DepartmentContainsKeywordsPredicate(keyword)) , command);
     }
@@ -93,7 +93,7 @@ public class AddressBookParserTest {
     public void parseCommand_findstaff() throws Exception {
         List<String> keyword = Arrays.asList("cardio");
         FindByStaffRoleCommand command = (FindByStaffRoleCommand) parser.parseCommand(
-            FindByStaffRoleCommand.COMMAND_WORD
+            FindByStaffRoleCommand.COMMAND_TYPE
                 + " " + keyword.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindByStaffRoleCommand(new ProviderRoleContainsKeywordPredicate(keyword)) , command);
     }

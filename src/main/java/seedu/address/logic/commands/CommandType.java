@@ -18,6 +18,7 @@ public enum CommandType {
     DELETE,
     HELP,
     EXIT,
+    REMARK,
     UNKNOWN;
 
     /**
@@ -40,6 +41,7 @@ public enum CommandType {
         case "edit", "e" -> EDIT;
         case "clear", "cls" -> CLEAR;
         case "delete", "del", "d" -> DELETE;
+        case "remark", "re" -> REMARK;
         case "help", "h" -> HELP;
         case "exit", "quit" -> EXIT;
         default -> UNKNOWN;
