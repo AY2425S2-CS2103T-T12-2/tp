@@ -60,26 +60,30 @@ public class Patient extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (this == other) {
             return true;
         }
-
         if (!(other instanceof Patient)) {
             return false;
         }
-
         Patient otherPatient = (Patient) other;
-        return super.equals(other)
-                && doctorInCharge.equals(otherPatient.doctorInCharge)
-                && guardian.equals(otherPatient.guardian)
-                && department.equals(otherPatient.department);
+        return getName().equals(otherPatient.getName())
+                && getPhone().equals(otherPatient.getPhone())
+                && getEmail().equals(otherPatient.getEmail())
+                && getAddress().equals(otherPatient.getAddress())
+                && getTags().equals(otherPatient.getTags())
+                && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
+                && getGuardian().equals(otherPatient.getGuardian())
+                && getDepartment().equals(otherPatient.getDepartment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags(), doctorInCharge, guardian, department);
+        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(),
+                getDoctorInCharge(), getGuardian(), getDepartment());
     }
+
+
 
     @Override
     public String toString() {
