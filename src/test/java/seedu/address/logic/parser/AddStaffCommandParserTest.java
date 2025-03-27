@@ -116,4 +116,71 @@ public class AddStaffCommandParserTest {
         // Assert
         assertEquals(new AddStaffCommand(expectedStaff), command);
     }
+
+    @Test
+    public void parse_missingProviderRole_usesDefaultProviderRole() throws ParseException {
+        // Arrange
+        String userInput = " n/John Doe p/12345678 e/johndoe@example.com a/123 Main St t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("NA");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("123 Main St"); // Expecting default address
+        Remark remark = new Remark("serious");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, remark, tags);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
+    }
+    @Test
+    public void parse_missingAddress_usesDefaultAddress() throws ParseException {
+        // Arrange
+        String userInput = " r/doctor n/John Doe p/12345678 e/johndoe@example.com t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("doctor");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("NA"); // Expecting default address
+        Remark remark = new Remark("");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, remark, tags);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
+    }
+    @Test
+    public void parse_missingEmail_usesDefaultEmail() throws ParseException {
+        // Arrange
+        String userInput = " r/doctor n/John Doe p/12345678 a/123 Main St t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("doctor");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("NA@placeholder.com"); // Expecting default email
+        Address address = new Address("123 Main St");
+        Remark remark = new Remark("serious");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, remark, tags);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
+    }
 }

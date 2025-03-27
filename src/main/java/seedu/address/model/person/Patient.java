@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,11 +20,11 @@ public class Patient extends Person {
      */
     public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
                String doctorInCharge, String guardian, Department department) {
-        super(new Role("PATIENT"), name, phone, email, address, remark, tags);
-        requireAllNonNull(doctorInCharge);
-        this.doctorInCharge = doctorInCharge;
-        this.guardian = guardian;
-        this.department = department;
+        super(new Role("PATIENT"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
+                address != null ? address : new Address("NA"), remark, tags);
+        this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "";
+        this.guardian = guardian != null ? guardian : "";
+        this.department = department != null ? department : new Department("NA");
     }
 
     public String getDoctorInCharge() {
@@ -60,12 +58,14 @@ public class Patient extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
+        if (other == this) {
             return true;
         }
+
         if (!(other instanceof Patient)) {
             return false;
         }
+
         Patient otherPatient = (Patient) other;
         return getName().equals(otherPatient.getName())
                 && getPhone().equals(otherPatient.getPhone())
@@ -79,11 +79,9 @@ public class Patient extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(),
-                getDoctorInCharge(), getGuardian(), getDepartment());
+        return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getTags(), doctorInCharge, guardian, department);
     }
-
-
 
     @Override
     public String toString() {

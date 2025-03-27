@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,9 +18,9 @@ public class HealthcareStaff extends Person {
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
                            Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        super(new Role("STAFF"), name, phone, email, address, remark, tags);
-        requireAllNonNull(providerRole);
-        this.providerRole = providerRole;
+        super(new Role("STAFF"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
+                address != null ? address : new Address("NA"), remark, tags);
+        this.providerRole = providerRole != null ? providerRole : new ProviderRole("NA");
     }
 
     public ProviderRole getProviderRole() {
@@ -47,22 +45,24 @@ public class HealthcareStaff extends Person {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (this == other) {
             return true;
         }
-
         if (!(other instanceof HealthcareStaff)) {
             return false;
         }
-
-        HealthcareStaff otherPerson = (HealthcareStaff) other;
-        return super.equals(other) && providerRole.equals(otherPerson.providerRole);
+        HealthcareStaff otherStaff = (HealthcareStaff) other;
+        return getName().equals(otherStaff.getName())
+                && providerRole.equals(otherStaff.providerRole)
+                && getPhone().equals(otherStaff.getPhone())
+                && getEmail().equals(otherStaff.getEmail())
+                && getAddress().equals(otherStaff.getAddress())
+                && getTags().equals(otherStaff.getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), providerRole, this.getPhone(),
-            this.getEmail(), this.getAddress(), this.getTags());
+        return Objects.hash(getName(), providerRole, getPhone(), getEmail(), getAddress(), getTags());
     }
 
     @Override

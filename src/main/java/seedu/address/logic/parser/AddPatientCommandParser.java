@@ -39,21 +39,24 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GUARDIAN,
-                PREFIX_DEPARTMENT, PREFIX_DOCTOR) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? new Email("NA@placeholder.com") : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
+                ? new Address("NA") : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        String docInCharge = argMultimap.getValue(PREFIX_DOCTOR).isEmpty() ? ""
+                : ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
+        String guardian = argMultimap.getValue(PREFIX_GUARDIAN).isEmpty() ? ""
+                : ParserUtil.parseGuardian(argMultimap.getValue(PREFIX_GUARDIAN).get());
+        Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty() ? new Department("NA")
+                : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Remark remark = new Remark("");
-        String docInCharge = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
-        String guardian = ParserUtil.parseGuardian(argMultimap
-                              .getValue(PREFIX_GUARDIAN).get());
-        Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Patient patient = new Patient(name, phone, email, address, remark, tagList, docInCharge, guardian, department);

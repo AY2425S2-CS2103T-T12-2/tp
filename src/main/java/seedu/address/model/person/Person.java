@@ -29,13 +29,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Role role, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(role, name, phone, email, address, tags);
+        requireAllNonNull(role, name, phone, tags);
         this.role = role;
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
         this.remark = remark;
+        this.email = email != null ? email : new Email("NA@placeholder.com");
+        this.address = address != null ? address : new Address("NA");
         this.tags.addAll(tags);
     }
 
@@ -103,8 +103,8 @@ public class Person {
         return role.equals(otherPerson.role)
             && name.equals(otherPerson.name)
             && phone.equals(otherPerson.phone)
-            && email.equals(otherPerson.email)
-            && address.equals(otherPerson.address)
+            && (email == null || otherPerson.email == null || email.equals(otherPerson.email))
+            && (address == null || otherPerson.address == null || address.equals(otherPerson.address))
             && tags.equals(otherPerson.tags);
     }
 
