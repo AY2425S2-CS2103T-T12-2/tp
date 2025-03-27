@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -24,11 +26,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LIGHT_THEME = "view/LightTheme.css";
+    private static final String DARK_THEME = "view/DarkTheme.css";
+    private static final String EXTENSIONS_CSS = "view/Extensions.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean isDarkTheme;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -36,10 +42,13 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private CheckMenuItem darkModeMenuItem;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -60,16 +69,22 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        GuiSettings guiSettings = logic.getGuiSettings();
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindowDefaultSize(guiSettings);
+        setDefaultTheme(guiSettings);
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(isDarkTheme);
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public String getTheme() {
+        return isDarkTheme ? DARK_THEME : LIGHT_THEME;
     }
 
     private void setAccelerators() {
@@ -126,6 +141,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the Default Theme based on {@code guiSettings}
+     */
+    private void setDefaultTheme(GuiSettings guiSettings) {
+        isDarkTheme = guiSettings.isDarkTheme();
+        logger.info("Initializing theme: " + (isDarkTheme ? "Dark" : "Light"));
+        updateStyleSheets(isDarkTheme);
+    }
+
+    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -135,6 +159,35 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Update stylesheets based on parameter {@code isDarkTheme}
+     *
+     * @param isDarkTheme
+     */
+    private void updateStyleSheets(boolean isDarkTheme) {
+        ObservableList<String> stylesheets = primaryStage.getScene().getStylesheets();
+        darkModeMenuItem.setSelected(isDarkTheme);
+        stylesheets.clear();
+        stylesheets.add(EXTENSIONS_CSS);
+        if (isDarkTheme) {
+            stylesheets.add(DARK_THEME);
+        } else {
+            stylesheets.add(LIGHT_THEME);
+        }
+        logger.fine("Stylesheets updated to " + (isDarkTheme ? "Dark Theme" : "Light Theme"));
+    }
+
+    /**
+     * Toggle between Dark Theme and Light Theme
+     */
+    @FXML
+    public void toggleDarkTheme() {
+        isDarkTheme = !isDarkTheme;
+        logger.info("Toggling theme. New theme: " + (isDarkTheme ? "Dark" : "Light"));
+        updateStyleSheets(isDarkTheme);
+        helpWindow.updateStyleSheets(isDarkTheme);
     }
 
     /**
@@ -160,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         logger.info("Exiting main window...");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), isDarkTheme);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
