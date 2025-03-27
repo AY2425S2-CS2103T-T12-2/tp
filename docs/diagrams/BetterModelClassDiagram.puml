@@ -16,8 +16,8 @@ Person -up-> "*" Tag
 
 Person *--> Role
 Person *--> Name
-Person *--> Phone
-Person *--> Email
+Person *--> "1" Phone
+Person *--> "1" Email
 Person *--> Address
 Person *--> Remark
 
@@ -25,5 +25,5 @@ HealthcareStaff -left-|> Person
 HealthcareStaff *--> ProviderRole
 
 Patient -right-|> Person
-Patient *--> Department
+Patient *--> "1" Department
 @enduml
