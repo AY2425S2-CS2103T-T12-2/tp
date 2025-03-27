@@ -29,7 +29,7 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
    * `liststaff` : Lists all staffs.
 
-   * `listpatients` : Lists all patients.
+   * `listpatient` : Lists all patients.
 
    * `list` : Lists all contacts.
 
@@ -116,11 +116,11 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Listing all patients : `listpatients`
+### Listing all patients : `listpatient`
 
 Shows a list of all patients in the address book.
 
-Format: `listpatients`
+Format: `listpatient`
 
 ### Listing all staffs : `liststaff`
 
@@ -279,6 +279,6 @@ Action | Format, Examples
 **Find Patient By Department** | `findpatient KEYWORD`<br> e.g., `findpatient surgery`
 **Find Staff By Role** | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
 **List** | `list`
-**List Patients** | `listpatients`
+**List Patients** | `listpatient`
 **List Staff** | `liststaff`
 **Help** | `help`
