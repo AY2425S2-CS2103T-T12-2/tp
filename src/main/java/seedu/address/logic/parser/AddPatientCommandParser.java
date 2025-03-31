@@ -61,6 +61,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
         Patient patient = new Patient(name, phone, email, address, remark, tagList, docInCharge, guardian, department);
 
+        assert false;
         return new AddPatientCommand(patient);
     }
 
