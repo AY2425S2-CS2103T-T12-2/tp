@@ -7,12 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
+
 
 /**
  * Controller for a help page
@@ -24,53 +25,44 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE = """
         <b>Welcome to A Caring Book!</b><br><br>
-        
         <b>PATIENT COMMANDS:</b><br>
         <b>- addpatient:</b> Add a patient contact<br>
-          Usage: addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]...
-          Example: addpatient n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd dr/Dr Mak g/Mrs Ho dp/Cardiology t/friend<br><br>
-        
+          Usage: addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
+          [dp/DEPARTMENT] [t/TAG]...
+          Example: addpatient n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd dr/Dr Mak g/Mrs Ho
+          dp/Cardiology t/friend<br><br>
         <b>- findpatient:</b> Search patients by department<br>
           Usage: findpatient KEYWORD<br>
           Example: findpatient surgery<br><br>
-        
         <b>- listpatient:</b> View all patients<br>
           Usage: listpatient<br><br>
-        
         <b>STAFF COMMANDS:</b><br>
         <b>- addstaff:</b> Add a staff contact<br>
           Usage: addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]...
-          Example: addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd t/colleague<br><br>
-        
+          Example: addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd
+          t/colleague<br><br>
         <b>- findstaff:</b> Search staff by role<br>
           Usage: findstaff KEYWORD<br>
           Example: findstaff nurse<br><br>
-        
         <b>- liststaff:</b> View all staff<br>
           Usage: liststaff<br><br>
-        
         <b>GENERAL COMMANDS:</b><br>
         <b>- list:</b> View all contacts<br>
           Usage: list<br><br>
-        
         <b>- find:</b> Search contacts by name<br>
           Usage: find KEYWORD [MORE_KEYWORDS]<br>
           Example: find James Jake<br><br>
-        
         <b>- edit:</b> Edit an existing contact<br>
-          Usage: edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]...
+          Usage: edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
+          [dp/DEPARTMENT] [t/TAG]...
           Example: edit 2 n/James Lee e/jameslee@example.com<br><br>
-        
         <b>- delete:</b> Remove a contact<br>
           Usage: delete INDEX<br>
           Example: delete 3<br><br>
-        
         <b>- clear:</b> Clear the entire address book<br>
           Usage: clear<br><br>
-        
         <b>- exit:</b> Exit the application
           Usage: exit<br><br>
-        
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -107,7 +99,8 @@ public class HelpWindow extends UiPart<Stage> {
         for (String part : parts) {
             if (part.startsWith("<b>") && part.endsWith("</b>")) {
                 // Whole line is bold
-                Text text = new Text(part.replaceAll("<b>", "").replaceAll("</b>", ""));
+                Text text = new Text(part.replaceAll("<b>", "")
+                                .replaceAll("</b>", ""));
                 text.setFont(Font.font("System", FontWeight.BOLD, 12));
                 helpMessage.getChildren().add(text);
             } else {
