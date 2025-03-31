@@ -11,7 +11,7 @@ public enum CommandType {
     LISTPATIENTS,
     LISTSTAFF,
     FIND,
-    FINDPATIENT,
+    FINDDEP,
     FINDSTAFF,
     EDIT,
     CLEAR,
@@ -36,7 +36,7 @@ public enum CommandType {
         case "listpatient", "lsp" -> LISTPATIENTS;
         case "liststaff", "lss" -> LISTSTAFF;
         case "find", "f" -> FIND;
-        case "findpatient", "fp" -> FINDPATIENT;
+        case "finddep", "fd" -> FINDDEP;
         case "findstaff", "fs" -> FINDSTAFF;
         case "edit", "e" -> EDIT;
         case "clear", "cls" -> CLEAR;

@@ -19,9 +19,9 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindByPatientDepartmentCommand;
+import seedu.address.logic.commands.FindByDepartmentCommand;
+import seedu.address.logic.commands.FindByNameCommand;
 import seedu.address.logic.commands.FindByStaffRoleCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -53,7 +53,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_TYPE + " " + INDEX_FIRST_PERSON.getOneBased());
+            DeleteCommand.COMMAND_TYPE + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -62,7 +62,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_TYPE + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -75,18 +75,18 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_TYPE + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindByNameCommand command = (FindByNameCommand) parser.parseCommand(
+            FindByNameCommand.COMMAND_TYPE + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindByNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_findpatient() throws Exception {
         List<String> keyword = Arrays.asList("nurse");
-        FindByPatientDepartmentCommand command = (FindByPatientDepartmentCommand) parser.parseCommand(
-            FindByPatientDepartmentCommand.COMMAND_TYPE
+        FindByDepartmentCommand command = (FindByDepartmentCommand) parser.parseCommand(
+            FindByDepartmentCommand.COMMAND_TYPE
                 + " " + keyword.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindByPatientDepartmentCommand(new DepartmentContainsKeywordsPredicate(keyword)) , command);
+        assertEquals(new FindByDepartmentCommand(new DepartmentContainsKeywordsPredicate(keyword)), command);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class AddressBookParserTest {
         FindByStaffRoleCommand command = (FindByStaffRoleCommand) parser.parseCommand(
             FindByStaffRoleCommand.COMMAND_TYPE
                 + " " + keyword.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindByStaffRoleCommand(new ProviderRoleContainsKeywordPredicate(keyword)) , command);
+        assertEquals(new FindByStaffRoleCommand(new ProviderRoleContainsKeywordPredicate(keyword)), command);
     }
 
     @Test

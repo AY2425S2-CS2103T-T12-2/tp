@@ -66,7 +66,7 @@ public class RemarkCommand extends Command {
         } else if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff s = (HealthcareStaff) personToEdit;
             editedPerson = new HealthcareStaff(
-                s.getName(), s.getProviderRole(), s.getPhone(), s.getEmail(),
+                s.getName(), s.getProviderRole(), s.getDepartment(), s.getPhone(), s.getEmail(),
                 s.getAddress(), remark, s.getTags());
         } else {
             editedPerson = new Person(

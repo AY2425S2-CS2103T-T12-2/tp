@@ -100,15 +100,15 @@ Examples:
 
 Adds a staff to the address book.
 
-Format: `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [dp/DEPARTMENT] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A staff can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
-* `addstaff r/nurse n/Mark Markerburg p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
+* `addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
 
 ### Listing all persons : `list`
 
@@ -165,17 +165,17 @@ Examples:
   ![result for 'find alex charlotte'](images/findAlexCharlotteResult.png)
 
 
-### Finding a patient by department
+### Locating a contact by department: `finddep`
 
 Find patients whose departments match with the keyword.
 
-Format: `findpatient KEYWORD`
+Format: `finddep KEYWORD`
 
 * The search is case-insensitive. e.g `Conology` will match `conology`
 * Only one keyword is allowed.
-* Only the department of the patient is searched.
+* Only the department of the contact is searched.
 * Only full words will be matched e.g. `con` will not match `conology`.
-* All patients in the department will be returned e.g. `findpatient conology` will return a list of Conology patients.
+* All contacts in the department will be returned e.g. `finddep conology` will return a list of Conology patients and doctors.
 
 Examples:
 If these two `addpatient` commands are executed,
@@ -183,9 +183,9 @@ If these two `addpatient` commands are executed,
 * `addpatient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo g/Mr Bui Crowe dp/Conology t/billed`
 
 then
-* `findpatient conology` returns `John Doe` and `Betsy Crowe`.
+* `finddep conology` returns `John Doe` and `Betsy Crowe`.
 
-### Finding a healthcare provider by role
+### Locating a healthcare provider by role: `findstaff`
 
 Find healthcare staff whose roles matches with the keyword.
 
@@ -271,12 +271,12 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add Patient** | `addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN dp/DEPARTMENT] [t/TAG]…​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak g/Mrs Ho dp/Conology t/friend t/colleague`
-**Add Staff** | `addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Staff** | `addstaff [r/ROLE] n/NAME [dp/DEPARTMENT] p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `addstaff r/doctor n/James Ho dp/Internal Medicine p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [g/GUARDIAN] [dp/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Find Patient By Department** | `findpatient KEYWORD`<br> e.g., `findpatient surgery`
+**Find By Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find By Department** | `finddep KEYWORD`<br> e.g., `finddep surgery`
 **Find Staff By Role** | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
 **List** | `list`
 **List Patients** | `listpatient`

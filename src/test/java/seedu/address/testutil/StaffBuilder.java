@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
@@ -20,6 +21,7 @@ public class StaffBuilder {
 
     public static final String DEFAULT_ROLE = "doctor";
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_DEPARTMENT = "Emergency";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -27,6 +29,7 @@ public class StaffBuilder {
 
     private ProviderRole role;
     private Name name;
+    private Department department;
     private Phone phone;
     private Email email;
     private Address address;
@@ -39,6 +42,7 @@ public class StaffBuilder {
     public StaffBuilder() {
         role = new ProviderRole(DEFAULT_ROLE);
         name = new Name(DEFAULT_NAME);
+        department = new Department(DEFAULT_DEPARTMENT);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -52,6 +56,7 @@ public class StaffBuilder {
     public StaffBuilder(HealthcareStaff staffToCopy) {
         role = staffToCopy.getProviderRole();
         name = staffToCopy.getName();
+        department = staffToCopy.getDepartment();
         phone = staffToCopy.getPhone();
         email = staffToCopy.getEmail();
         address = staffToCopy.getAddress();
@@ -106,8 +111,16 @@ public class StaffBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Department} of the {@code Person} that we are building.
+     */
+    public StaffBuilder withDepartment(String department) {
+        this.department = new Department(department);
+        return this;
+    }
+
     public HealthcareStaff build() {
-        return new HealthcareStaff(name, role, phone, email, address, remark, tags);
+        return new HealthcareStaff(name, role, department, phone, email, address, remark, tags);
     }
 
 }

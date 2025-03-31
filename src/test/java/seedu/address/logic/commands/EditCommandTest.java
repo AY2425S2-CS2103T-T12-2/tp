@@ -191,6 +191,7 @@ public class EditCommandTest {
                         .size() - 1), descriptor);
 
         HealthcareStaff updatedStaff = new HealthcareStaff(healthcareStaff.getName(), new ProviderRole("NURSE"),
+                healthcareStaff.getDepartment(),
                 healthcareStaff.getPhone(), healthcareStaff.getEmail(), healthcareStaff.getAddress(),
                 healthcareStaff.getRemark(), healthcareStaff.getTags());
 

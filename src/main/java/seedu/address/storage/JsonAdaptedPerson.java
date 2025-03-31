@@ -99,7 +99,7 @@ class JsonAdaptedPerson {
             derivedProviderRole = s.getProviderRole().toString();
             guardian = null;
             doctorInCharge = null;
-            department = null;
+            department = s.getDepartment().toString();
         } else {
             guardian = null;
             doctorInCharge = null;
@@ -177,6 +177,7 @@ class JsonAdaptedPerson {
             return new HealthcareStaff(
                 modelName,
                 new ProviderRole(providerRole != null ? providerRole : ""),
+                department != null ? new Department(department) : new Department(""),
                 modelPhone,
                 modelEmail,
                 modelAddress,
