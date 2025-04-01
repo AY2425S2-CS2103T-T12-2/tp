@@ -114,7 +114,8 @@ public class EditCommand extends Command {
             HealthcareStaff staffToEdit = (HealthcareStaff) personToEdit;
             ProviderRole updatedProviderRole = editPersonDescriptor.getProviderRole().orElse(staffToEdit
                     .getProviderRole());
-            return new HealthcareStaff(updatedName, updatedProviderRole,
+            Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(staffToEdit.getDepartment());
+            return new HealthcareStaff(updatedName, updatedProviderRole, updatedDepartment,
                     updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;

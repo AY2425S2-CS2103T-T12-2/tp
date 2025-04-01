@@ -12,19 +12,26 @@ import seedu.address.model.tag.Tag;
  */
 public class HealthcareStaff extends Person {
     private final ProviderRole providerRole;
+    private final Department department;
 
     /**
      * Every field must be present.
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
+                           Department department,
                            Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         super(new Role("STAFF"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
                 address != null ? address : new Address("NA"), remark, tags);
+        this.department = department != null ? department : new Department("NA");
         this.providerRole = providerRole != null ? providerRole : new ProviderRole("NA");
     }
 
     public ProviderRole getProviderRole() {
         return providerRole;
+    }
+
+    public Department getDepartment() {
+        return department;
     }
 
     /**
@@ -54,6 +61,7 @@ public class HealthcareStaff extends Person {
         HealthcareStaff otherStaff = (HealthcareStaff) other;
         return getName().equals(otherStaff.getName())
                 && providerRole.equals(otherStaff.providerRole)
+                && department.equals(otherStaff.department)
                 && getPhone().equals(otherStaff.getPhone())
                 && getEmail().equals(otherStaff.getEmail())
                 && getAddress().equals(otherStaff.getAddress())
@@ -62,13 +70,14 @@ public class HealthcareStaff extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), providerRole, getPhone(), getEmail(), getAddress(), getTags());
+        return Objects.hash(getName(), providerRole, department, getEmail(), getAddress(), getTags());
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
             .add("name", this.getName())
+            .add("department", department)
             .add("providerRoleType", providerRole)
             .add("phone", this.getPhone())
             .add("email", this.getEmail())

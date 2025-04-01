@@ -72,9 +72,9 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case FIND:
-            return new FindCommandParser().parse(arguments);
+            return new FindByNameCommandParser().parse(arguments);
 
-        case FINDPATIENT:
+        case FINDDEP:
             return new FindByPatientDepartmentCommandParser().parse(arguments);
 
         case FINDSTAFF:
