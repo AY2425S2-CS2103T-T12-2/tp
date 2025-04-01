@@ -5,6 +5,7 @@ import seedu.address.model.Model;
 /**
  * Format full help instructions for every command for display.
  */
+
 public class HelpCommand extends Command {
 
     public static final CommandType COMMAND_TYPE = CommandType.HELP;
@@ -19,3 +20,5 @@ public class HelpCommand extends Command {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
+
+
