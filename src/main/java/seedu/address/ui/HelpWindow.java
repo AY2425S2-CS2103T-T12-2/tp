@@ -21,7 +21,6 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
-    // public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     public static final String HELP_MESSAGE = """
         <b>Welcome to A Caring Book!</b><br><br>
