@@ -60,8 +60,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Patient patient = new Patient(name, phone, email, address, remark, tagList, docInCharge, guardian, department);
-
-        assert false;
+        
         return new AddPatientCommand(patient);
     }
 
