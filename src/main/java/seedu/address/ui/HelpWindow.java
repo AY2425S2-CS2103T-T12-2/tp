@@ -24,7 +24,6 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE = """
         <b>Welcome to A Caring Book!</b><br><br>
-        
         <b>PATIENT COMMANDS:</b><br>
         <b>- addpatient:</b> Add a patient contact<br>
           Usage: addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
@@ -36,7 +35,6 @@ public class HelpWindow extends UiPart<Stage> {
           Example: findpatient surgery<br><br>
         <b>- listpatient:</b> View all patients<br>
           Usage: listpatient<br><br>
-          
         <b>STAFF COMMANDS:</b><br>
         <b>- addstaff:</b> Add a staff contact<br>
           Usage: addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]...
@@ -47,7 +45,6 @@ public class HelpWindow extends UiPart<Stage> {
           Example: findstaff nurse<br><br>
         <b>- liststaff:</b> View all staff<br>
           Usage: liststaff<br><br>
-          
         <b>GENERAL COMMANDS:</b><br>
         <b>- clear:</b> Clear the entire address book<br>
           Usage: clear<br><br>
@@ -71,7 +68,6 @@ public class HelpWindow extends UiPart<Stage> {
             Example: remark 1 rm/likes to eat
           - Remove
             Usage: remark INDEX rm/
-            
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
