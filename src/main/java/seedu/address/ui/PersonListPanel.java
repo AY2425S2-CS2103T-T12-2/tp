@@ -43,7 +43,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (person instanceof Patient){
+                if (person instanceof Patient) {
                     setGraphic(new PatientCard((Patient) person, getIndex() + 1).getRoot());
                 } else if (person instanceof HealthcareStaff) {
                     setGraphic(new StaffCard((HealthcareStaff) person, getIndex() + 1).getRoot());

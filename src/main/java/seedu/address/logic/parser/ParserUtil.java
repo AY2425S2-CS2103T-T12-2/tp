@@ -127,17 +127,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String guardian} into an {@code guardian}.
+     * Parses {@code String nokName, String nokPhone} into an {@code NextOfKin}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code guardian} is invalid.
+     * @throws ParseException if the given {@code NextOfKin} is invalid.
      */
-    public static String parseGuardian(String guardian) throws ParseException {
-        requireNonNull(guardian);
-        String trimmedGuardian = guardian.trim();
-        return trimmedGuardian;
-    }
-
     public static NextOfKin parseNextOfKin(String nokName, String nokPhone) throws ParseException {
         requireNonNull(nokName);
         requireNonNull(nokPhone);
