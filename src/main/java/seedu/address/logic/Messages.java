@@ -46,7 +46,7 @@ public class Messages {
                 .append("\nAddress: ")
                 .append(person.getAddress())
                 .append("\nRemark: ")
-                .append(person.getRemark() != null ? person.getRemark() : "NA")
+                .append(person.getRemark() != null ? person.getRemark() : "")
                 .append("\nTags: ");
         person.getTags().forEach(builder::append);
 
