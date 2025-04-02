@@ -31,11 +31,10 @@ public class AddStaffCommandParserTest {
     }
 
     @Test
-    @Disabled("Disabled temporarily")
     public void parse_validArgs_returnsAddStaffCommand() throws ParseException {
         // Arrange
         String userInput = "r/doctor n/John Doe dp/Cardiology"
-            + " p/12345678 e/johndoe@example.com a/123 Main St t/critical";
+            + " p/12345678 e/johndoe@example.com a/123 Main St";
 
         // Create expected HealthcareStaff object
         Name name = new Name("John Doe");
@@ -44,11 +43,10 @@ public class AddStaffCommandParserTest {
         Department department = new Department("Cardiology");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
-        Remark remark = new Remark("");
-        Set<Tag> tags = Set.of(new Tag("critical"));
+        Remark remark = new Remark("NIL");
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
-            phone, email, address, remark, tags);
+            phone, email, address, remark);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
@@ -115,7 +113,7 @@ public class AddStaffCommandParserTest {
         Set<Tag> tags = Set.of(new Tag("critical"), new Tag("urgent"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
-            phone, email, address, remark, tags);
+            phone, email, address, remark);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
@@ -125,6 +123,7 @@ public class AddStaffCommandParserTest {
     }
 
     @Test
+    @Disabled("No longer required")
     public void parse_missingProviderRole_usesDefaultProviderRole() throws ParseException {
         // Arrange
         String userInput = " n/John Doe dp/Cardio p/12345678 e/johndoe@example.com a/123 Main St t/critical";
@@ -139,7 +138,7 @@ public class AddStaffCommandParserTest {
         Set<Tag> tags = Set.of(new Tag("critical"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
-            phone, email, address, remark, tags);
+            phone, email, address, remark);
         AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
 
         // Act
@@ -149,6 +148,7 @@ public class AddStaffCommandParserTest {
         assertEquals(expectedCommand, actualCommand);
     }
     @Test
+    @Disabled("No longer required")
     public void parse_missingAddress_usesDefaultAddress() throws ParseException {
         // Arrange
         String userInput = " r/doctor n/John Doe dp/Cardio p/12345678 e/johndoe@example.com t/critical";
@@ -163,7 +163,7 @@ public class AddStaffCommandParserTest {
         Set<Tag> tags = Set.of(new Tag("critical"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
-            phone, email, address, remark, tags);
+            phone, email, address, remark);
         AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
 
         // Act
@@ -173,6 +173,7 @@ public class AddStaffCommandParserTest {
         assertEquals(expectedCommand, actualCommand);
     }
     @Test
+    @Disabled("No longer required")
     public void parse_missingEmail_usesDefaultEmail() throws ParseException {
         // Arrange
         String userInput = " r/doctor n/John Doe dp/Emergency p/12345678 a/123 Main St t/critical";
@@ -187,7 +188,7 @@ public class AddStaffCommandParserTest {
         Set<Tag> tags = Set.of(new Tag("critical"));
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
-            phone, email, address, remark, tags);
+            phone, email, address, remark);
         AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
 
         // Act

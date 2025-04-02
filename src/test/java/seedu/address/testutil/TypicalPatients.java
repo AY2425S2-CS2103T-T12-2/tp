@@ -16,19 +16,17 @@ public class TypicalPatients {
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253")
         .withDoc("Dr Tan")
-        .withDepartment("General Surgery")
-        .withTags("friends").build();
+        .withDepartment("General Surgery").build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withEmail("johnd@example.com").withPhone("98765432")
         .withDoc("Dr Sim")
-        .withDepartment("Pediatrics")
-        .withTags("owesMoney", "friends").build();
+        .withDepartment("Pediatrics").build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz")
         .withPhone("95352563")
         .withEmail("heinz@example.com")
         .withAddress("wall street")
-        .withNok("Winnie the Pooh")
+        .withNok("Winnie the Pooh", "98765432")
         .withDoc("Dr Chiu")
         .withDepartment("Pediatrics")
         .build();
@@ -37,8 +35,7 @@ public class TypicalPatients {
         .withEmail("cornelia@example.com")
         .withAddress("10th street")
         .withDoc("Dr Yap")
-        .withDepartment("OBGYN")
-        .withTags("friends").build();
+        .withDepartment("OBGYN").build();
     public static final Patient ELLE = new PatientBuilder().withName("Elle Meyer")
         .withPhone("9482224")
         .withEmail("werner@example.com")

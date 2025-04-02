@@ -26,7 +26,7 @@ class AddStaffCommandTest {
         modelStub = new ModelStub();
         validStaff = new StaffBuilder().withName("John Doe").withPhone("98765432")
                 .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
-                .withRole("Doctor").withTags("experienced", "available").build();
+                .withRole("Doctor").build();
     }
 
     @Test

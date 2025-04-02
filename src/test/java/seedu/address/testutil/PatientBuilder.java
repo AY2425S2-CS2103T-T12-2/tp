@@ -1,18 +1,14 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -25,7 +21,8 @@ public class PatientBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "";
     public static final String DEFAULT_DOCTOR = "Dr Lee";
-    public static final String DEFAULT_NOK = "Mrs Bee Bee";
+    public static final String DEFAULT_NOKNAME = "Mrs Bee Bee";
+    public static final String DEFAULT_NOKPHONE = "85355255";
     public static final String DEFAULT_DEPARTMENT = "Chronology";
 
     private Role role;
@@ -34,10 +31,9 @@ public class PatientBuilder {
     private Email email;
     private Address address;
     private Remark remark;
-    private Set<Tag> tags;
     private Department department;
     private String doctor;
-    private String nok;
+    private NextOfKin nok;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,10 +44,9 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
         department = new Department(DEFAULT_DEPARTMENT);
         doctor = DEFAULT_DOCTOR;
-        nok = DEFAULT_NOK;
+        nok = new NextOfKin(new Name(DEFAULT_NOKNAME), new Phone(DEFAULT_NOKPHONE));
     }
 
     /**
@@ -64,10 +59,9 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         remark = patientToCopy.getRemark();
-        tags = new HashSet<>(patientToCopy.getTags());
         department = patientToCopy.getDepartment();
         doctor = patientToCopy.getDoctorInCharge();
-        nok = patientToCopy.getGuardian();
+        nok = patientToCopy.getNextofKin();
     }
 
 
@@ -79,13 +73,6 @@ public class PatientBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
-     */
-    public PatientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
 
     /**
      * Sets the {@code Address} of the {@code Patient} that we are building.
@@ -122,8 +109,8 @@ public class PatientBuilder {
     /**
      * Sets the {@code NOK} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withNok(String nok) {
-        this.nok = nok;
+    public PatientBuilder withNok(String nokName, String nokPhone) {
+        this.nok = new NextOfKin(new Name(nokName), new Phone(nokPhone));
         return this;
     }
 
@@ -137,7 +124,7 @@ public class PatientBuilder {
 
 
     public Patient build() {
-        return new Patient(name, phone, email, address, remark, tags, doctor, nok, department);
+        return new Patient(name, phone, email, address, remark, doctor, nok, department);
     }
 
 }
