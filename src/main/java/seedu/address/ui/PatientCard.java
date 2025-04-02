@@ -38,6 +38,8 @@ public class PatientCard extends UiPart<Region> {
     private Label nokName;
     @FXML
     private Label nokPhone;
+    @FXML
+    private Label remark;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Person} to display.
@@ -55,6 +57,13 @@ public class PatientCard extends UiPart<Region> {
         role.getChildren().add(new Label(patient.getRole().toString()));
         nokName.setText(patient.getNextofKin().getName().toString());
         nokPhone.setText(patient.getNextofKin().getPhone().toString());
+        String patientRemark = patient.getRemark().toString();
+        if (!patientRemark.equals("")) {
+            remark.setText(patientRemark);
+        } else {
+            remark.setText("NIL");
+        }
+
 
     }
 }

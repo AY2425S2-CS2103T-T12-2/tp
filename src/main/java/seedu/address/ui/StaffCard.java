@@ -45,6 +45,8 @@ public class StaffCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label department;
+    @FXML
+    private Label remark;
 
     /**
      * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
@@ -63,5 +65,8 @@ public class StaffCard extends UiPart<Region> {
         } else {
             role.getChildren().add(new Label(staffRole));
         }
+        department.setText(staff.getDepartment().toString());
+        remark.setText(staff.getRemark().toString());
+
     }
 }
