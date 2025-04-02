@@ -143,7 +143,7 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedNokPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        Name nextOfKinName = parseName(nokPhone);
+        Name nextOfKinName = parseName(nokName);
         Phone nextOfKinPhone = parsePhone(nokPhone);
         return new NextOfKin(nextOfKinName, nextOfKinPhone);
     }
