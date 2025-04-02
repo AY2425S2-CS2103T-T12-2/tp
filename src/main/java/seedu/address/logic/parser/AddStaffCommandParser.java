@@ -37,14 +37,14 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_DEPARTMENT);
+                        PREFIX_DEPARTMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         ProviderRole providerRole = argMultimap.getValue(PREFIX_ROLE).isEmpty()
                 ? new ProviderRole("NA") : ParserUtil.parseRoleType(argMultimap.getValue(PREFIX_ROLE).get());
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty()
@@ -52,10 +52,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
             : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
-                ? new Email("NA@placeholder.com") : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
-                ? new Address("NA") : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        String inputEmail = argMultimap.getValue(PREFIX_EMAIL).orElse("NA@placeholder.com");
+        Email email = ParserUtil.parseEmail(inputEmail);
+        String inputAddress = argMultimap.getValue(PREFIX_ADDRESS).orElse("NA");
+        Address address = ParserUtil.parseAddress(inputAddress);
         Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         HealthcareStaff healthcareStaff = new HealthcareStaff(name, providerRole, department, phone, email,
