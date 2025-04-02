@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -37,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_TAG);
+                        PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_REMARK, PREFIX_TAG);
 
         Index index;
 
@@ -48,7 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_TAG);
+                PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_REMARK, PREFIX_TAG);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -71,12 +72,17 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setDocInCharge(ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()));
         }
         if (argMultimap.getValue(PREFIX_GUARDIAN).isPresent()) {
+            System.out.println(ParserUtil.parseGuardian(argMultimap.getValue(PREFIX_GUARDIAN).get()));
             editPersonDescriptor.setGuardian(ParserUtil.parseGuardian(argMultimap.getValue(PREFIX_GUARDIAN).get()));
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             editPersonDescriptor.setDepartment(ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT)
                             .get()));
         }
+        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+            editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
