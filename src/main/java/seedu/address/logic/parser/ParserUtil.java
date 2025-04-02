@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
 import seedu.address.model.person.Role;
@@ -137,6 +138,22 @@ public class ParserUtil {
         return trimmedGuardian;
     }
 
+    public static NextOfKin parseNextOfKin(String nokName, String nokPhone) throws ParseException {
+        requireNonNull(nokName);
+        requireNonNull(nokPhone);
+        String trimmedNokName = nokName.trim();
+        String trimmedNokPhone = nokPhone.trim();
+        if (!Name.isValidName(trimmedNokName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (!Phone.isValidPhone(trimmedNokPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        Name nextOfKinName = parseName(nokPhone);
+        Phone nextOfKinPhone = parsePhone(nokPhone);
+        return new NextOfKin(nextOfKinName, nextOfKinPhone);
+    }
+
     /**
      * Parses a {@code String department} into an {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
@@ -160,7 +177,7 @@ public class ParserUtil {
      */
     public static ProviderRole parseRoleType(String roleType) throws ParseException {
         requireNonNull(roleType);
-        String trimmedRoleType = roleType.trim();
+        String trimmedRoleType = roleType.trim().toLowerCase();
 
         switch (trimmedRoleType) {
         case "doctor":

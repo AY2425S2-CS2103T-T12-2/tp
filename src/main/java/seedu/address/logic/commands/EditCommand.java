@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.naming.NamingException;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -120,7 +122,7 @@ public class EditCommand extends Command {
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
-            String updatedGuardian = editPersonDescriptor.getGuardian().orElse(patientToEdit.getGuardian());
+            NextOfKin updatedGuardian = editPersonDescriptor.getNextOfKin().orElse(patientToEdit.getNextofKin());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
                     updatedDocInCharge, updatedGuardian, updatedDepartment);
@@ -166,7 +168,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private String guardian;
+        private NextOfKin nextOfKin;
         private String docInCharge;
         private Department department;
 
@@ -184,6 +186,9 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setNok(toCopy.nextOfKin);
+            setDocInCharge(toCopy.docInCharge);
+            setDepartment(toCopy.department);
         }
 
         /**
@@ -191,7 +196,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(providerRole, name, phone, email, address,
-                    docInCharge, guardian, department, tags);
+                    docInCharge, nextOfKin, department, tags);
         }
         public void setRole(Role role) {
             this.role = role;
@@ -249,12 +254,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(department);
         }
 
-        public void setGuardian(String guardian) {
-            this.guardian = guardian;
+        public void setNok(NextOfKin nextOfKin) {
+            this.nextOfKin = nextOfKin;
         }
 
-        public Optional<String> getGuardian() {
-            return Optional.ofNullable(guardian);
+        public Optional<NextOfKin> getNextOfKin() {
+            return Optional.ofNullable(nextOfKin);
         }
 
         public void setDocInCharge(String docInCharge) {
@@ -313,7 +318,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("doctor in charge", docInCharge)
-                    .add("guardian", guardian)
+                    .add("next of kin", nextOfKin)
                     .add("department", department)
                     .add("tags", tags)
                     .toString();

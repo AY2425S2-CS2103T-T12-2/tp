@@ -6,8 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,6 +22,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +41,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_TAG);
+                        PREFIX_DOCTOR, PREFIX_NOKNAME, PREFIX_NOKPHONE, PREFIX_DEPARTMENT, PREFIX_TAG);
 
         Index index;
 
@@ -48,7 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_DOCTOR, PREFIX_GUARDIAN, PREFIX_DEPARTMENT, PREFIX_TAG);
+                PREFIX_DOCTOR, PREFIX_NOKNAME, PREFIX_NOKPHONE, PREFIX_DEPARTMENT, PREFIX_TAG);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -70,8 +74,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
             editPersonDescriptor.setDocInCharge(ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()));
         }
-        if (argMultimap.getValue(PREFIX_GUARDIAN).isPresent()) {
-            editPersonDescriptor.setGuardian(ParserUtil.parseGuardian(argMultimap.getValue(PREFIX_GUARDIAN).get()));
+        if (argMultimap.getValue(PREFIX_NOKNAME).isPresent()) {
+            String updatedNameString = argMultimap.getValue(PREFIX_NOKNAME).get();
+            String updatedPhoneString = argMultimap.getValue(PREFIX_NOKPHONE).get();
+            editPersonDescriptor.setNok(ParserUtil.parseNextOfKin(updatedNameString, updatedPhoneString));
         }
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             editPersonDescriptor.setDepartment(ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT)

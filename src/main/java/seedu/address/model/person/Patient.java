@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient extends Person {
-    private final String guardian;
+    private final NextOfKin nextOfKin;
     private final String doctorInCharge;
     private final Department department;
 
@@ -19,11 +19,11 @@ public class Patient extends Person {
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
-               String doctorInCharge, String guardian, Department department) {
+               String doctorInCharge, NextOfKin nextOfKin, Department department) {
         super(new Role("PATIENT"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
                 address != null ? address : new Address("NA"), remark, tags);
-        this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "";
-        this.guardian = guardian != null ? guardian : "";
+        this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "NA";
+        this.nextOfKin = nextOfKin != null ? nextOfKin : new NextOfKin(new Name("NA"), new Phone("000"));
         this.department = department != null ? department : new Department("NA");
     }
 
@@ -31,8 +31,8 @@ public class Patient extends Person {
         return doctorInCharge;
     }
 
-    public String getGuardian() {
-        return guardian;
+    public NextOfKin getNextofKin() {
+        return nextOfKin;
     }
 
     public Department getDepartment() {
@@ -73,14 +73,14 @@ public class Patient extends Person {
                 && getAddress().equals(otherPatient.getAddress())
                 && getTags().equals(otherPatient.getTags())
                 && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
-                && getGuardian().equals(otherPatient.getGuardian())
+                && getNextofKin().equals(otherPatient.getNextofKin())
                 && getDepartment().equals(otherPatient.getDepartment());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags(), doctorInCharge, guardian, department);
+                this.getTags(), doctorInCharge, nextOfKin, department);
     }
 
     @Override
@@ -91,8 +91,8 @@ public class Patient extends Person {
             .add("email", this.getEmail())
             .add("address", this.getAddress())
             .add("tags", this.getTags())
-            .add("doctorInCharge", doctorInCharge)
-            .add("guardian", guardian) // Display null if no guardian
+            .add("doctor in charge", doctorInCharge)
+            .add("next of kin", nextOfKin) // Display null if no guardian
             .add("department", department)
             .toString();
     }
