@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,8 +58,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("nok_phone") String nokPhone,
                              @JsonProperty("doctorInCharge") String doctorInCharge,
                              @JsonProperty("department") String department,
-                             @JsonProperty("providerRole") String providerRole,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("providerRole") String providerRole) {
         this.role = role; // Store role from JSON
         this.name = name;
         this.phone = phone;
@@ -88,9 +86,6 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         String derivedProviderRole = null;
 
         if (source instanceof Patient) {
@@ -178,7 +173,6 @@ class JsonAdaptedPerson {
                 modelEmail,
                 modelAddress,
                 modelRemark,
-                modelTags,
                 doctorInCharge != null ? doctorInCharge : "",
                 inputNextOfKin,
                 department != null ? new Department(department) : new Department("")
@@ -191,12 +185,11 @@ class JsonAdaptedPerson {
                 modelPhone,
                 modelEmail,
                 modelAddress,
-                modelRemark,
-                modelTags
+                modelRemark
             );
         }
 
-        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark);
     }
 }
 

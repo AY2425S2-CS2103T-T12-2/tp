@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPatientCommand;
@@ -25,7 +24,6 @@ import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -63,9 +61,8 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                 : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         String inputRemark = argMultimap.getValue(PREFIX_REMARK).orElse("NIL");
         Remark remark = new Remark(inputRemark);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Patient patient = new Patient(name, phone, email, address, remark, tagList, docInCharge, nextOfKin, department);
+        Patient patient = new Patient(name, phone, email, address, remark, docInCharge, nextOfKin, department);
         return new AddPatientCommand(patient);
     }
 

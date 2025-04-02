@@ -6,10 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddStaffCommand;
@@ -22,7 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -37,14 +35,15 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_DEPARTMENT);
+                        PREFIX_DEPARTMENT, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_REMARK);
         ProviderRole providerRole = argMultimap.getValue(PREFIX_ROLE).isEmpty()
                 ? new ProviderRole("NA") : ParserUtil.parseRoleType(argMultimap.getValue(PREFIX_ROLE).get());
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty()
@@ -56,10 +55,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Email email = ParserUtil.parseEmail(inputEmail);
         String inputAddress = argMultimap.getValue(PREFIX_ADDRESS).orElse("NA");
         Address address = ParserUtil.parseAddress(inputAddress);
-        Remark remark = new Remark("");
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        String inputRemark = argMultimap.getValue(PREFIX_REMARK).orElse("NIL");
+        Remark remark = new Remark(inputRemark);
         HealthcareStaff healthcareStaff = new HealthcareStaff(name, providerRole, department, phone, email,
-            address, remark, tagList);
+            address, remark);
 
         return new AddStaffCommand(healthcareStaff);
     }

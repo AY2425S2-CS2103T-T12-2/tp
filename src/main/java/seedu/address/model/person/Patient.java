@@ -1,10 +1,8 @@
 package seedu.address.model.person;
 
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Patient in the address book.
@@ -18,10 +16,10 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+    public Patient(Name name, Phone phone, Email email, Address address, Remark remark,
                String doctorInCharge, NextOfKin nextOfKin, Department department) {
         super(new Role("PATIENT"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
-                address != null ? address : new Address("NA"), remark, tags);
+                address != null ? address : new Address("NA"), remark);
         this.doctorInCharge = doctorInCharge != null ? doctorInCharge : "NA";
         this.nextOfKin = nextOfKin != null ? nextOfKin : new NextOfKin(new Name("NA"), new Phone("000"));
         this.department = department != null ? department : new Department("NA");
@@ -71,7 +69,6 @@ public class Patient extends Person {
                 && getPhone().equals(otherPatient.getPhone())
                 && getEmail().equals(otherPatient.getEmail())
                 && getAddress().equals(otherPatient.getAddress())
-                && getTags().equals(otherPatient.getTags())
                 && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
                 && getNextofKin().equals(otherPatient.getNextofKin())
                 && getDepartment().equals(otherPatient.getDepartment());
@@ -80,7 +77,7 @@ public class Patient extends Person {
     @Override
     public int hashCode() {
         return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags(), doctorInCharge, nextOfKin, department);
+                 doctorInCharge, nextOfKin, department);
     }
 
     @Override
@@ -90,7 +87,6 @@ public class Patient extends Person {
             .add("phone", this.getPhone())
             .add("email", this.getEmail())
             .add("address", this.getAddress())
-            .add("tags", this.getTags())
             .add("doctor in charge", doctorInCharge)
             .add("next of kin", nextOfKin) // Display null if no guardian
             .add("department", department)

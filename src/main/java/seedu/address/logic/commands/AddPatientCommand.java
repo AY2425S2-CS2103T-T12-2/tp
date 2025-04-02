@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -34,7 +33,6 @@ public class AddPatientCommand extends Command {
             + PREFIX_NOKNAME + "NOK NAME "
             + PREFIX_NOKPHONE + "NOK PHONE"
             + PREFIX_DEPARTMENT + "DEPARTMENT "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_TYPE + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -43,9 +41,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_DOCTOR + "Dr Tan Chee Hwa "
             + PREFIX_NOKNAME + "Mr Hao Doe "
             + PREFIX_NOKPHONE + "12345678"
-            + PREFIX_DEPARTMENT + "Gastroenterology "
-            + PREFIX_TAG + "elder "
-            + PREFIX_TAG + "pending payment";
+            + PREFIX_DEPARTMENT + "Gastroenterology ";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
