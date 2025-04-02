@@ -322,7 +322,7 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(docInCharge, otherEditPersonDescriptor.docInCharge)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
-                    && Objects.equals(remark,otherEditPersonDescriptor.remark)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
