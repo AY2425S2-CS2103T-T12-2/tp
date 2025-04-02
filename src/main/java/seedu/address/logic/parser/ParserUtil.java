@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
@@ -183,6 +184,16 @@ public class ParserUtil {
         default:
             throw new ParseException(ProviderRole.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
     }
 
     /**

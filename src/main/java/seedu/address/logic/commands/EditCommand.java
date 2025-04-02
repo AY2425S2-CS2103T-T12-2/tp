@@ -6,18 +6,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -31,14 +29,12 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NextOfKin;
-import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -58,6 +54,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
             + "[" + PREFIX_DOCTOR + "DOCTOR IN CHARGE] "
+            + "[" + PREFIX_NOKNAME + "NOKNAME] "
+            + "[" + PREFIX_NOKPHONE + "NOKPHONE] "
             + "[" + PREFIX_REMARK + "REMARK] "
             + "Example: " + COMMAND_TYPE + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -114,7 +112,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark();
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
 
         if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff staffToEdit = (HealthcareStaff) personToEdit;
@@ -299,7 +297,9 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(docInCharge, otherEditPersonDescriptor.docInCharge)
-                    && Objects.equals(department, otherEditPersonDescriptor.department);
+                    && Objects.equals(department, otherEditPersonDescriptor.department)
+                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark);
         }
 
         @Override
@@ -313,6 +313,7 @@ public class EditCommand extends Command {
                     .add("doctor in charge", docInCharge)
                     .add("next of kin", nextOfKin)
                     .add("department", department)
+                    .add("remark", remark)
                     .toString();
         }
     }
