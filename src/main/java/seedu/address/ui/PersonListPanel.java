@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -27,6 +29,17 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    public void setSelectedPerson(Person personToSelect) {
+        requireNonNull(personToSelect);
+
+        // Get the index of the person you want to select
+        int indexToSelect = personListView.getItems().indexOf(personToSelect);
+        if (indexToSelect >= 0) {
+            personListView.getSelectionModel().select(indexToSelect);
+            personListView.scrollTo(indexToSelect);
+        }
     }
 
     /**

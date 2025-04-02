@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,6 +41,10 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    // Others
+    private Person selectedPerson;
+
 
     @FXML
     private CheckMenuItem darkModeMenuItem;
@@ -180,6 +185,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Listens for Selection updates in the Model (via Select Command);
+     */
+    public void updateSelectionDisplay() {
+        selectedPerson = logic.getSelectedPerson(); // Get the selected person from the model
+        if (selectedPerson != null) {
+            personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
+        }
+    }
+
+    /**
      * Toggle between Dark Theme and Light Theme
      */
     @FXML
@@ -241,6 +256,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            updateSelectionDisplay();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
