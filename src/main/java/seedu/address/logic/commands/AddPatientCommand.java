@@ -5,8 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -30,7 +31,8 @@ public class AddPatientCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DOCTOR + "DOCTOR "
-            + PREFIX_GUARDIAN + "GUARDIAN "
+            + PREFIX_NOKNAME + "NOK NAME "
+            + PREFIX_NOKPHONE + "NOK PHONE"
             + PREFIX_DEPARTMENT + "DEPARTMENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_TYPE + " "
@@ -39,7 +41,8 @@ public class AddPatientCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_DOCTOR + "Dr Tan Chee Hwa "
-            + PREFIX_GUARDIAN + "Mr Hao Doe "
+            + PREFIX_NOKNAME + "Mr Hao Doe "
+            + PREFIX_NOKPHONE + "12345678"
             + PREFIX_DEPARTMENT + "Gastroenterology "
             + PREFIX_TAG + "elder "
             + PREFIX_TAG + "pending payment";
