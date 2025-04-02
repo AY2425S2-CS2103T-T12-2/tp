@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         personListPanel.setPersonSelectionListener(person -> {
-            contentPanel.updateContent(person);  // Update the ContentPanel with the selected person
+            contentPanel.updateContent(person); // Update the ContentPanel with the selected person
         });
 
         contentPanel = new ContentPanel();

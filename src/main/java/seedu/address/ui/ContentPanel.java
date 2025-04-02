@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -8,8 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A UI component that displays the details of a selected person.
+ */
 public class ContentPanel extends UiPart<Region> {
 
     private static final String FXML = "ContentPanel.fxml";
@@ -22,14 +25,19 @@ public class ContentPanel extends UiPart<Region> {
         super(FXML);
     }
 
-    // Method to update the content of the TextArea with the selected person's details
+    /**
+     * Update the contentArea to reflect {@code person} details
+     *
+     * @param person
+     */
     public void updateContent(Person person) {
-        String details = "Name: " + person.getName() + "\n" +
-                "Phone: " + person.getPhone() + "\n" +
-                "Email: " + person.getEmail() + "\n" +
-                "Address: " + person.getAddress();
+        requireNonNull(person);
+        String details = "Name: " + person.getName() + "\n"
+                + "Phone: " + person.getPhone() + "\n"
+                + "Email: " + person.getEmail() + "\n"
+                + "Address: " + person.getAddress();
 
-        contentArea.setText(details);  // Set the TextArea to display the details
+        contentArea.setText(details); // Set the TextArea to display the details
         logger.info("Selected Person: " + details);
     }
 

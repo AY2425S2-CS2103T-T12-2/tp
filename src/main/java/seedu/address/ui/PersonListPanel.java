@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -11,7 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Panel containing the list of persons.
@@ -37,7 +38,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             requireNonNull(newValue);
             // Notify the listener (MainWindow) when a person is selected
-            if(personSelectionListener != null) {
+            if (personSelectionListener != null) {
                 personSelectionListener.accept(newValue);
             }
             // Handle the selection, e.g., by updating the UI or performing an action
