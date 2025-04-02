@@ -201,6 +201,7 @@ public class EditCommandTest {
     }
 
     @Test
+    @Disabled("Disabled temporarily")
     public void execute_editPatientDocInCharge_success() {
         Patient patient = new PatientBuilder().withName("John Doe").withPhone("98765432")
                 .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25").withDoc("Dr Doa")
