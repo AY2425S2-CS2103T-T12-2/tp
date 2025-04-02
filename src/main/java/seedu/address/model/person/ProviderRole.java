@@ -16,7 +16,6 @@ public class ProviderRole {
         DOCTOR,
         NURSE,
         THERAPIST,
-
         NA,
     }
 
