@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.HealthcareStaff;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,7 +45,27 @@ public class Messages {
                 .append(person.getEmail())
                 .append("\nAddress: ")
                 .append(person.getAddress())
-                .append("\nTags: ");
+                .append("\nRemark: ")
+                .append(person.getRemark() != null ? person.getRemark() : "");
+
+        if (person instanceof HealthcareStaff) {
+            builder.append("\nRole: ")
+                    .append(((HealthcareStaff) person).getProviderRole() != null ? ((HealthcareStaff) person)
+                            .getProviderRole() : "NA")
+                    .append("\nDepartment: ")
+                    .append(((HealthcareStaff) person).getDepartment() != null ? ((HealthcareStaff) person)
+                            .getDepartment() : "NA");
+        }
+
+        if (person instanceof Patient) {
+            builder.append("\nDepartment: ")
+                    .append(((Patient) person).getDepartment() != null ? ((Patient) person).getDepartment() : "NA")
+                    .append("\nDoctor In Charge: ")
+                    .append(((Patient) person).getDoctorInCharge() != null ? ((Patient) person)
+                            .getDoctorInCharge() : "NA")
+                    .append("\nGuardian: ")
+                    .append(((Patient) person).getNextofKin() != null ? ((Patient) person).getNextofKin() : "NA");
+        }
         return builder.toString();
     }
 
