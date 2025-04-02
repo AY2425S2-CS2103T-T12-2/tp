@@ -23,7 +23,7 @@ public class ProviderRoleContainsKeywordPredicate implements Predicate<Person> {
         }
         HealthcareStaff staff = (HealthcareStaff) person;
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(staff.getProviderRole().toString(), keyword));
+            .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(staff.getProviderRole().toString(), keyword));
     }
 
     @Override
