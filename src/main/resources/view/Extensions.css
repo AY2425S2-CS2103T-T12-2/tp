@@ -87,6 +87,11 @@
     -fx-font-size: 10pt;
 }
 
+.content-area {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 10pt;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-padding: 4px;
@@ -193,6 +198,10 @@
 }
 
 #resultDisplay .content {
+    -fx-background-radius: 0;
+}
+
+#contentPanel .content {
     -fx-background-radius: 0;
 }
 

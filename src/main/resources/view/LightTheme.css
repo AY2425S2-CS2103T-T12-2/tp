@@ -113,6 +113,15 @@
     -fx-text-fill: black !important;
 }
 
+.content-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.content-area .label {
+    -fx-text-fill: black !important;
+}
+
 .status-bar .label {
     -fx-text-fill: black;
 }
@@ -262,9 +271,12 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #e5e5e5, transparent, #e5e5e5;
+    -fx-background-color: transparent, #fafafa, transparent, #fafafa;
 }
 
+#contentPanel .content {
+    -fx-background-color: transparent, #ffffff, transparent, #ffffff;
+}
 
 #tags .label {
     -fx-text-fill: black;

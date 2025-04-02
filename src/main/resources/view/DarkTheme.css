@@ -108,6 +108,15 @@
     -fx-text-fill: black !important;
 }
 
+.content-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.content-area .label {
+    -fx-text-fill: black !important;
+}
+
 .status-bar .label {
     -fx-text-fill: white;
 }
@@ -262,6 +271,10 @@
 }
 
 #resultDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+}
+
+#contentPanel .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
 }
 

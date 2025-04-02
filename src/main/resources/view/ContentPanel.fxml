@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <!-- TextArea wrapped in a Region to allow it to grow -->
+    <TextArea fx:id="contentArea" editable="false" styleClass="content-area" wrapText="true" />
+    <!-- Ensure the TextArea fills the available space -->
+    <Region StackPane.alignment="CENTER" />
+</StackPane>
