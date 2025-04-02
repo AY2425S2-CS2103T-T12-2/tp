@@ -62,7 +62,7 @@ public class RemarkCommand extends Command {
             Patient p = (Patient) personToEdit;
             editedPerson = new Patient(
                 p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), remark,
-                p.getTags(), p.getDoctorInCharge(), p.getGuardian(), p.getDepartment());
+                p.getTags(), p.getDoctorInCharge(), p.getNextofKin(), p.getDepartment());
         } else if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff s = (HealthcareStaff) personToEdit;
             editedPerson = new HealthcareStaff(
