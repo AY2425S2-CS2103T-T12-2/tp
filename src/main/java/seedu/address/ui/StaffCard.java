@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
@@ -14,7 +15,7 @@ import seedu.address.model.person.HealthcareStaff;
  */
 public class StaffCard extends UiPart<Region> {
 
-    private static final String FXML = "StaffCard.fxml";
+    private static final String FXML = "StaffListCard.fxml";
 
     private static final Logger logger = LogsCenter.getLogger(StaffCard.class);
 
@@ -30,6 +31,8 @@ public class StaffCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private FlowPane role;
     @FXML
     private Label id;
     @FXML
@@ -54,7 +57,11 @@ public class StaffCard extends UiPart<Region> {
         phone.setText(staff.getPhone().value);
         email.setText(staff.getEmail().value);
         address.setText(staff.getAddress().value);
-        // department.setText(staff.getDepartment().value);
-        logger.info("person card initialised: " + staff);
+        String staffRole = staff.getProviderRole().toString();
+        if (staffRole.equalsIgnoreCase("NA")) {
+            role.getChildren().add(new Label("STAFF"));
+        } else {
+            role.getChildren().add(new Label(staffRole));
+        }
     }
 }

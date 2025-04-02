@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Patient;
@@ -11,12 +12,14 @@ import seedu.address.model.person.Patient;
  */
 public class PatientCard extends UiPart<Region> {
 
-    private static final String FXML = "PatientCard.fxml"; // Update to the correct FXML file for patient cards
+    private static final String FXML = "PatientListCard.fxml"; // Update to the correct FXML file for patient cards
 
     public final Patient patient;
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private FlowPane role;
     @FXML
     private Label name;
     @FXML
@@ -32,7 +35,9 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
-    private Label nok;
+    private Label nokName;
+    @FXML
+    private Label nokPhone;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Person} to display.
@@ -42,12 +47,14 @@ public class PatientCard extends UiPart<Region> {
         this.patient = patient;
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
-        phone.setText("HP: " + patient.getPhone().value);
-        address.setText("Address: " + patient.getAddress().value);
-        email.setText("Email: " + patient.getEmail().value);
-        doctor.setText("Doctor: " + patient.getDoctorInCharge());
-        department.setText("Department: " + patient.getDepartment().toString());
-        nok.setText("NOK: " + patient.getGuardian());
+        phone.setText(patient.getPhone().value);
+        address.setText(patient.getAddress().value);
+        email.setText(patient.getEmail().value);
+        doctor.setText(patient.getDoctorInCharge());
+        department.setText(patient.getDepartment().toString());
+        role.getChildren().add(new Label(patient.getRole().toString()));
+        nokName.setText(patient.getNextofKin().getName().toString());
+        nokPhone.setText(patient.getNextofKin().getPhone().toString());
 
     }
 }
