@@ -21,7 +21,7 @@ public class ProviderRoleContainsKeywordPredicate implements Predicate<Person> {
         if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase("NA", keyword))) {
             return false;
         }
-        if ((person instanceof HealthcareStaff)) {
+        if (person instanceof HealthcareStaff) {
             HealthcareStaff staff = (HealthcareStaff) person;
             return keywords.stream()
                 .anyMatch(keyword -> StringUtil
