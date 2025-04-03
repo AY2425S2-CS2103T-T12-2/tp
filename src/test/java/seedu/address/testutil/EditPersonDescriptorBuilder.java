@@ -56,7 +56,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code DocInCharge} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withDocInCharge(String docInCharge) {
-        descriptor.setDocInCharge("docInCharge");
+        descriptor.setDocInCharge(docInCharge);
         return this;
     }
 
