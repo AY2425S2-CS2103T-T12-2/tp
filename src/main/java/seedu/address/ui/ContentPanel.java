@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Patient;
@@ -21,40 +24,89 @@ public class ContentPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ContentPanel.class);
 
     @FXML
-    private TextArea contentArea;
+    private VBox contentContainer;
+    @FXML
+    private Label role;
+    @FXML
+    private Label name;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private Label address;
+    @FXML
+    private Label department;
+    @FXML
+    private Label remark;
+    @FXML
+    private Label providerRole;
+    @FXML
+    private Label doctorInCharge;
+    @FXML
+    private Label nextOfKin;
 
     public ContentPanel() {
         super(FXML);
     }
 
     /**
-     * Update the contentArea to reflect {@code person} details
-     *
-     * @param person
+     * Update the contentContainer to reflect {@code person} details
      */
     public void updateContent(Person person) {
         requireNonNull(person);
-        StringBuilder details = new StringBuilder();
-        details.append("Role: " + person.getRole() + "\n")
-                .append("Name: " + person.getName() + "\n")
-                .append("Phone: " + person.getPhone() + "\n")
-                .append("Email: " + person.getEmail() + "\n")
-                .append("Address: " + person.getAddress() + "\n");
+        loadContent();
 
-        if (person instanceof Patient patient) {
-            details.append("Doctor in charge: " + patient.getDoctorInCharge() + "\n")
-                    .append("Department: " + patient.getDepartment() + "\n")
-                    .append("Next of Kin: " + patient.getNextofKin() + "\n");
-        }
+        // Default Data
+        role.setText(person.getRole().toString());
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        email.setText(person.getEmail().value);
+        address.setText(person.getAddress().value);
 
         if (person instanceof HealthcareStaff healthcareStaff) {
-            details.append("Department: " + healthcareStaff.getDepartment() + "\n");
+            // Extra Details for HealthcareStaff
+            providerRole.setText("[" + healthcareStaff.getProviderRole().toString() + "]");
+            department.setText(healthcareStaff.getDepartment().toString());
+
+            providerRole.setVisible(true);
+            setVisiblity(nextOfKin, false);
+            setVisiblity(doctorInCharge, false);
         }
 
-        details.append("Remark: " + person.getRemark());
+        if (person instanceof Patient patient) {
+            // Extra Details for Patient
+            department.setText(patient.getDepartment().toString());
+            doctorInCharge.setText(patient.getDoctorInCharge());
+            nextOfKin.setText(patient.getNextofKin().toString());
 
-        contentArea.setText(details.toString()); // Set the TextArea to display the details
-        logger.info("Selected Person: " + details);
+            providerRole.setVisible(false);
+            setVisiblity(nextOfKin, true);
+            setVisiblity(doctorInCharge, true);
+        }
+
+        remark.setText(person.getRemark().toString());
+
+        logger.info("Selected Person: " + person);
+    }
+
+    /** Set Visibility of HBox */
+    private void setVisiblity(Label label, boolean visible) {
+        Parent parent = label.getParent();
+        if (parent instanceof HBox hbox) {
+            hbox.setVisible(visible);
+            hbox.setManaged(visible);
+        }
+    }
+
+    private void loadContent() {
+        setVisiblity(role, true);
+        setVisiblity(name, true);
+        setVisiblity(phone, true);
+        setVisiblity(email, true);
+        setVisiblity(address, true);
+        setVisiblity(department, true);
+        setVisiblity(remark, true);
     }
 
 }
