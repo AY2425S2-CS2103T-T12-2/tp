@@ -73,7 +73,7 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Displays a list of all available commands along with their descriptions and usage examples.
 
 ![help message](images/helpMessage.png)
 
