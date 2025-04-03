@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -63,20 +63,20 @@ public class HelpWindow extends UiPart<Stage> {
         <b>- list:</b> View all contacts<br>
           Usage: list<br><br>
         <b>- remark:</b> Add remark to / Remove remark from existing contact<br>
-          - Add
-            Usage: remark INDEX rm/REMARK
-            Example: remark 1 rm/likes to eat
-          - Remove
-            Usage: remark INDEX rm/
+          - Add<br>
+            Usage: remark INDEX rm/REMARK<br>
+            Example: remark 1 rm/likes to eat<br>
+          - Remove<br>
+            <br>Usage: remark INDEX rm/
+        <b>- select:</b> Select a contact to show full contact information<br>
+          Usage: select INDEX<br>
+          <br>Example: select 1
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
     private static final String DARK_THEME = "view/HelpWindow_Dark.css";
     private static final String LIGHT_THEME = "view/HelpWindow_Light.css";
-
-    @FXML
-    private Button copyButton;
 
     @FXML
     private TextFlow helpMessage;
@@ -131,13 +131,32 @@ public class HelpWindow extends UiPart<Stage> {
 
             // Add any remaining plain text after the last bold section
             if (lastIndex < part.length()) {
-                Text remainingText = new Text(part.substring(lastIndex));
-                helpMessage.getChildren().add(remainingText);
+                String remainingText = part.substring(lastIndex);
+                if (remainingText.contains(USERGUIDE_URL)) {
+                    // Add the hyperlink and execute the plain URL
+                    String beforeUrl = remainingText.replace(USERGUIDE_URL, "").trim();
+                    if (!beforeUrl.isEmpty()) {
+                        helpMessage.getChildren().add(new Text(beforeUrl + " "));
+                    }
+                    Hyperlink userGuideLink = new Hyperlink(USERGUIDE_URL);
+                    userGuideLink.setOnAction(e -> openUrl(USERGUIDE_URL));
+                    helpMessage.getChildren().add(userGuideLink);
+                } else {
+                    helpMessage.getChildren()
+                            .add(new Text((remainingText)));
+                }
             }
         }
+        helpMessage.getChildren().add(new Text("\n"));
     }
 
-
+    private void openUrl(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            logger.warning("Failed to open URL: " + e.getMessage());
+        }
+    }
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -199,16 +218,5 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
     }
 }
