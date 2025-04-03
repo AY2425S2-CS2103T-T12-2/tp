@@ -91,6 +91,7 @@ class AddPatientCommandTest {
             patientsAdded.add(patient);
         }
 
+        // Unimplemented methods (not needed for AddPatientCommand testing)
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new UnsupportedOperationException();
@@ -117,6 +118,11 @@ class AddPatientCommandTest {
         }
 
         @Override
+        public Person getSelectedPerson() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new UnsupportedOperationException();
         }
@@ -137,12 +143,22 @@ class AddPatientCommandTest {
         }
 
         @Override
+        public void selectPerson(Person target) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public void addStaff(HealthcareStaff healthcareStaff) {
             throw new UnsupportedOperationException();
         }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void setSelectedPerson(Person person) {
             throw new UnsupportedOperationException();
         }
 

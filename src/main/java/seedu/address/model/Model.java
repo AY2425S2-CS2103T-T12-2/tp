@@ -49,6 +49,11 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the Selected Person
+     */
+    Person getSelectedPerson();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
@@ -71,6 +76,12 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Select the given person.
+     * The person must exist in the address book.
+     */
+    void selectPerson(Person person);
 
     /**
      * Adds the given person.
@@ -96,6 +107,9 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    void setSelectedPerson(Person person);
+
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

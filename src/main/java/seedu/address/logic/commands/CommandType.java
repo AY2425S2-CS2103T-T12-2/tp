@@ -19,6 +19,7 @@ public enum CommandType {
     HELP,
     EXIT,
     REMARK,
+    SELECT,
     UNKNOWN;
 
     /**
@@ -44,6 +45,7 @@ public enum CommandType {
         case "remark", "re" -> REMARK;
         case "help", "h" -> HELP;
         case "exit", "quit" -> EXIT;
+        case "select", "s" -> SELECT;
         default -> UNKNOWN;
         };
     }

@@ -44,7 +44,17 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
+     * Returns the selected Person
+     */
+    Person getSelectedPerson();
+
+    /**
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the selected user
+     */
+    void setSelectedPerson(Person person);
 }
