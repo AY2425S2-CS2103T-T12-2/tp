@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -23,20 +18,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Role role, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(role, name, phone, tags);
+    public Person(Role role, Name name, Phone phone, Email email, Address address, Remark remark) {
+        requireAllNonNull(role, name, phone);
         this.role = role;
         this.name = name;
         this.phone = phone;
         this.remark = remark;
         this.email = email != null ? email : new Email("NA@placeholder.com");
         this.address = address != null ? address : new Address("NA");
-        this.tags.addAll(tags);
     }
 
     public Role getRole() {
@@ -63,13 +56,6 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
 
     /**
      * Returns true if both persons have the same name.
@@ -81,7 +67,8 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -104,8 +91,7 @@ public class Person {
             && name.equals(otherPerson.name)
             && phone.equals(otherPerson.phone)
             && (email == null || otherPerson.email == null || email.equals(otherPerson.email))
-            && (address == null || otherPerson.address == null || address.equals(otherPerson.address))
-            && tags.equals(otherPerson.tags);
+            && (address == null || otherPerson.address == null || address.equals(otherPerson.address));
     }
 
     @Override
@@ -116,7 +102,6 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
                 .toString();
     }
 }

@@ -2,19 +2,19 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -27,13 +27,12 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
-import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -51,7 +50,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_DOCTOR + "DOCTOR IN CHARGE] "
+            + "[" + PREFIX_NOKNAME + "NOKNAME] "
+            + "[" + PREFIX_NOKPHONE + "NOKPHONE] "
             + "Example: " + COMMAND_TYPE + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -107,8 +109,6 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff staffToEdit = (HealthcareStaff) personToEdit;
@@ -116,17 +116,17 @@ public class EditCommand extends Command {
                     .getProviderRole());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(staffToEdit.getDepartment());
             return new HealthcareStaff(updatedName, updatedProviderRole, updatedDepartment,
-                    updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+                    updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark());
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
-            String updatedGuardian = editPersonDescriptor.getGuardian().orElse(patientToEdit.getGuardian());
+            NextOfKin updatedNok = editPersonDescriptor.getNextOfKin().orElse(patientToEdit.getNextofKin());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                    updatedDocInCharge, updatedGuardian, updatedDepartment);
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark(),
+                    updatedDocInCharge, updatedNok, updatedDepartment);
         } else {
             return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress,
-                           updatedRemark, updatedTags);
+                    personToEdit.getRemark());
         }
     }
 
@@ -165,8 +165,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
-        private String guardian;
+        private NextOfKin nextOfKin;
         private String docInCharge;
         private Department department;
 
@@ -183,7 +182,9 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setNok(toCopy.nextOfKin);
+            setDocInCharge(toCopy.docInCharge);
+            setDepartment(toCopy.department);
         }
 
         /**
@@ -191,7 +192,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(providerRole, name, phone, email, address,
-                    docInCharge, guardian, department, tags);
+                    docInCharge, nextOfKin, department);
         }
         public void setRole(Role role) {
             this.role = role;
@@ -249,12 +250,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(department);
         }
 
-        public void setGuardian(String guardian) {
-            this.guardian = guardian;
+        public void setNok(NextOfKin nextOfKin) {
+            this.nextOfKin = nextOfKin;
         }
 
-        public Optional<String> getGuardian() {
-            return Optional.ofNullable(guardian);
+        public Optional<NextOfKin> getNextOfKin() {
+            return Optional.ofNullable(nextOfKin);
         }
 
         public void setDocInCharge(String docInCharge) {
@@ -265,22 +266,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(docInCharge);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -301,7 +286,7 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(docInCharge, otherEditPersonDescriptor.docInCharge)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin);
         }
 
         @Override
@@ -313,9 +298,8 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("doctor in charge", docInCharge)
-                    .add("guardian", guardian)
+                    .add("next of kin", nextOfKin)
                     .add("department", department)
-                    .add("tags", tags)
                     .toString();
         }
     }

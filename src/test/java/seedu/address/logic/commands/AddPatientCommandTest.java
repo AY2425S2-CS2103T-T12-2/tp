@@ -33,8 +33,8 @@ class AddPatientCommandTest {
         modelStub = new ModelStub();
         validPatient = new PatientBuilder().withName("John Doe").withPhone("98765432")
                 .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
-                .withDoc("Dr Tan Chee Hwa").withNok("Mr Hao Doe")
-                .withDepartment("Gastroenterology").withTags("elder").build();
+                .withDoc("Dr Tan Chee Hwa").withNok("Mr Hao Doe", "98765432")
+                .withDepartment("Gastroenterology").build();
     }
 
     @Test
@@ -91,6 +91,7 @@ class AddPatientCommandTest {
             patientsAdded.add(patient);
         }
 
+        // Unimplemented methods (not needed for AddPatientCommand testing)
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new UnsupportedOperationException();
@@ -117,6 +118,11 @@ class AddPatientCommandTest {
         }
 
         @Override
+        public Person getSelectedPerson() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new UnsupportedOperationException();
         }
@@ -137,12 +143,22 @@ class AddPatientCommandTest {
         }
 
         @Override
+        public void selectPerson(Person target) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public void addStaff(HealthcareStaff healthcareStaff) {
             throw new UnsupportedOperationException();
         }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void setSelectedPerson(Person person) {
             throw new UnsupportedOperationException();
         }
 

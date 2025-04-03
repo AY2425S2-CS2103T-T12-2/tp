@@ -77,6 +77,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Person getSelectedPerson() {
+        return model.getSelectedPerson();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -84,5 +89,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setSelectedPerson(Person person) {
+        model.setSelectedPerson(person);
     }
 }

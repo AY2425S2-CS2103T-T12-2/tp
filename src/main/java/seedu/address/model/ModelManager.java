@@ -25,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private Person selectedPerson;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -123,6 +125,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void selectPerson(Person person) {
+        requireNonNull(person);
+        this.selectedPerson = person;
+    }
+
+    @Override
+    public Person getSelectedPerson() {
+        return this.selectedPerson;
+    }
+
+    @Override
+    public void setSelectedPerson(Person person) {
+        requireNonNull(person);
+        this.selectedPerson = person;
     }
 
     //=========== Filtered Person List Accessors =============================================================

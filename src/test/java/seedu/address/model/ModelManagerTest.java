@@ -73,6 +73,17 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setSelectedPerson_nullSelectedPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setSelectedPerson(null));
+    }
+
+    @Test
+    public void setSelectedPerson_personSelectedPerson_changesSelectedPerson() {
+        modelManager.setSelectedPerson(ALICE);
+        assertEquals(ALICE, modelManager.getSelectedPerson());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }

@@ -43,6 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    // Others
+    private Person selectedPerson;
+
+
     @FXML
     private CheckMenuItem darkModeMenuItem;
 
@@ -173,10 +177,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void updateContentPanel(Person selectedPerson) {
-        contentPanel.updateContent(selectedPerson);
-    }
-
     /**
      * Update stylesheets based on parameter {@code isDarkTheme}
      *
@@ -196,10 +196,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Listens for Selection updates in the Model (via Select Command);
+     */
+    public void updateSelectionDisplay() {
+        selectedPerson = logic.getSelectedPerson(); // Get the selected person from the model
+        if (selectedPerson != null) {
+            personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
+        }
+    }
+
+    /**
      * Toggle between Dark Theme and Light Theme
      */
     @FXML
-    public void toggleDarkTheme() {
+    public void handleToggleTheme() {
         isDarkTheme = !isDarkTheme;
         logger.info("Toggling theme. New theme: " + (isDarkTheme ? "Dark" : "Light"));
         updateStyleSheets(isDarkTheme);
@@ -257,6 +267,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isToggleTheme()) {
+                handleToggleTheme();
+            }
+
+            updateSelectionDisplay();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -22,7 +22,7 @@
       <VBox>
         <MenuBar fx:id="menuBar" prefHeight="0.0" prefWidth="762.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <CheckMenuItem fx:id="darkModeMenuItem" mnemonicParsing="false" onAction="#toggleDarkTheme" text="Dark Mode" />
+            <CheckMenuItem fx:id="darkModeMenuItem" mnemonicParsing="false" onAction="#handleToggleTheme" text="Dark Mode" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
