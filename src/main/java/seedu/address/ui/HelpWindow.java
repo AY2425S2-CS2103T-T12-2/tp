@@ -46,22 +46,28 @@ public class HelpWindow extends UiPart<Stage> {
         <b>- liststaff:</b> View all staff<br>
           Usage: liststaff<br><br>
         <b>GENERAL COMMANDS:</b><br>
-        <b>- list:</b> View all contacts<br>
-          Usage: list<br><br>
-        <b>- find:</b> Search contacts by name<br>
-          Usage: find KEYWORD [MORE_KEYWORDS]<br>
-          Example: find James Jake<br><br>
+        <b>- clear:</b> Clear the entire address book<br>
+          Usage: clear<br><br>
+        <b>- delete:</b> Remove a contact<br>
+          Usage: delete INDEX<br>
+          Example: delete 3<br><br>
         <b>- edit:</b> Edit an existing contact<br>
           Usage: edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
           [dp/DEPARTMENT] [t/TAG]...
           Example: edit 2 n/James Lee e/jameslee@example.com<br><br>
-        <b>- delete:</b> Remove a contact<br>
-          Usage: delete INDEX<br>
-          Example: delete 3<br><br>
-        <b>- clear:</b> Clear the entire address book<br>
-          Usage: clear<br><br>
         <b>- exit:</b> Exit the application
           Usage: exit<br><br>
+        <b>- find:</b> Search contacts by name<br>
+          Usage: find KEYWORD [MORE_KEYWORDS]<br>
+          Example: find James Jake<br><br>
+        <b>- list:</b> View all contacts<br>
+          Usage: list<br><br>
+        <b>- remark:</b> Add remark to / Remove remark from existing contact<br>
+          - Add
+            Usage: remark INDEX rm/REMARK
+            Example: remark 1 rm/likes to eat
+          - Remove
+            Usage: remark INDEX rm/
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -96,50 +102,41 @@ public class HelpWindow extends UiPart<Stage> {
     private void parseAndSetHelpMessage() {
         String[] parts = HELP_MESSAGE.split("<br>");
         for (String part : parts) {
-            if (part.startsWith("<b>") && part.endsWith("</b>")) {
-                // Whole line is bold
-                Text text = new Text(part.replaceAll("<b>", "")
-                                .replaceAll("</b>", ""));
-                text.setFont(Font.font("System", FontWeight.BOLD, 12));
-                helpMessage.getChildren().add(text);
-            } else {
-                // Line may contain bolded parts
-                int boldStart = part.indexOf("<b>");
-                if (boldStart == -1) {
-                    // No bold in this line
-                    Text text = new Text(part);
-                    helpMessage.getChildren().add(text);
-                } else {
-                    int lastIndex = 0;
-                    while (boldStart != -1) {
-                        int boldEnd = part.indexOf("</b>", boldStart);
-                        if (boldEnd == -1) {
-                            // Malformed bold tag, just add as plain text
-                            Text text = new Text(part.substring(lastIndex));
-                            helpMessage.getChildren().add(text);
-                            break;
-                        }
-                        if (boldStart > lastIndex) {
-                            // Add plain text before bold
-                            Text plainText = new Text(part.substring(lastIndex, boldStart));
-                            helpMessage.getChildren().add(plainText);
-                        }
-                        // Add bolded text
-                        Text boldText = new Text(part.substring(boldStart + 3, boldEnd));
-                        boldText.setFont(Font.font("System", FontWeight.BOLD, 12));
-                        helpMessage.getChildren().add(boldText);
-                        lastIndex = boldEnd + 4;
-                        boldStart = part.indexOf("<b>", lastIndex);
-                    }
-                    // Add any remaining plain text
-                    if (lastIndex < part.length()) {
-                        Text remainingText = new Text(part.substring(lastIndex));
-                        helpMessage.getChildren().add(remainingText);
-                    }
+            int lastIndex = 0;
+            int boldStart = part.indexOf("<b>");
+
+            while (boldStart != -1) {
+                if (boldStart > lastIndex) {
+                    // Add plain text before bold
+                    Text plainText = new Text(part.substring(lastIndex, boldStart));
+                    helpMessage.getChildren().add(plainText);
                 }
+
+                int boldEnd = part.indexOf("</b>", boldStart);
+                if (boldEnd == -1) {
+                    // Malformed bold tag, just add as plain text
+                    Text text = new Text(part.substring(lastIndex));
+                    helpMessage.getChildren().add(text);
+                    break;
+                }
+
+                // Add bolded text
+                Text boldText = new Text(part.substring(boldStart + 3, boldEnd));
+                boldText.setFont(Font.font("System", FontWeight.BOLD, 12));
+                helpMessage.getChildren().add(boldText);
+
+                lastIndex = boldEnd + 4;
+                boldStart = part.indexOf("<b>", lastIndex);
+            }
+
+            // Add any remaining plain text after the last bold section
+            if (lastIndex < part.length()) {
+                Text remainingText = new Text(part.substring(lastIndex));
+                helpMessage.getChildren().add(remainingText);
             }
         }
     }
+
 
     /**
      * Shows the help window.
