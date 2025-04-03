@@ -49,13 +49,13 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
-                ? new Email("NA@placeholder.com") : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+                ? new Email("NA") : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
                 ? new Address("NA") : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        String docInCharge = argMultimap.getValue(PREFIX_DOCTOR).isEmpty() ? ""
+        String docInCharge = argMultimap.getValue(PREFIX_DOCTOR).isEmpty() ? "NA"
                 : ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
         String inputNokName = argMultimap.getValue(PREFIX_NOKNAME).orElse("NA");
-        String inputNokPhone = argMultimap.getValue(PREFIX_NOKPHONE).orElse("000");
+        String inputNokPhone = argMultimap.getValue(PREFIX_NOKPHONE).orElse("NA");
         NextOfKin nextOfKin = ParserUtil.parseNextOfKin(inputNokName, inputNokPhone);
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty() ? new Department("NA")
                 : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
