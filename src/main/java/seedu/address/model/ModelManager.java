@@ -140,7 +140,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setSelectedPerson(Person person) {
-        requireNonNull(person);
         this.selectedPerson = person;
     }
 

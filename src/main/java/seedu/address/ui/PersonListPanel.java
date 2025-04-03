@@ -42,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
                 personSelectionListener.accept(newValue);
             }
             // Handle the selection, e.g., by updating the UI or performing an action
-            logger.info("Selected Person: " + newValue.getName());
+            logger.info("Selected Person: " + newValue);
         });
     }
 
