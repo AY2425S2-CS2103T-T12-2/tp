@@ -282,11 +282,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Patient Care Coordinator        | add a new patient's contact information            | easily store and access important patient details for future reference and communications |
 | `* * *`  | Patient Care Coordinator        | delete patient's contact information               | remove obsolete patient data to keep the address book organized and clean |
 | `* * *`  | Patient Care Coordinator        | see a list of assigned patients when logged in     | quickly manage and retrieve patient details without navigating multiple screens |
-| `* * *`  | Patient Care Coordinator        | access Guardian or Next-of-Kin details for a patient | have all emergency contact information readily available in case of emergency |
 | `* * *`  | Patient Care Coordinator        | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
 | `* * *`  | Patient Care Coordinator        | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
 | `* * *`  | Patient Care Coordinator        | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
-| `* * *`  | Patient Care Coordinator        | tag a patient to a primary caregiver or doctor     | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
+| `* * *`  | Patient Care Coordinator        | tag a patient to a primary  doctor     | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
 | `* * *`  | Patient Care Coordinator        | save contact details in a file locally             | ensure patient details are preserved even after the application is closed |
 | `* * *`  | Patient Care Coordinator        | load contact details from a local file             | load patient details at startup, preventing the need to re-enter information |
 | `* *`    | Patient Care Coordinator        | search for a specific contact by name, role, etc.  | quickly locate the right person or organization when urgent communication is needed |
@@ -357,27 +356,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 - 2b. Patient data is corrupted.
     - 2b1. ACaringBook displays "Patient data corrupted!"
-    - Use case ends.
-
----
-
-### Use case: Find Guardian/NOK of a patient
-
-**MSS**
-
-1. User requests to find the Guardian/NOK of a specific patient.
-2. ACaringBook retrieves the Guardian/NOK details.
-3. ACaringBook displays the details.
-
-**Use case ends.**
-
-**Extensions**
-
-- 2a. The patient name is missing.
-    - 2a1. ACaringBook shows an error message: "Patient NAME is required."
-    - Use case resumes at step 1.
-- 2b. The patient is not found in the ACaringBook.
-    - 2b1. ACaringBook shows an error message: "Patient not found."
     - Use case ends.
 
 ---
