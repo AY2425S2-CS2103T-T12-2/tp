@@ -37,18 +37,6 @@ public class Patient extends Person {
         return department;
     }
 
-    /**
-     * Returns true if both patients have the same identity (same name).
-     */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson instanceof Patient
-                && otherPerson.getName().equals(this.getName());
-    }
 
     /**
      * Returns true if both patients have the same identity and data fields.

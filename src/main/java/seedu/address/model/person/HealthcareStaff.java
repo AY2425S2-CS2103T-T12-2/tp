@@ -32,17 +32,6 @@ public class HealthcareStaff extends Person {
         return department;
     }
 
-    /**
-     * Returns true if both healthcare staff have the same identity (same name).
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson instanceof HealthcareStaff
-            && otherPerson.getName().equals(getName());
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
