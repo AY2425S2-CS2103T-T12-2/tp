@@ -178,6 +178,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void refreshUiState() {
+        selectedPerson = logic.getSelectedPerson(); // Get the selected person from the model
+        if (selectedPerson != null) {
+            personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
+        }
+
+        // Reset content panel if the AddressBook is empty
+        if (logic.getAddressBook().getPersonList().isEmpty()) {
+            contentPanelPlaceholder.getChildren().clear();
+            contentPanel = new ContentPanel();
+            contentPanelPlaceholder.getChildren().add(contentPanel.getRoot());
+        }
+    }
+
     /**
      * Update stylesheets based on parameter {@code isDarkTheme}
      *
@@ -194,16 +208,6 @@ public class MainWindow extends UiPart<Stage> {
             stylesheets.add(LIGHT_THEME);
         }
         logger.fine("Stylesheets updated to " + (isDarkTheme ? "Dark Theme" : "Light Theme"));
-    }
-
-    /**
-     * Listens for Selection updates in the Model (via Select Command);
-     */
-    public void updateSelectionDisplay() {
-        selectedPerson = logic.getSelectedPerson(); // Get the selected person from the model
-        if (selectedPerson != null) {
-            personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
-        }
     }
 
     /**
@@ -246,10 +250,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -273,7 +273,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleToggleTheme();
             }
 
-            updateSelectionDisplay();
+            refreshUiState();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

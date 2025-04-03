@@ -13,7 +13,6 @@ public class ClearCommand extends Command {
     public static final CommandType COMMAND_TYPE = CommandType.CLEAR;
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

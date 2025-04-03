@@ -210,6 +210,11 @@
     -fx-background-radius: 0;
 }
 
+#contentContainer .label {
+    -fx-padding: 3 0 0 5;
+    -fx-font-size: 11pt;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;

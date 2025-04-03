@@ -278,6 +278,10 @@
     -fx-background-color: transparent, #ffffff, transparent, #ffffff;
 }
 
+#contentContainer .label {
+    -fx-text-fill: black;
+}
+
 #tags .label {
     -fx-text-fill: black;
     -fx-background-color: #AAAFFF;
@@ -298,7 +302,7 @@
 }
 
 #tags .providerrole-nurse {
-    -fx-background-color: lightcoral;
+    -fx-background-color: pink;
 }
 
 #tags .providerrole-therapist {

@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -54,7 +52,11 @@ public class ContentPanel extends UiPart<Region> {
      * Update the contentContainer to reflect {@code person} details
      */
     public void updateContent(Person person) {
-        requireNonNull(person);
+        // Skip if person is null
+        if (person == null) {
+            return;
+        }
+
         loadContent();
 
         // Default Data
@@ -108,5 +110,4 @@ public class ContentPanel extends UiPart<Region> {
         setVisiblity(department, true);
         setVisiblity(remark, true);
     }
-
 }
