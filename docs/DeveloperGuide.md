@@ -267,9 +267,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * Can type fast and prefers typing to mouse interactions
 * Is comfortable using command-line interface (CLI) apps for efficiency
 
-**Value proposition**: Our product streamlines patient coordination by providing instant access to patient details, 
-tagging patients to assigned doctors or caretakers, and tracking guardian or next-of-kin information. 
-It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication, 
+**Value proposition**: Our product streamlines patient coordination by providing instant access to patient details,
+tagging patients to assigned doctors or caretakers, and tracking guardian or next-of-kin information.
+It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication,
 improved workflows, and enhanced patient care.
 
 
@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Should only allow use by a single user (patient care coordinator).
 5.  Should return search results within 0.5 seconds to ensure quick lookup.
 6.  Should consume less than 200MB of RAM and low CPU usage on standard hardware.
-7.  Data of the patients should be in a text file that is human editable. 
+7.  Data of the patients should be in a text file that is human editable.
 8.  Should not require any installation by the user.
 9.  Should be able to load data without internet connection.
 
