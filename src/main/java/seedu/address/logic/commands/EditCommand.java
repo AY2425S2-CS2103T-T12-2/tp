@@ -55,7 +55,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DOCTOR + "DOCTOR IN CHARGE] "
             + "[" + PREFIX_NOKNAME + "NOKNAME] "
             + "[" + PREFIX_NOKPHONE + "NOKPHONE] "
-            + "[" + PREFIX_REMARK + "REMARK] "
             + "Example: " + COMMAND_TYPE + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
