@@ -278,6 +278,10 @@
     -fx-background-color: transparent, #383838, transparent, #383838;
 }
 
+#contentContainer .label {
+    -fx-text-fill: white;
+}
+
 #tags .label {
     -fx-text-fill: black;
     -fx-background-color: #AAAFFF;
