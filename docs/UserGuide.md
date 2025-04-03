@@ -219,10 +219,9 @@ If the user encounters the warning message "Invalid command format!" and their i
 
 Finds a list of `Person` (including both `Patient` and `HealthcareStaff`) whose departments match with the keyword.
 
-**Format**: `finddep KEYWORD`
+**Format**: `finddep KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `Conology` will match `conology`
-* Only one keyword is allowed.
 * Only the department of the contact is searched.
 * Partial words will be matched e.g. `con` will match `conology`.
 * All contacts in the department will be returned e.g. `finddep conology` will return a list of Conology patients and doctors.
@@ -246,10 +245,9 @@ If the user encounters the warning message "Invalid command format!" and their i
 
 Find a list of `HealthcareStaff` whose roles matches with the keyword.
 
-**Format**: `findstaff KEYWORD`
+**Format**: `findstaff KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `Doctor` will match `doctor`
-* Only one keyword is allowed. 
 * Only the role of the healthcare provider is searched.
 * Partial words will be matched e.g. `doc` will match `doctor`.
 * All healthcare staff matching the role will be returned e.g. `findstaff doctor` will return a list of all doctors.
@@ -262,7 +260,8 @@ If these two `addstaff` commands are executed,
 
 then 
 * `findstaff doctor` returns `Mary Jane`
-* `findstaff nurse` returns `Mark Markerburg`.
+* `findstaff nurse` returns `Mark Markerburg`
+* `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
 
 **Shortcut command**: `fs`
 
