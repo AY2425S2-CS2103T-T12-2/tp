@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
-      <ScrollPane prefViewportWidth="600" prefViewportHeight="600" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
+    <Scene width="800" height="600">
+      <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
         <content>
-          <HBox alignment="CENTER" fx:id="helpMessageContainer">
-            <children>
-              <TextFlow fx:id="helpMessage">
-                <HBox.margin>
-                  <Insets right="5.0" />
-                </HBox.margin>
-              </TextFlow>
-            </children>
-            <padding>
-              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
-          </HBox>
+          <TextArea fx:id="helpMessage" wrapText="true" editable="false" prefWidth="770" prefHeight="570">
+            <style>
+              -fx-border-width: 0;
+              -fx-background-color: transparent;
+            </style>
+          </TextArea>
         </content>
       </ScrollPane>
     </Scene>
