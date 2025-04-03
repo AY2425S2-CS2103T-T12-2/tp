@@ -3,7 +3,14 @@ layout: page
 title: User Guide for A Caring Book (TP T12-2)
 ---
 
-A Caring Book is a **desktop app for managing patient and staff contact details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, A Caring Book can get your contact management tasks done faster than traditional GUI apps.
+A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently.** 
+Optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI), 
+A Caring Book enables faster contact management compared to traditional GUI apps, especially for users who type quickly.
+
+Unlike conventional systems that require manual entering of details for each category (e.g. Name, Phone Number, Department),
+A Caring Book streamlines the process with `addpatient` and `addstaff` commands. Filtering commands such as 
+`find`, `findstaff` and `finddep` allow for quick lookup, particularly in emergency situations, making contact management more efficient.
+A Caring Book also employs the use of shortcut commands, which further elevates the user experience. 
 
 * Table of Content
 {:toc}
@@ -12,16 +19,20 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed in your Computer. To check for your local Java version, 
+open a command terminal, type `java --version` and press Enter.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book.
+1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book app.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
+1. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+
+2. You can toggle between Light and Dark mode by clicking on "File" in the top left corner of the app window, and select
+or deselect the option "Dark Mode".
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -43,7 +54,7 @@ A Caring Book is a **desktop app for managing patient and staff contact details,
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,7 +166,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -174,7 +185,7 @@ Format: `finddep KEYWORD`
 * The search is case-insensitive. e.g `Conology` will match `conology`
 * Only one keyword is allowed.
 * Only the department of the contact is searched.
-* Only full words will be matched e.g. `con` will not match `conology`.
+* Partial words will be matched e.g. `con` will match `conology`.
 * All contacts in the department will be returned e.g. `finddep conology` will return a list of Conology patients and doctors.
 
 Examples:
@@ -194,7 +205,7 @@ Format: `findstaff KEYWORD`
 * The search is case-insensitive. e.g `Doctor` will match `doctor`
 * Only one keyword is allowed. 
 * Only the role of the healthcare provider is searched.
-* Only full words will be matched e.g. `doc` will not match `doctor`.
+* Partial words will be matched e.g. `doc` will match `doctor`.
 * All healthcare staff matching the role will be returned e.g. `findstaff doctor` will return a list of all doctors.
 
 Examples:
