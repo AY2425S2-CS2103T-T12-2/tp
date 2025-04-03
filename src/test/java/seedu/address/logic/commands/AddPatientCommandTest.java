@@ -33,8 +33,8 @@ class AddPatientCommandTest {
         modelStub = new ModelStub();
         validPatient = new PatientBuilder().withName("John Doe").withPhone("98765432")
                 .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
-                .withDoc("Dr Tan Chee Hwa").withNok("Mr Hao Doe")
-                .withDepartment("Gastroenterology").withTags("elder").build();
+                .withDoc("Dr Tan Chee Hwa").withNok("Mr Hao Doe", "98765432")
+                .withDepartment("Gastroenterology").build();
     }
 
     @Test

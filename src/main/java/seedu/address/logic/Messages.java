@@ -46,9 +46,7 @@ public class Messages {
                 .append("\nAddress: ")
                 .append(person.getAddress())
                 .append("\nRemark: ")
-                .append(person.getRemark() != null ? person.getRemark() : "")
-                .append("\nTags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getRemark() != null ? person.getRemark() : "");
 
         if (person instanceof HealthcareStaff) {
             builder.append("\nRole: ")
@@ -66,7 +64,7 @@ public class Messages {
                     .append(((Patient) person).getDoctorInCharge() != null ? ((Patient) person)
                             .getDoctorInCharge() : "NA")
                     .append("\nGuardian: ")
-                    .append(((Patient) person).getGuardian() != null ? ((Patient) person).getGuardian() : "NA");
+                    .append(((Patient) person).getNextofKin() != null ? ((Patient) person).getNextofKin() : "NA");
         }
         return builder.toString();
     }

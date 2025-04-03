@@ -14,13 +14,11 @@ public class TypicalStaff {
     public static final HealthcareStaff ALICE = new StaffBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253")
-        .withRole("nurse")
-        .withTags("friends").build();
+        .withRole("nurse").build();
     public static final HealthcareStaff BENSON = new StaffBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withEmail("johnd@example.com").withPhone("98765432")
-        .withRole("doctor")
-        .withTags("owesMoney", "friends").build();
+        .withRole("doctor").build();
     public static final HealthcareStaff CARL = new StaffBuilder().withName("Carl Kurz")
         .withPhone("95352563")
         .withEmail("heinz@example.com")
@@ -31,8 +29,7 @@ public class TypicalStaff {
         .withPhone("87652533")
         .withEmail("cornelia@example.com")
         .withAddress("10th street")
-        .withRole("doctor")
-        .withTags("friends").build();
+        .withRole("doctor").build();
     public static final HealthcareStaff ELLE = new StaffBuilder().withName("Elle Meyer")
         .withPhone("9482224")
         .withEmail("werner@example.com")

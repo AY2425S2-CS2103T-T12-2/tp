@@ -61,18 +61,18 @@ public class RemarkCommand extends Command {
         if (personToEdit instanceof Patient) {
             Patient p = (Patient) personToEdit;
             editedPerson = new Patient(
-                p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), remark,
-                p.getTags(), p.getDoctorInCharge(), p.getGuardian(), p.getDepartment());
+                    p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), remark,
+                    p.getDoctorInCharge(), p.getNextofKin(), p.getDepartment());
         } else if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff s = (HealthcareStaff) personToEdit;
             editedPerson = new HealthcareStaff(
                 s.getName(), s.getProviderRole(), s.getDepartment(), s.getPhone(), s.getEmail(),
-                s.getAddress(), remark, s.getTags());
+                s.getAddress(), remark);
         } else {
             editedPerson = new Person(
                 personToEdit.getRole(), personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(),
-                remark, personToEdit.getTags());
+                remark);
         }
 
         model.setPerson(personToEdit, editedPerson);

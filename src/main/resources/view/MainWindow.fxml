@@ -40,9 +40,9 @@
           </VBox>
 
           <!-- Right Side Stack of Result Display and Command Box -->
-          <VBox fx:id="rightPanel" prefHeight="450.0" prefWidth="631.0" spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <VBox fx:id="rightPanel" prefHeight="900.0" prefWidth="631.0" spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <!-- Result Display Panel -->
-            <VBox fx:id="resultDisplayPanel" prefHeight="455.0" prefWidth="345.0" styleClass="pane-with-border">
+            <VBox fx:id="resultDisplayPanel" prefHeight="900.0" prefWidth="345.0" styleClass="pane-with-border">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>

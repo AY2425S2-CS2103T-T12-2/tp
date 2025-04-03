@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,6 +14,7 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -36,7 +36,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String remark;
-    private final String guardian;
+    private final String nokName;
+    private final String nokPhone;
     private final String doctorInCharge;
     private final String department;
     private final String providerRole;
@@ -53,18 +54,19 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
-                             @JsonProperty("guardian") String guardian,
+                             @JsonProperty("nok_name") String nokName,
+                             @JsonProperty("nok_phone") String nokPhone,
                              @JsonProperty("doctorInCharge") String doctorInCharge,
                              @JsonProperty("department") String department,
-                             @JsonProperty("providerRole") String providerRole,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("providerRole") String providerRole) {
         this.role = role; // Store role from JSON
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
-        this.guardian = guardian;
+        this.nokName = nokName;
+        this.nokPhone = nokPhone;
         this.doctorInCharge = doctorInCharge;
         this.department = department;
         this.providerRole = providerRole;
@@ -84,24 +86,24 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         String derivedProviderRole = null;
 
         if (source instanceof Patient) {
             Patient p = (Patient) source;
-            guardian = p.getGuardian();
+            nokName = p.getNextofKin().getName().toString();
+            nokPhone = p.getNextofKin().getPhone().toString();
             doctorInCharge = p.getDoctorInCharge();
             department = p.getDepartment().toString();
         } else if (source instanceof HealthcareStaff) {
             HealthcareStaff s = (HealthcareStaff) source;
             derivedProviderRole = s.getProviderRole().toString();
-            guardian = null;
+            nokName = null;
+            nokPhone = null;
             doctorInCharge = null;
             department = s.getDepartment().toString();
         } else {
-            guardian = null;
+            nokName = null;
+            nokPhone = null;
             doctorInCharge = null;
             department = null;
         }
@@ -162,31 +164,32 @@ class JsonAdaptedPerson {
         if (role == null) {
             throw new IllegalValueException("Missing role field in JSON.");
         } else if (role.equalsIgnoreCase("PATIENT")) {
+            String inputNokName = nokName == null ? "NA" : nokName;
+            String inputNokPhone = nokPhone == null ? "000" : nokPhone;
+            NextOfKin inputNextOfKin = new NextOfKin(new Name(inputNokName), new Phone(inputNokPhone));
             return new Patient(
                 modelName,
                 modelPhone,
                 modelEmail,
                 modelAddress,
                 modelRemark,
-                modelTags,
                 doctorInCharge != null ? doctorInCharge : "",
-                guardian != null ? guardian : "",
+                inputNextOfKin,
                 department != null ? new Department(department) : new Department("")
             );
         } else if (role.equalsIgnoreCase("STAFF")) {
             return new HealthcareStaff(
                 modelName,
                 new ProviderRole(providerRole != null ? providerRole : ""),
-                department != null ? new Department(department) : new Department(""),
+                department != null ? new Department(department) : new Department("NA"),
                 modelPhone,
                 modelEmail,
                 modelAddress,
-                modelRemark,
-                modelTags
+                modelRemark
             );
         }
 
-        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Person(new Role(role), modelName, modelPhone, modelEmail, modelAddress, modelRemark);
     }
 }
 

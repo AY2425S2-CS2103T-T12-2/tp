@@ -1,10 +1,8 @@
 package seedu.address.model.person;
 
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Healthcare Staff in the address book.
@@ -19,9 +17,9 @@ public class HealthcareStaff extends Person {
      */
     public HealthcareStaff(Name name, ProviderRole providerRole,
                            Department department,
-                           Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+                           Phone phone, Email email, Address address, Remark remark) {
         super(new Role("STAFF"), name, phone, email != null ? email : new Email("NA@placeholder.com"),
-                address != null ? address : new Address("NA"), remark, tags);
+                address != null ? address : new Address("NA"), remark);
         this.department = department != null ? department : new Department("NA");
         this.providerRole = providerRole != null ? providerRole : new ProviderRole("NA");
     }
@@ -34,17 +32,6 @@ public class HealthcareStaff extends Person {
         return department;
     }
 
-    /**
-     * Returns true if both healthcare staff have the same identity (same name).
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson instanceof HealthcareStaff
-            && otherPerson.getName().equals(getName());
-    }
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -64,13 +51,12 @@ public class HealthcareStaff extends Person {
                 && department.equals(otherStaff.department)
                 && getPhone().equals(otherStaff.getPhone())
                 && getEmail().equals(otherStaff.getEmail())
-                && getAddress().equals(otherStaff.getAddress())
-                && getTags().equals(otherStaff.getTags());
+                && getAddress().equals(otherStaff.getAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), providerRole, department, getEmail(), getAddress(), getTags());
+        return Objects.hash(getName(), providerRole, department, getEmail(), getAddress());
     }
 
     @Override
@@ -82,7 +68,6 @@ public class HealthcareStaff extends Person {
             .add("phone", this.getPhone())
             .add("email", this.getEmail())
             .add("address", this.getAddress())
-            .add("tags", this.getTags())
             .toString();
     }
 }

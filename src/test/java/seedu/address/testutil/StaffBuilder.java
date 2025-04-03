@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
@@ -11,8 +8,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -34,7 +29,6 @@ public class StaffBuilder {
     private Email email;
     private Address address;
     private Remark remark;
-    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,7 +41,6 @@ public class StaffBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
     }
 
     /**
@@ -60,7 +53,6 @@ public class StaffBuilder {
         phone = staffToCopy.getPhone();
         email = staffToCopy.getEmail();
         address = staffToCopy.getAddress();
-        tags = new HashSet<>(staffToCopy.getTags());
     }
 
     /**
@@ -76,14 +68,6 @@ public class StaffBuilder {
      */
     public StaffBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public StaffBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -120,7 +104,7 @@ public class StaffBuilder {
     }
 
     public HealthcareStaff build() {
-        return new HealthcareStaff(name, role, department, phone, email, address, remark, tags);
+        return new HealthcareStaff(name, role, department, phone, email, address, remark);
     }
 
 }
