@@ -16,6 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -65,11 +67,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
             editPersonDescriptor.setDocInCharge(ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()));
         }
-        if (argMultimap.getValue(PREFIX_NOKNAME).isPresent()) {
-            String updatedNameString = argMultimap.getValue(PREFIX_NOKNAME).get();
-            String updatedPhoneString = argMultimap.getValue(PREFIX_NOKPHONE).get();
-            editPersonDescriptor.setNok(ParserUtil.parseNextOfKin(updatedNameString, updatedPhoneString));
+        if (argMultimap.getValue(PREFIX_NOKNAME).isPresent() || argMultimap.getValue(PREFIX_NOKPHONE).isPresent()) {
+            Name updatedNokName = editPersonDescriptor.getNokName().orElse(null);
+            Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(null);
+
+            if (argMultimap.getValue(PREFIX_NOKNAME).isPresent()) {
+                updatedNokName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NOKNAME).get());
+                editPersonDescriptor.setNokName(updatedNokName);
+            }
+
+            if (argMultimap.getValue(PREFIX_NOKPHONE).isPresent()) {
+                updatedNokPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NOKPHONE).get());
+                editPersonDescriptor.setNokPhone(updatedNokPhone);
+            }
         }
+
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             editPersonDescriptor.setDepartment(ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT)
                     .get()));

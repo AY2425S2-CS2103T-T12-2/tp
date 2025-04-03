@@ -120,8 +120,14 @@ public class EditCommand extends Command {
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
-            NextOfKin updatedNok = editPersonDescriptor.getNextOfKin().orElse(patientToEdit.getNextofKin());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
+            NextOfKin updatedNok = patientToEdit.getNextofKin();
+            if (editPersonDescriptor.getNokName().isPresent() || editPersonDescriptor.getNokPhone().isPresent()) {
+                Name updatedNokName = editPersonDescriptor.getNokName().orElse(updatedNok.getName());
+                Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(updatedNok.getPhone());
+                System.out.println("editing");
+                updatedNok = new NextOfKin(updatedNokName, updatedNokPhone);
+            }
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark(),
                     updatedDocInCharge, updatedNok, updatedDepartment);
         } else {
@@ -165,6 +171,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Name nextOfKinName;
+        private Phone nextOfKinPhone;
         private NextOfKin nextOfKin;
         private String docInCharge;
         private Department department;
@@ -182,6 +190,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setNokName(toCopy.nextOfKinName);
+            setNokPhone(toCopy.nextOfKinPhone);
             setNok(toCopy.nextOfKin);
             setDocInCharge(toCopy.docInCharge);
             setDepartment(toCopy.department);
@@ -192,7 +202,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(providerRole, name, phone, email, address,
-                    docInCharge, nextOfKin, department);
+                    docInCharge, nextOfKinName, nextOfKinPhone, nextOfKin, department);
         }
         public void setRole(Role role) {
             this.role = role;
@@ -254,8 +264,24 @@ public class EditCommand extends Command {
             this.nextOfKin = nextOfKin;
         }
 
-        public Optional<NextOfKin> getNextOfKin() {
+        public Optional<NextOfKin> getNok() {
             return Optional.ofNullable(nextOfKin);
+        }
+
+        public void setNokName(Name nextOfKinName) {
+            this.nextOfKinName = nextOfKinName;
+        }
+
+        public Optional<Name> getNokName() {
+            return Optional.ofNullable(nextOfKinName);
+        }
+
+        public void setNokPhone(Phone nextOfKinPhone) {
+            this.nextOfKinPhone = nextOfKinPhone;
+        }
+
+        public Optional<Phone> getNokPhone() {
+            return Optional.ofNullable(nextOfKinPhone);
         }
 
         public void setDocInCharge(String docInCharge) {
@@ -286,7 +312,8 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(docInCharge, otherEditPersonDescriptor.docInCharge)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
-                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin);
+                    && Objects.equals(nextOfKinName, otherEditPersonDescriptor.nextOfKinName)
+                    && Objects.equals(nextOfKinPhone, otherEditPersonDescriptor.nextOfKinPhone);
         }
 
         @Override
@@ -298,7 +325,8 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("doctor in charge", docInCharge)
-                    .add("next of kin", nextOfKin)
+                    .add("nok name", nextOfKinName)
+                    .add("nok phone", nextOfKinPhone)
                     .add("department", department)
                     .toString();
         }
