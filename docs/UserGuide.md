@@ -85,9 +85,9 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page. 
+Shows a full list of available commands including shortcuts, descriptions and example usages.
 
-![help message](images/helpMessage.png)
+![help message](images/helpWindow.png)
 
 **Format**: `help`
 
@@ -357,7 +357,7 @@ A Caring Book data are saved automatically after any command that changes the da
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A Caring Book data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, A Caring Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
