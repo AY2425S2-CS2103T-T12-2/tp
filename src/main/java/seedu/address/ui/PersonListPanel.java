@@ -37,14 +37,12 @@ public class PersonListPanel extends UiPart<Region> {
 
         // Add listener to monitor selection changes
         personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            requireNonNull(newValue);
             // Notify the listener (MainWindow) when a person is selected
             if (personSelectionListener != null) {
                 personSelectionListener.accept(newValue);
             }
             // Handle the selection, e.g., by updating the UI or performing an action
             logger.info("Selected Person: " + newValue.getName());
-
         });
     }
 

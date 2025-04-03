@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.HealthcareStaff;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,12 +34,26 @@ public class ContentPanel extends UiPart<Region> {
      */
     public void updateContent(Person person) {
         requireNonNull(person);
-        String details = "Name: " + person.getName() + "\n"
-                + "Phone: " + person.getPhone() + "\n"
-                + "Email: " + person.getEmail() + "\n"
-                + "Address: " + person.getAddress();
+        StringBuilder details = new StringBuilder();
+        details.append("Role: " + person.getRole() + "\n")
+                .append("Name: " + person.getName() + "\n")
+                .append("Phone: " + person.getPhone() + "\n")
+                .append("Email: " + person.getEmail() + "\n")
+                .append("Address: " + person.getAddress() + "\n");
 
-        contentArea.setText(details); // Set the TextArea to display the details
+        if (person instanceof Patient patient) {
+            details.append("Doctor in charge: " + patient.getDoctorInCharge() + "\n")
+                    .append("Department: " + patient.getDepartment() + "\n")
+                    .append("Next of Kin: " + patient.getNextofKin() + "\n");
+        }
+
+        if (person instanceof HealthcareStaff healthcareStaff) {
+            details.append("Department: " + healthcareStaff.getDepartment() + "\n");
+        }
+
+        details.append("Remark: " + person.getRemark());
+
+        contentArea.setText(details.toString()); // Set the TextArea to display the details
         logger.info("Selected Person: " + details);
     }
 

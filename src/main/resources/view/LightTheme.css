@@ -288,19 +288,24 @@
     -fx-background-color: lightblue;
 }
 
-#tags .role-doctor {
+#tags .role-staff {
     -fx-background-color: lightgreen;
 }
 
-#tags .role-nurse {
+/* Provider Role color */
+#tags .providerrole-doctor {
     -fx-background-color: lightcoral;
 }
 
-#tags .role-therapist {
+#tags .providerrole-nurse {
+    -fx-background-color: lightcoral;
+}
+
+#tags .providerrole-therapist {
     -fx-background-color: lightyellow;
 }
 
 /* Department color */
 #tags .department {
-    -fx-background-color: purple;
+    -fx-background-color: #AAAFFF;
 }
