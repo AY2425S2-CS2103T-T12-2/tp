@@ -51,7 +51,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
             : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        String inputEmail = argMultimap.getValue(PREFIX_EMAIL).orElse("NA@placeholder.com");
+        String inputEmail = argMultimap.getValue(PREFIX_EMAIL).orElse("NA");
         Email email = ParserUtil.parseEmail(inputEmail);
         String inputAddress = argMultimap.getValue(PREFIX_ADDRESS).orElse("NA");
         Address address = ParserUtil.parseAddress(inputAddress);
