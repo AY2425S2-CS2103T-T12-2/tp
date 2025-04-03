@@ -25,52 +25,54 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_MESSAGE = """
         <b>Welcome to A Caring Book!</b><br><br>
         <b>PATIENT COMMANDS:</b><br>
-        <b>- addpatient:</b> Add a patient contact<br>
-          Usage: addpatient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
-          [dp/DEPARTMENT] [t/TAG]...
-          Example: addpatient n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd dr/Dr Mak g/Mrs Ho
-          dp/Cardiology t/friend<br><br>
-        <b>- findpatient:</b> Search patients by department<br>
-          Usage: findpatient KEYWORD<br>
-          Example: findpatient surgery<br><br>
-        <b>- listpatient:</b> View all patients<br>
+        <b>- addpatient (ap):</b> Add a patient contact<br>
+          Usage: addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE]
+           [dp/DEPARTMENT]
+          Example: addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak
+           nn/Mrs Hong Doe np/98721322 dp/Conology<br><br>
+        <b>- finddep (fd):</b> Search patients by department<br>
+          Usage: finddep KEYWORD<br>
+          Example: finddep surgery<br><br>
+        <b>- listpatient (lsp):</b> View all patients<br>
           Usage: listpatient<br><br>
         <b>STAFF COMMANDS:</b><br>
-        <b>- addstaff:</b> Add a staff contact<br>
-          Usage: addstaff [r/ROLE] n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]...
-          Example: addstaff r/doctor n/James Ho p/22224444 e/jamesho@example.com a/123 Clementi Rd
-          t/colleague<br><br>
-        <b>- findstaff:</b> Search staff by role<br>
+        <b>- addstaff (as):</b> Add a staff contact<br>
+          Usage: addstaff [r/ROLE] n/NAME p/PHONE [dp/DEPARTMENT] [e/EMAIL] [a/ADDRESS]
+          Example: addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street,
+           block 333, #03-03<br><br>
+        <b>- findstaff (fs):</b> Search staff by role<br>
           Usage: findstaff KEYWORD<br>
           Example: findstaff nurse<br><br>
-        <b>- liststaff:</b> View all staff<br>
+        <b>- liststaff (lss):</b> View all staff<br>
           Usage: liststaff<br><br>
         <b>GENERAL COMMANDS:</b><br>
-        <b>- clear:</b> Clear the entire address book<br>
+        <b>- clear (cls):</b> Clear the entire address book<br>
           Usage: clear<br><br>
-        <b>- delete:</b> Remove a contact<br>
+        <b>- delete (del/d):</b> Remove a contact<br>
           Usage: delete INDEX<br>
           Example: delete 3<br><br>
-        <b>- edit:</b> Edit an existing contact<br>
-          Usage: edit INDEX [r/ROLE] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [do/DOCTOR] [g/GUARDIAN]
-          [dp/DEPARTMENT] [t/TAG]...
+        <b>- edit (e):</b> Edit an existing contact<br>
+          Usage: edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [nn/NOK_NAME]
+           [np/NOK_PHONE] [dp/DEPARTMENT]
           Example: edit 2 n/James Lee e/jameslee@example.com<br><br>
-        <b>- exit:</b> Exit the application
+        <b>- exit (quit):</b> Exit the application
           Usage: exit<br><br>
-        <b>- find:</b> Search contacts by name<br>
+        <b>- find (f):</b> Search contacts by name<br>
           Usage: find KEYWORD [MORE_KEYWORDS]<br>
           Example: find James Jake<br><br>
-        <b>- list:</b> View all contacts<br>
+        <b>- list (ls):</b> View all contacts<br>
           Usage: list<br><br>
-        <b>- remark:</b> Add remark to / Remove remark from existing contact<br>
+        <b>- remark (re):</b> Add remark to / Remove remark from existing contact<br>
           - Add<br>
             Usage: remark INDEX rm/REMARK<br>
             Example: remark 1 rm/likes to eat<br>
           - Remove<br>
             <br>Usage: remark INDEX rm/
-        <b>- select:</b> Select a contact to show full contact information<br>
+        <b>- select (s):</b> Select a contact to show full contact information<br>
           Usage: select INDEX<br>
           <br>Example: select 1
+        <b>- toggletheme (tt):</b> Toggle between light and dark mode<br>
+          <br>Usage: toggletheme
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
