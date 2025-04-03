@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.text.Font;
@@ -22,7 +23,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
 
-    public static final String HELP_MESSAGE = """
+    public static final String HELP_MESSAGE = "For detailed instructions, visit: " + USERGUIDE_URL;
+
+    public static final String TUTORIAL_MESSAGE = """
         <b>Welcome to A Caring Book!</b><br><br>
         <b>PATIENT COMMANDS:</b><br>
         <b>- addpatient:</b> Add a patient contact<br>
@@ -68,7 +71,7 @@ public class HelpWindow extends UiPart<Stage> {
             Example: remark 1 rm/likes to eat
           - Remove
             Usage: remark INDEX rm/
-        For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
+        """;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -79,7 +82,10 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private TextFlow helpMessage;
+    private Label helpMessage;
+
+    @FXML
+    private TextFlow tutorialMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -88,7 +94,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root, boolean isDarkTheme) {
         super(FXML, root);
-        parseAndSetHelpMessage();
+        parseAndSetTutorialMessage();
+        helpMessage.setText(HELP_MESSAGE);
         updateStyleSheets(isDarkTheme);
     }
 
@@ -99,8 +106,8 @@ public class HelpWindow extends UiPart<Stage> {
         this(new Stage(), isDarkTheme);
     }
 
-    private void parseAndSetHelpMessage() {
-        String[] parts = HELP_MESSAGE.split("<br>");
+    private void parseAndSetTutorialMessage() {
+        String[] parts = TUTORIAL_MESSAGE.split("<br>");
         for (String part : parts) {
             int lastIndex = 0;
             int boldStart = part.indexOf("<b>");
@@ -109,21 +116,21 @@ public class HelpWindow extends UiPart<Stage> {
                 if (boldStart > lastIndex) {
                     // Add plain text before bold
                     Text plainText = new Text(part.substring(lastIndex, boldStart));
-                    helpMessage.getChildren().add(plainText);
+                    tutorialMessage.getChildren().add(plainText);
                 }
 
                 int boldEnd = part.indexOf("</b>", boldStart);
                 if (boldEnd == -1) {
                     // Malformed bold tag, just add as plain text
                     Text text = new Text(part.substring(lastIndex));
-                    helpMessage.getChildren().add(text);
+                    tutorialMessage.getChildren().add(text);
                     break;
                 }
 
                 // Add bolded text
                 Text boldText = new Text(part.substring(boldStart + 3, boldEnd));
                 boldText.setFont(Font.font("System", FontWeight.BOLD, 12));
-                helpMessage.getChildren().add(boldText);
+                tutorialMessage.getChildren().add(boldText);
 
                 lastIndex = boldEnd + 4;
                 boldStart = part.indexOf("<b>", lastIndex);
@@ -132,7 +139,7 @@ public class HelpWindow extends UiPart<Stage> {
             // Add any remaining plain text after the last bold section
             if (lastIndex < part.length()) {
                 Text remainingText = new Text(part.substring(lastIndex));
-                helpMessage.getChildren().add(remainingText);
+                tutorialMessage.getChildren().add(remainingText);
             }
         }
     }

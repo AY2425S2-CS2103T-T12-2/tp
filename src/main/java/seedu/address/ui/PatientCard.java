@@ -19,7 +19,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private FlowPane role;
+    private FlowPane tags;
     @FXML
     private Label name;
     @FXML
@@ -30,16 +30,6 @@ public class PatientCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-    @FXML
-    private Label doctor;
-    @FXML
-    private Label department;
-    @FXML
-    private Label nokName;
-    @FXML
-    private Label nokPhone;
-    @FXML
-    private Label remark;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Person} to display.
@@ -47,23 +37,24 @@ public class PatientCard extends UiPart<Region> {
     public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
         this.patient = patient;
+
+        // Default Person Details
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        doctor.setText(patient.getDoctorInCharge());
-        department.setText(patient.getDepartment().toString());
-        role.getChildren().add(new Label(patient.getRole().toString()));
-        nokName.setText(patient.getNextofKin().getName().toString());
-        nokPhone.setText(patient.getNextofKin().getPhone().toString());
-        String patientRemark = patient.getRemark().toString();
-        if (!patientRemark.equals("")) {
-            remark.setText(patientRemark);
-        } else {
-            remark.setText("NIL");
+
+        // Extra Patient Details
+        tags.getChildren().add(new Label(patient.getRole().toString()));
+
+        // Add label only if it's not "NA"
+        addIfNotNA(patient.getDepartment().toString());
+    }
+
+    private void addIfNotNA(String label) {
+        if (!"NA".equals(label)) {
+            tags.getChildren().add(new Label(label.toUpperCase()));
         }
-
-
     }
 }

@@ -32,7 +32,7 @@ public class StaffCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private FlowPane role;
+    private FlowPane tags;
     @FXML
     private Label id;
     @FXML
@@ -43,10 +43,6 @@ public class StaffCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label address;
-    @FXML
-    private Label department;
-    @FXML
-    private Label remark;
 
     /**
      * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
@@ -54,19 +50,25 @@ public class StaffCard extends UiPart<Region> {
     public StaffCard(HealthcareStaff staff, int displayedIndex) {
         super(FXML);
         this.staff = staff;
+
+        // Default Person Details
         id.setText(displayedIndex + ". ");
         name.setText(staff.getName().fullName);
         phone.setText(staff.getPhone().value);
-        email.setText(staff.getEmail().value);
         address.setText(staff.getAddress().value);
-        String staffRole = staff.getProviderRole().toString();
-        if (staffRole.equalsIgnoreCase("NA")) {
-            role.getChildren().add(new Label("STAFF"));
-        } else {
-            role.getChildren().add(new Label(staffRole));
-        }
-        department.setText(staff.getDepartment().toString());
-        remark.setText(staff.getRemark().toString());
+        email.setText(staff.getEmail().value);
 
+        // Extra Staff Details
+        tags.getChildren().add(new Label(staff.getRole().toString()));
+
+        // Add Label only if its not "NA"
+        addIfNotNA(staff.getProviderRole().toString());
+        addIfNotNA(staff.getDepartment().toString());
+    }
+
+    private void addIfNotNA(String label) {
+        if (!"NA".equals(label)) {
+            tags.getChildren().add(new Label(label.toUpperCase()));
+        }
     }
 }

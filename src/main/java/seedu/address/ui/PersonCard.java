@@ -32,6 +32,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private FlowPane tags;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -42,8 +44,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane role;
-    @FXML
     private Label remark;
 
     /**
@@ -52,13 +52,17 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
+        // Default Person Details
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
+
         remark.setText(person.getRemark().value);
-        role.getChildren().add(new Label(person.getRole().toString()));
+        tags.getChildren().add(new Label(person.getRole().toString()));
         logger.info("person card initialised: " + person);
     }
 }
