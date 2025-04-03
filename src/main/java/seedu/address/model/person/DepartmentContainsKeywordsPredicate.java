@@ -20,12 +20,14 @@ public class DepartmentContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (person instanceof Patient) {
             Patient patient = (Patient) person;
-            return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getDepartment().toString(), keyword));
+            return keywords.stream().anyMatch(
+                    keyword -> StringUtil.containsPartialWordIgnoreCase(patient.getDepartment()
+                    .toString(), keyword));
         } else if (person instanceof HealthcareStaff) {
             HealthcareStaff staff = (HealthcareStaff) person;
-            return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(staff.getDepartment().toString(), keyword));
+            return keywords.stream().anyMatch(
+                    keyword -> StringUtil.containsPartialWordIgnoreCase(staff.getDepartment()
+                    .toString(), keyword));
         }
         return false;
     }
