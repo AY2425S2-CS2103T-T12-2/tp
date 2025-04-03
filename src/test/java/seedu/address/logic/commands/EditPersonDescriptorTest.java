@@ -66,7 +66,6 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getAddress().orElse(null) + ", doctor in charge="
                 + editPersonDescriptor.getDocInCharge().orElse(null) + ", next of kin="
                 + editPersonDescriptor.getNextOfKin().orElse(null) + ", department="
-                + editPersonDescriptor.getRemark().orElse(null) + ", remark="
                 + editPersonDescriptor.getDepartment().orElse(null) + "}";
 
         assertEquals(expected, editPersonDescriptor.toString());

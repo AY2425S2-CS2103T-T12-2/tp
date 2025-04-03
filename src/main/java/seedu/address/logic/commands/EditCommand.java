@@ -33,7 +33,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
-import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
 
 /**
@@ -112,7 +111,6 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
 
         if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff staffToEdit = (HealthcareStaff) personToEdit;
@@ -120,17 +118,17 @@ public class EditCommand extends Command {
                     .getProviderRole());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(staffToEdit.getDepartment());
             return new HealthcareStaff(updatedName, updatedProviderRole, updatedDepartment,
-                    updatedPhone, updatedEmail, updatedAddress, updatedRemark);
+                    updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark());
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
             NextOfKin updatedNok = editPersonDescriptor.getNextOfKin().orElse(patientToEdit.getNextofKin());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark(),
                     updatedDocInCharge, updatedNok, updatedDepartment);
         } else {
             return new Person(updatedRole, updatedName, updatedPhone, updatedEmail, updatedAddress,
-                           updatedRemark);
+                    personToEdit.getRemark());
         }
     }
 
@@ -172,7 +170,6 @@ public class EditCommand extends Command {
         private NextOfKin nextOfKin;
         private String docInCharge;
         private Department department;
-        private Remark remark;
 
         public EditPersonDescriptor() {}
 
@@ -271,13 +268,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(docInCharge);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
-        }
-
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -298,8 +288,7 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(docInCharge, otherEditPersonDescriptor.docInCharge)
                     && Objects.equals(department, otherEditPersonDescriptor.department)
-                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin)
-                    && Objects.equals(remark, otherEditPersonDescriptor.remark);
+                    && Objects.equals(nextOfKin, otherEditPersonDescriptor.nextOfKin);
         }
 
         @Override
@@ -313,7 +302,6 @@ public class EditCommand extends Command {
                     .add("doctor in charge", docInCharge)
                     .add("next of kin", nextOfKin)
                     .add("department", department)
-                    .add("remark", remark)
                     .toString();
         }
     }
