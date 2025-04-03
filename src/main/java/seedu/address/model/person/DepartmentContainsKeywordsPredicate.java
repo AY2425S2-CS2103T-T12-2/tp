@@ -18,6 +18,9 @@ public class DepartmentContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase("NA", keyword))) {
+            return false;
+        }
         if (person instanceof Patient) {
             Patient patient = (Patient) person;
             return keywords.stream().anyMatch(

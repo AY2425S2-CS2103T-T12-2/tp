@@ -18,13 +18,16 @@ public class ProviderRoleContainsKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (!(person instanceof HealthcareStaff)) {
+        if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase("NA", keyword))) {
             return false;
         }
-        HealthcareStaff staff = (HealthcareStaff) person;
-        return keywords.stream()
+        if ((person instanceof HealthcareStaff)) {
+            HealthcareStaff staff = (HealthcareStaff) person;
+            return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                                .containsPartialWordIgnoreCase(staff.getProviderRole().toString(), keyword));
+                    .containsPartialWordIgnoreCase(staff.getProviderRole().toString(), keyword));
+        }
+        return false;
     }
 
     @Override
