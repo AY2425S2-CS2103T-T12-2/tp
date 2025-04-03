@@ -71,7 +71,6 @@ public class HelpWindow extends UiPart<Stage> {
         <b>- select:</b> Select a contact to show full contact information<br>
           Usage: select INDEX<br>
           <br>Example: select 1
-             
         For detailed instructions, visit:""" + " " + USERGUIDE_URL + "<br>";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
