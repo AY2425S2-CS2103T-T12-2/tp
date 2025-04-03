@@ -85,9 +85,9 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page. 
+Displays a list of all available commands along with their shortcuts, descriptions and usage examples.
 
-![help message](images/helpMessage.png)
+![help message](images/helpWindow.png)
 
 **Format**: `help`
 
