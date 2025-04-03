@@ -20,6 +20,7 @@ public enum CommandType {
     EXIT,
     REMARK,
     SELECT,
+    TOGGLETHEME,
     UNKNOWN;
 
     /**
@@ -46,6 +47,7 @@ public enum CommandType {
         case "help", "h" -> HELP;
         case "exit", "quit" -> EXIT;
         case "select", "s" -> SELECT;
+        case "toggletheme", "tt" -> TOGGLETHEME;
         default -> UNKNOWN;
         };
     }
