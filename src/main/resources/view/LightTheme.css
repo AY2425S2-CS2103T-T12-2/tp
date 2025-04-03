@@ -280,6 +280,7 @@
 
 #tags .label {
     -fx-text-fill: black;
+    -fx-background-color: #AAAFFF;
 }
 
 /* Role-based colors */

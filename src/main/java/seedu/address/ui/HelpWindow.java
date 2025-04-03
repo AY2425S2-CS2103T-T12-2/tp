@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -18,7 +20,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
 
-    public static final String HELP_MESSAGE = """
+    public static final String HELP_MESSAGE = "For detailed instructions, visit: " + USERGUIDE_URL;
+
+    public static final String TUTORIAL_MESSAGE = """
         PATIENT COMMANDS:
         - addpatient (ap): Add a patient contact
           Usage: addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE]
@@ -68,7 +72,7 @@ public class HelpWindow extends UiPart<Stage> {
           Example: select 1
         - toggletheme (tt):</b> Toggle between light and dark mode
           Usage: toggletheme
-        For detailed instructions, visit:""" + " " + USERGUIDE_URL;
+        """;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -76,7 +80,13 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIGHT_THEME = "view/HelpWindow_Light.css";
 
     @FXML
-    private TextArea helpMessage;
+    private Button copyButton;
+
+    @FXML
+    private Label helpMessage;
+
+    @FXML
+    private TextArea tutorialMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -85,7 +95,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root, boolean isDarkTheme) {
         super(FXML, root);
-        setHelpMessage();
+        setTutorialMessage();
         updateStyleSheets(isDarkTheme);
     }
 
@@ -96,14 +106,19 @@ public class HelpWindow extends UiPart<Stage> {
         this(new Stage(), isDarkTheme);
     }
 
-    private void setHelpMessage() {
+    private void setTutorialMessage() {
         helpMessage.setText(HELP_MESSAGE);
-        helpMessage.setWrapText(true);
+        tutorialMessage.setText(TUTORIAL_MESSAGE);
+        tutorialMessage.setWrapText(true);
     }
 
-    private void openUrl(String url) {
+    /**
+     * Open the URL to the user guide.
+     */
+    @FXML
+    private void openUrl() {
         try {
-            Desktop.getDesktop().browse(new URI(url));
+            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
         } catch (Exception e) {
             logger.warning("Failed to open URL: " + e.getMessage());
         }

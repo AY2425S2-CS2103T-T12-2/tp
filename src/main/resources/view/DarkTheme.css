@@ -16,11 +16,6 @@
     -fx-text-fill: white;
 }
 
-.text-flow > * {
-    -fx-text-fill: white;
-    -fx-fill: white;
-}
-
 .table-view {
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
@@ -284,6 +279,6 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-background-color: #AAAFFF;
 }
