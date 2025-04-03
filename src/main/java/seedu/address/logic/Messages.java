@@ -39,14 +39,12 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("\nPhone: ")
+                .append("\nContact: ")
                 .append(person.getPhone())
-                .append("\nEmail: ")
+                .append(" ")
                 .append(person.getEmail())
                 .append("\nAddress: ")
-                .append(person.getAddress())
-                .append("\nRemark: ")
-                .append(person.getRemark() != null ? person.getRemark() : "");
+                .append(person.getAddress());
 
         if (person instanceof HealthcareStaff) {
             builder.append("\nRole: ")
@@ -54,17 +52,26 @@ public class Messages {
                             .getProviderRole() : "NA")
                     .append("\nDepartment: ")
                     .append(((HealthcareStaff) person).getDepartment() != null ? ((HealthcareStaff) person)
-                            .getDepartment() : "NA");
+                            .getDepartment() : "NA")
+                    .append("\nRemark: ")
+                    .append(person.getRemark() != null ? person.getRemark() : "");
         }
 
         if (person instanceof Patient) {
             builder.append("\nDepartment: ")
-                    .append(((Patient) person).getDepartment() != null ? ((Patient) person).getDepartment() : "NA")
-                    .append("\nDoctor In Charge: ")
                     .append(((Patient) person).getDoctorInCharge() != null ? ((Patient) person)
-                            .getDoctorInCharge() : "NA")
-                    .append("\nGuardian: ")
-                    .append(((Patient) person).getNextofKin() != null ? ((Patient) person).getNextofKin() : "NA");
+                            .getDoctorInCharge() : "")
+                    .append(" ")
+                    .append(((Patient) person).getDepartment() != null ? ((Patient) person)
+                            .getDepartment() : "NA")
+                    .append("\nNOK: ")
+                    .append(((Patient) person).getNextofKin().getName() != null ? ((Patient) person)
+                            .getNextofKin().getName() : "NA")
+                    .append(" ")
+                    .append(((Patient) person).getNextofKin().getPhone() != null ? ((Patient) person)
+                            .getNextofKin().getPhone() : "000")
+                    .append("\nRemark: ")
+                    .append(person.getRemark() != null ? person.getRemark() : "NIL");
         }
         return builder.toString();
     }
