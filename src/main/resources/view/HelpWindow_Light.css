@@ -17,3 +17,11 @@
 #helpMessageContainer {
     -fx-background-color: white;
 }
+
+#helpMessageContainer .content {
+    -fx-background-color: white;
+}
+
+#tutorialMessage {
+    -fx-text-fill: black;
+}

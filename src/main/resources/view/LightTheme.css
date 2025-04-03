@@ -113,6 +113,15 @@
     -fx-text-fill: black !important;
 }
 
+.content-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.content-area .label {
+    -fx-text-fill: black !important;
+}
+
 .status-bar .label {
     -fx-text-fill: black;
 }
@@ -262,16 +271,41 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #e5e5e5, transparent, #e5e5e5;
+    -fx-background-color: transparent, #fafafa, transparent, #fafafa;
 }
 
+#contentPanel .content {
+    -fx-background-color: transparent, #ffffff, transparent, #ffffff;
+}
 
 #tags .label {
     -fx-text-fill: black;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #AAAFFF;
 }
 
-#role .label {
-    -fx-text-fill: black;
+/* Role-based colors */
+#tags .role-patient {
+    -fx-background-color: lightblue;
+}
+
+#tags .role-staff {
+    -fx-background-color: lightgreen;
+}
+
+/* Provider Role color */
+#tags .providerrole-doctor {
+    -fx-background-color: lightcoral;
+}
+
+#tags .providerrole-nurse {
+    -fx-background-color: lightcoral;
+}
+
+#tags .providerrole-therapist {
+    -fx-background-color: lightyellow;
+}
+
+/* Department color */
+#tags .department {
     -fx-background-color: #AAAFFF;
 }

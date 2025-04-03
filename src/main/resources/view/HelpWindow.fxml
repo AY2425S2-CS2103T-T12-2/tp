@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.Region?>
+<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene width="800" height="600">
-      <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
-        <content>
-          <TextArea fx:id="helpMessage" wrapText="true" editable="false" prefWidth="770" prefHeight="570">
-            <style>
-              -fx-border-width: 0;
-              -fx-background-color: transparent;
-            </style>
-          </TextArea>
-        </content>
-      </ScrollPane>
+      <VBox alignment="CENTER" fx:id="helpMessageContainer">
+        <TextArea fx:id="tutorialMessage" wrapText="true" editable="false" focusTraversable="false" prefWidth="770" prefHeight="570">
+          <style>
+            -fx-border-width: 0;
+            -fx-background-color: transparent;
+          </style>
+        </TextArea>
+        <!-- HBox to contain helpMessage and copyButton-->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <!-- Label with help message -->
+          <Label fx:id="helpMessage" text="label">
+            <HBox.margin>
+              <Insets left="10.0" />
+            </HBox.margin>
+          </Label>
+          <!-- Spacer to push the Button to the right -->
+          <Region HBox.hgrow="ALWAYS" />
+          <!-- Copy Button next to helpMessage -->
+          <Button fx:id="openUrlButton" mnemonicParsing="false" onAction="#openUrl" text="Open URL">
+            <HBox.margin>
+              <Insets right="10.0" />
+            </HBox.margin>
+          </Button>
+        </HBox>
+        <padding>
+          <Insets bottom="10.0" top="10.0" />
+        </padding>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>

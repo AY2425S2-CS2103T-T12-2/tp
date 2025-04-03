@@ -3,14 +3,14 @@ layout: page
 title: User Guide for A Caring Book (TP T12-2)
 ---
 
-A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**. 
-Optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI), 
+A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
+Optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI),
 A Caring Book enables faster contact management compared to traditional GUI apps, especially for users who type quickly.
 
 Unlike conventional systems that require manual entering of details for each category (e.g. Name, Phone, Department),
-A Caring Book streamlines the process with `addpatient` and `addstaff` commands. Filtering commands such as 
+A Caring Book streamlines the process with `addpatient` and `addstaff` commands. Filtering commands such as
 `find`, `findstaff` and `finddep` allow for quick lookup, particularly in emergency situations, making contact management more efficient.
-A Caring Book also employs the use of shortcut commands, which further elevates the user experience. 
+A Caring Book also employs the use of shortcut commands, which further elevates the user experience.
 
 * Table of Content
 {:toc}
@@ -19,7 +19,7 @@ A Caring Book also employs the use of shortcut commands, which further elevates 
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer. To check your local Java version, 
+1. Ensure you have Java `17` or above installed in your Computer. To check your local Java version,
 open a command terminal, type `java --version` and press Enter.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
@@ -123,7 +123,7 @@ Adds a staff to the address book.
 
 **Examples**:
 * `addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
-* `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06` 
+* `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
 
 **Shortcut command**: `as`
 
@@ -254,11 +254,11 @@ Find a list of `HealthcareStaff` whose roles matches with the keyword.
 
 **Examples and expected outputs**:
 
-If these two `addstaff` commands are executed, 
+If these two `addstaff` commands are executed,
 * `addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
 
-then 
+then
 * `findstaff doctor` returns `Mary Jane`
 * `findstaff nurse` returns `Mark Markerburg`
 * `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
@@ -286,7 +286,7 @@ Adds or updates the remark of the specified person from the address book.
 
 **Shortcut command**: `re`
 
-**Expected output**: 
+**Expected output**:
 
 Remark field will be updated immediately and details of the Person will be shown on the right side of the screen.
 
@@ -310,7 +310,7 @@ Deletes the specified person from the address book.
 
 **Shortcut command**: `del` or `d`
 
-**Expected output**: 
+**Expected output**:
 
 The details of the deleted Person will be shown on the right side of the screen.
 

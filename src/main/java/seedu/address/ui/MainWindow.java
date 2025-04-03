@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ContentPanel contentPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -57,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane contentPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,6 +136,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personListPanel.setPersonSelectionListener(person -> {
+            contentPanel.updateContent(person); // Update the ContentPanel with the selected person
+            logic.setSelectedPerson(person);
+        });
+
+        contentPanel = new ContentPanel();
+        contentPanelPlaceholder.getChildren().add(contentPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

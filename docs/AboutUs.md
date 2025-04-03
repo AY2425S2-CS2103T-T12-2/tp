@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/nja99.png" width="200px">
 
-[[github](http://github.com/nja99)] 
+[[github](http://github.com/nja99)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -42,11 +42,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Quek Zhen Hao
 <img src="images/coffeemocha.png" width="200px">
 
-[[github](http://github.com/coffeemocha)] 
+[[github](http://github.com/coffeemocha)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI/UX
 
 ### Tham Yu Qing
 

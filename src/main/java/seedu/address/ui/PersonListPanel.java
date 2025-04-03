@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -24,6 +25,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListView;
 
+    private Consumer<Person> personSelectionListener;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -31,6 +34,21 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        // Add listener to monitor selection changes
+        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Notify the listener (MainWindow) when a person is selected
+            if (personSelectionListener != null) {
+                personSelectionListener.accept(newValue);
+            }
+            // Handle the selection, e.g., by updating the UI or performing an action
+            logger.info("Selected Person: " + newValue.getName());
+        });
+    }
+
+    // Set the listener to be called when a person is selected
+    public void setPersonSelectionListener(Consumer<Person> listener) {
+        this.personSelectionListener = listener;
     }
 
     public void setSelectedPerson(Person personToSelect) {
