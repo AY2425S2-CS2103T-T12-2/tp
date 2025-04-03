@@ -16,6 +16,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListPatientsCommand;
 import seedu.address.logic.commands.ListStaffCommand;
+import seedu.address.logic.commands.ToggleThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -100,6 +101,9 @@ public class AddressBookParser {
 
         case SELECT:
             return new SelectCommandParser().parse(arguments);
+
+        case TOGGLETHEME:
+            return new ToggleThemeCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

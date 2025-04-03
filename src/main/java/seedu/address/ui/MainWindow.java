@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
      * Toggle between Dark Theme and Light Theme
      */
     @FXML
-    public void toggleDarkTheme() {
+    public void handleToggleTheme() {
         isDarkTheme = !isDarkTheme;
         logger.info("Toggling theme. New theme: " + (isDarkTheme ? "Dark" : "Light"));
         updateStyleSheets(isDarkTheme);
@@ -255,6 +255,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isToggleTheme()) {
+                handleToggleTheme();
             }
 
             updateSelectionDisplay();
