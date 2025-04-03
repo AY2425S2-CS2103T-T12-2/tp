@@ -19,9 +19,9 @@ import seedu.address.model.person.Person;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final CommandType COMMAND_TYPE = CommandType.ADD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the Caring Book. "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Adds a person to the Caring Book. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_NAME + "NAME "
@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_TYPE + " "
             + PREFIX_ROLE + "patient "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

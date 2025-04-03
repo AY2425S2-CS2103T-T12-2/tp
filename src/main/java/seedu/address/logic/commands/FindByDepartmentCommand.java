@@ -11,17 +11,17 @@ import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
  * Finds and lists all patients in address book whose department matches with the keyword.
  * Keyword matching is case-insensitive.
  */
-public class FindByPatientDepartmentCommand extends Command {
-    public static final String COMMAND_WORD = "findpatient";
+public class FindByDepartmentCommand extends Command {
+    public static final CommandType COMMAND_TYPE = CommandType.FINDDEP;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose department contain "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Finds all contacts whose department contain "
         + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD\n"
-        + "Example: " + COMMAND_WORD + " Conology";
+        + "Example: " + COMMAND_TYPE + " Oncology";
 
     private final DepartmentContainsKeywordsPredicate predicate;
 
-    public FindByPatientDepartmentCommand(DepartmentContainsKeywordsPredicate predicate) {
+    public FindByDepartmentCommand(DepartmentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -39,11 +39,11 @@ public class FindByPatientDepartmentCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof FindByPatientDepartmentCommand)) {
+        if (!(other instanceof FindByDepartmentCommand)) {
             return false;
         }
 
-        FindByPatientDepartmentCommand otherFindRoleCommand = (FindByPatientDepartmentCommand) other;
+        FindByDepartmentCommand otherFindRoleCommand = (FindByDepartmentCommand) other;
         return predicate.equals(otherFindRoleCommand.predicate);
     }
 

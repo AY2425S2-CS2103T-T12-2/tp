@@ -1,16 +1,14 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.ProviderRole;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -32,11 +30,34 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        if (person instanceof HealthcareStaff) {
+            HealthcareStaff staff = (HealthcareStaff) person;
+            descriptor.setProviderRole(staff.getProviderRole());
+        }
+        if (person instanceof Patient) {
+            Patient patient = (Patient) person;
+            descriptor.setDocInCharge(patient.getDoctorInCharge());
+        }
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+    }
+
+    /**
+     * Sets the {@code ProviderRole} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withProviderRole(String providerRole) {
+        descriptor.setProviderRole(new ProviderRole(providerRole));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DocInCharge} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDocInCharge(String docInCharge) {
+        descriptor.setDocInCharge(docInCharge);
+        return this;
     }
 
     /**
@@ -71,15 +92,6 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
-        return this;
-    }
 
     public EditPersonDescriptor build() {
         return descriptor;

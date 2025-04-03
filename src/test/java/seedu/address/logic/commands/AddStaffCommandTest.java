@@ -4,15 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.HealthcareStaff;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.StaffBuilder;
 
@@ -26,7 +34,7 @@ class AddStaffCommandTest {
         modelStub = new ModelStub();
         validStaff = new StaffBuilder().withName("John Doe").withPhone("98765432")
                 .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
-                .withRole("Doctor").withTags("experienced", "available").build();
+                .withRole("Doctor").build();
     }
 
     @Test
@@ -103,30 +111,70 @@ class AddStaffCommandTest {
         }
 
         // Unimplemented methods (not needed for AddStaffCommand testing)
-        @Override public void setUserPrefs(seedu.address.model.ReadOnlyUserPrefs userPrefs) {}
-        @Override public seedu.address.model.ReadOnlyUserPrefs getUserPrefs() {
-            return null;
+        @Override public void setUserPrefs(seedu.address.model.ReadOnlyUserPrefs userPrefs) {
+            throw new UnsupportedOperationException();
         }
-        @Override public seedu.address.commons.core.GuiSettings getGuiSettings() {
-            return null;
-        }
-        @Override public void setGuiSettings(seedu.address.commons.core.GuiSettings guiSettings) {
 
+        @Override public ReadOnlyUserPrefs getUserPrefs() {
+            throw new UnsupportedOperationException();
         }
-        @Override public java.nio.file.Path getAddressBookFilePath() {
+
+        @Override public GuiSettings getGuiSettings() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public void setGuiSettings(GuiSettings guiSettings) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public Path getAddressBookFilePath() {
             return null;
         }
-        @Override public void setAddressBookFilePath(java.nio.file.Path addressBookFilePath) {}
-        @Override public void setAddressBook(seedu.address.model.ReadOnlyAddressBook addressBook) {}
-        @Override public seedu.address.model.ReadOnlyAddressBook getAddressBook() {
-            return null;
+
+        @Override
+        public Person getSelectedPerson() {
+            throw new UnsupportedOperationException();
         }
-        @Override public void deletePerson(Person target) {}
-        @Override public void addPatient(seedu.address.model.person.Patient patient) {}
-        @Override public void setPerson(Person target, Person editedPerson) {}
-        @Override public javafx.collections.ObservableList<Person> getFilteredPersonList() {
-            return null;
+
+        @Override public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new UnsupportedOperationException();
         }
-        @Override public void updateFilteredPersonList(java.util.function.Predicate<Person> predicate) {}
+
+        @Override public void setAddressBook(ReadOnlyAddressBook addressBook) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public ReadOnlyAddressBook getAddressBook() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public void deletePerson(Person target) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void selectPerson(Person target) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public void addPatient(Patient patient) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public void setPerson(Person target, Person editedPerson) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public void setSelectedPerson(Person person) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override public ObservableList<Person> getFilteredPersonList() {
+            return FXCollections.observableArrayList();
+        }
+
+        @Override public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new UnsupportedOperationException();
+        }
     }
 }

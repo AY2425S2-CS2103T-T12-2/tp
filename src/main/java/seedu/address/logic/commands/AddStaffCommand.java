@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -19,24 +19,23 @@ import seedu.address.model.person.HealthcareStaff;
  */
 public class AddStaffCommand extends Command {
 
-    public static final String COMMAND_WORD = "addstaff";
+    public static final CommandType COMMAND_TYPE = CommandType.ADDSTAFF;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the Caring Book. "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Adds a staff to the Caring Book. "
             + "Parameters: "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_NAME + "NAME "
+            + PREFIX_DEPARTMENT + "DEPARTMENT "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_TYPE + " "
             + PREFIX_ROLE + "doctor "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_DEPARTMENT + "Internal Medicine "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "elder "
-            + PREFIX_TAG + "pending payment";
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
@@ -65,18 +64,21 @@ public class AddStaffCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (this == other) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(other instanceof AddPatientCommand)) {
+        if (!(other instanceof AddStaffCommand)) {
             return false;
         }
-
-        AddStaffCommand otherAddCommand = (AddStaffCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddStaffCommand otherCommand = (AddStaffCommand) other;
+        return toAdd.equals(otherCommand.toAdd);
     }
+
+    @Override
+    public int hashCode() {
+        return toAdd.hashCode();
+    }
+
 
     @Override
     public String toString() {

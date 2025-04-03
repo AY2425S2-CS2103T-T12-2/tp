@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.HealthcareStaff;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,14 +39,40 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("\nPhone: ")
+                .append("\nContact: ")
                 .append(person.getPhone())
-                .append("\nEmail: ")
+                .append(" ")
                 .append(person.getEmail())
                 .append("\nAddress: ")
-                .append(person.getAddress())
-                .append("\nTags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getAddress());
+
+        if (person instanceof HealthcareStaff) {
+            builder.append("\nRole: ")
+                    .append(((HealthcareStaff) person).getProviderRole() != null ? ((HealthcareStaff) person)
+                            .getProviderRole() : "NA")
+                    .append("\nDepartment: ")
+                    .append(((HealthcareStaff) person).getDepartment() != null ? ((HealthcareStaff) person)
+                            .getDepartment() : "NA")
+                    .append("\nRemark: ")
+                    .append(person.getRemark() != null ? person.getRemark() : "");
+        }
+
+        if (person instanceof Patient) {
+            builder.append("\nDepartment: ")
+                    .append(((Patient) person).getDoctorInCharge() != null ? ((Patient) person)
+                            .getDoctorInCharge() : "")
+                    .append(" ")
+                    .append(((Patient) person).getDepartment() != null ? ((Patient) person)
+                            .getDepartment() : "NA")
+                    .append("\nNOK: ")
+                    .append(((Patient) person).getNextofKin().getName() != null ? ((Patient) person)
+                            .getNextofKin().getName() : "NA")
+                    .append(" ")
+                    .append(((Patient) person).getNextofKin().getPhone() != null ? ((Patient) person)
+                            .getNextofKin().getPhone() : "000")
+                    .append("\nRemark: ")
+                    .append(person.getRemark() != null ? person.getRemark() : "NIL");
+        }
         return builder.toString();
     }
 

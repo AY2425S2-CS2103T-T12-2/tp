@@ -13,11 +13,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.HealthcareStaff;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ProviderRole;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 public class AddStaffCommandParserTest {
@@ -29,20 +31,22 @@ public class AddStaffCommandParserTest {
     }
 
     @Test
-    @Disabled("Disabled temporarily")
     public void parse_validArgs_returnsAddStaffCommand() throws ParseException {
         // Arrange
-        String userInput = "r/doctor n/John Doe p/12345678 e/johndoe@example.com a/123 Main St t/critical";
+        String userInput = " n/John Doe p/12345678 r/doctor dp/Cardiology "
+                + "e/johndoe@example.com a/123 Main St rm/off";
 
         // Create expected HealthcareStaff object
         Name name = new Name("John Doe");
-        ProviderRole role = new ProviderRole("doctor");
+        ProviderRole role = ParserUtil.parseRoleType("doctor"); // Use same parsing as parser
         Phone phone = new Phone("12345678");
+        Department department = ParserUtil.parseDepartment("Cardiology");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
-        Set<Tag> tags = Set.of(new Tag("critical"));
+        Remark remark = new Remark("off");
 
-        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
+                phone, email, address, remark);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
@@ -95,22 +99,102 @@ public class AddStaffCommandParserTest {
     @Disabled("Disabled temporarily")
     public void parse_validArgsWithMultipleTags_returnsAddStaffCommand() throws ParseException {
         // Arran
-        String userInput = "r/nurse n/John Doe p/12345678 e/johndoe@example.com a/123 Main St t/critical t/urgent";
+        String userInput = "r/nurse n/John Doe dp/Cardiology p/12345678 "
+            + "e/johndoe@example.com a/123 Main St t/critical t/urgent";
 
         // Create expected HealthcareStaff object with multiple tags
         Name name = new Name("John Doe");
         ProviderRole role = new ProviderRole("nurse");
+        Department department = new Department("Cardiology");
         Phone phone = new Phone("12345678");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
+        Remark remark = new Remark("");
         Set<Tag> tags = Set.of(new Tag("critical"), new Tag("urgent"));
 
-        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, phone, email, address, tags);
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
+            phone, email, address, remark);
 
         // Act
         AddStaffCommand command = parser.parse(userInput);
 
         // Assert
         assertEquals(new AddStaffCommand(expectedStaff), command);
+    }
+
+    @Test
+    @Disabled("No longer required")
+    public void parse_missingProviderRole_usesDefaultProviderRole() throws ParseException {
+        // Arrange
+        String userInput = " n/John Doe dp/Cardio p/12345678 e/johndoe@example.com a/123 Main St t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("NA");
+        Department department = new Department("Cardio");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("123 Main St"); // Expecting default address
+        Remark remark = new Remark("serious");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
+            phone, email, address, remark);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
+    }
+    @Test
+    @Disabled("No longer required")
+    public void parse_missingAddress_usesDefaultAddress() throws ParseException {
+        // Arrange
+        String userInput = " r/doctor n/John Doe dp/Cardio p/12345678 e/johndoe@example.com t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("doctor");
+        Department department = new Department("Cardio");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("NA"); // Expecting default address
+        Remark remark = new Remark("");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
+            phone, email, address, remark);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
+    }
+    @Test
+    @Disabled("No longer required")
+    public void parse_missingEmail_usesDefaultEmail() throws ParseException {
+        // Arrange
+        String userInput = " r/doctor n/John Doe dp/Emergency p/12345678 a/123 Main St t/critical";
+
+        Name name = new Name("John Doe");
+        ProviderRole role = new ProviderRole("doctor");
+        Department department = new Department("Emergency");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("NA@placeholder.com"); // Expecting default email
+        Address address = new Address("123 Main St");
+        Remark remark = new Remark("serious");
+        Set<Tag> tags = Set.of(new Tag("critical"));
+
+        HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
+            phone, email, address, remark);
+        AddStaffCommand expectedCommand = new AddStaffCommand(expectedStaff);
+
+        // Act
+        AddStaffCommand actualCommand = parser.parse(userInput);
+
+        // Assert
+        assertEquals(expectedCommand, actualCommand);
     }
 }

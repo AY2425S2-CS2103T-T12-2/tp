@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -19,22 +14,22 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Remark remark;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Role role, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(role, name, phone, email, address, tags);
+    public Person(Role role, Name name, Phone phone, Email email, Address address, Remark remark) {
+        requireAllNonNull(role, name, phone);
         this.role = role;
         this.name = name;
         this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.remark = remark;
+        this.email = email != null ? email : new Email("NA@placeholder.com");
+        this.address = address != null ? address : new Address("NA");
     }
 
     public Role getRole() {
@@ -53,17 +48,14 @@ public class Person {
         return email;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
     public Address getAddress() {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
 
     /**
      * Returns true if both persons have the same name.
@@ -75,7 +67,8 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -97,9 +90,8 @@ public class Person {
         return role.equals(otherPerson.role)
             && name.equals(otherPerson.name)
             && phone.equals(otherPerson.phone)
-            && email.equals(otherPerson.email)
-            && address.equals(otherPerson.address)
-            && tags.equals(otherPerson.tags);
+            && (email == null || otherPerson.email == null || email.equals(otherPerson.email))
+            && (address == null || otherPerson.address == null || address.equals(otherPerson.address));
     }
 
     @Override
@@ -110,7 +102,6 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("tags", tags)
                 .toString();
     }
 }
