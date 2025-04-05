@@ -11,8 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers (at least 3 digits) or be 'NA'";
-    public static final String VALIDATION_REGEX = "(\\d{3,}|NA)";
+            "Singapore local phone number is required with exactly 8 digits (no spaces) or 'NA' if unavailable.";
+    public static final String VALIDATION_REGEX = "(\\d{8}|NA)";
     public final String value;
 
     /**
