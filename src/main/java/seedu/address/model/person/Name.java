@@ -59,7 +59,9 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        String otherFullName = otherName.fullName.replaceAll("\\s+", "").toLowerCase();
+        String thisFullName = fullName.replaceAll("\\s+", "").toLowerCase();
+        return otherFullName.equals(thisFullName);
     }
 
     @Override
