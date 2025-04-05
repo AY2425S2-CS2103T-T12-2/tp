@@ -9,14 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Department {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Department should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Department name must be 1 to 50 characters,"
+            + " contain only letters, digits, spaces, or the following special characters: -_,.()/&@, "
+            + "and must not start or end with a special character.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9][\\p{Alnum}\\-_,.()/&@ ]{0,48}[A-Za-z0-9]$";
 
     public final String departmentName;
 
@@ -27,7 +28,7 @@ public class Department {
      */
     public Department(String departmentName) {
         requireNonNull(departmentName);
-        checkArgument(isValidDepartment(departmentName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDepartment(departmentName.trim()), MESSAGE_CONSTRAINTS);
         this.departmentName = departmentName;
     }
 
