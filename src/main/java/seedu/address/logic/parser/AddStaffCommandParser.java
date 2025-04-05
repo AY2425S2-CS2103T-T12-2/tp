@@ -35,7 +35,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_DEPARTMENT, PREFIX_REMARK);
+                        PREFIX_DEPARTMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,7 +43,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ROLE, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_REMARK);
+                PREFIX_DEPARTMENT);
         ProviderRole providerRole = argMultimap.getValue(PREFIX_ROLE).isEmpty()
                 ? new ProviderRole("NA") : ParserUtil.parseRoleType(argMultimap.getValue(PREFIX_ROLE).get());
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty()
