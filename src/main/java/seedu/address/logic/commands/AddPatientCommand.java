@@ -32,7 +32,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DOCTOR + "DOCTOR "
             + PREFIX_NOKNAME + "NOK NAME "
-            + PREFIX_NOKPHONE + "NOK PHONE"
+            + PREFIX_NOKPHONE + "NOK PHONE "
             + PREFIX_DEPARTMENT + "DEPARTMENT \n"
             + "Example 1: "
             + COMMAND_TYPE + " "
@@ -46,7 +46,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_DOCTOR + "Dr Tan Chee Hwa "
             + PREFIX_NOKNAME + "Mr Hao Doe "
-            + PREFIX_NOKPHONE + "12345678"
+            + PREFIX_NOKPHONE + "12345678 "
             + PREFIX_DEPARTMENT + "Gastroenterology ";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
