@@ -43,7 +43,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This contact already exists in the address book!";
 
     private final HealthcareStaff toAdd;
 
