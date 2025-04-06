@@ -136,6 +136,10 @@ public class EditCommand extends Command {
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
             Name updatedNokName = editPersonDescriptor.getNokName().orElse(patientToEdit.getNextofKin().getName());
             Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(patientToEdit.getNextofKin().getPhone());
+
+            if (updatedNokPhone.equals(personToEdit.getPhone())) {
+                throw new CommandException("NOK's phone number cannot be the same as patient's phone number.");
+            }
             NextOfKin updatedNok = new NextOfKin(updatedNokName, updatedNokPhone);
 
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark(),
