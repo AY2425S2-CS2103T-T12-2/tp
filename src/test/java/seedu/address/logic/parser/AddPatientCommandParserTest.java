@@ -47,7 +47,7 @@ class AddPatientCommandParserTest {
                         new Phone("98765432"),
                         new Email("johnd@example.com"),
                         new Address("311, Clementi Ave 2, #02-25"),
-                        new Remark(""),
+                        new Remark("NIL"),
                         "Dr. Smith",
                         new NextOfKin(new Name("Jane Doe"), new Phone("98765432")),
                         new Department("Cardiology")
