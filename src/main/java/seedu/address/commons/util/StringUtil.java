@@ -51,7 +51,12 @@ public class StringUtil {
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
-        return sentence.toLowerCase().contains(preppedWord.toLowerCase());
+        String[] wordsInSentence = sentence.split("\\s+");
+        String sentenceWithoutSpaces = String.join("", wordsInSentence).toLowerCase();
+
+        boolean partialMatch = Arrays.stream(wordsInSentence).anyMatch(w -> w.toLowerCase().contains(preppedWord));
+
+        return partialMatch || sentenceWithoutSpaces.contains(preppedWord.toLowerCase());
     }
 
     /**
