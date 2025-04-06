@@ -55,6 +55,9 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                 : ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
         String inputNokName = argMultimap.getValue(PREFIX_NOKNAME).orElse("NA");
         String inputNokPhone = argMultimap.getValue(PREFIX_NOKPHONE).orElse("NA");
+        if (!phone.toString().equals("NA") && !inputNokPhone.equals("NA") && phone.toString().equals(inputNokPhone)) {
+            throw new ParseException("Patient contact not allowed to have same phone number as NOK!");
+        }
         NextOfKin nextOfKin = ParserUtil.parseNextOfKin(inputNokName, inputNokPhone);
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty() ? new Department("NA")
                 : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
