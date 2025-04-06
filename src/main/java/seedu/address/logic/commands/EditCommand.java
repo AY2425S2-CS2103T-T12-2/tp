@@ -95,6 +95,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -102,7 +103,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -112,22 +114,30 @@ public class EditCommand extends Command {
 
         if (personToEdit instanceof HealthcareStaff) {
             HealthcareStaff staffToEdit = (HealthcareStaff) personToEdit;
-            ProviderRole updatedProviderRole = editPersonDescriptor.getProviderRole().orElse(staffToEdit
-                    .getProviderRole());
+
+            if (editPersonDescriptor.getNokName().isPresent() || editPersonDescriptor.getNokPhone().isPresent()
+                    || editPersonDescriptor.getDocInCharge().isPresent()) {
+                throw new CommandException("Next of Kin or Doctor in Charge cannot be edited for Healthcare Staff.");
+            }
+
+            ProviderRole updatedProviderRole = editPersonDescriptor.getProviderRole()
+                    .orElse(staffToEdit.getProviderRole());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(staffToEdit.getDepartment());
             return new HealthcareStaff(updatedName, updatedProviderRole, updatedDepartment,
                     updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark());
         } else if (personToEdit instanceof Patient) {
             Patient patientToEdit = (Patient) personToEdit;
+
+            if (editPersonDescriptor.getProviderRole().isPresent()) {
+                throw new CommandException("Role cannot be edited for a Patient.");
+            }
+
             String updatedDocInCharge = editPersonDescriptor.getDocInCharge().orElse(patientToEdit.getDoctorInCharge());
             Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(patientToEdit.getDepartment());
-            NextOfKin updatedNok = patientToEdit.getNextofKin();
-            if (editPersonDescriptor.getNokName().isPresent() || editPersonDescriptor.getNokPhone().isPresent()) {
-                Name updatedNokName = editPersonDescriptor.getNokName().orElse(updatedNok.getName());
-                Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(updatedNok.getPhone());
-                System.out.println("editing");
-                updatedNok = new NextOfKin(updatedNokName, updatedNokPhone);
-            }
+            Name updatedNokName = editPersonDescriptor.getNokName().orElse(patientToEdit.getNextofKin().getName());
+            Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(patientToEdit.getNextofKin().getPhone());
+            NextOfKin updatedNok = new NextOfKin(updatedNokName, updatedNokPhone);
+
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, personToEdit.getRemark(),
                     updatedDocInCharge, updatedNok, updatedDepartment);
         } else {
