@@ -56,7 +56,7 @@ public class StringUtil {
 
         boolean partialMatch = Arrays.stream(wordsInSentence).anyMatch(w -> w.toLowerCase().contains(preppedWord));
 
-        return partialMatch || sentenceWithoutSpaces.contains(preppedWord);
+        return partialMatch || sentenceWithoutSpaces.contains(preppedWord.toLowerCase());
     }
 
     /**
