@@ -180,12 +180,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void refreshUiState() {
         selectedPerson = logic.getSelectedPerson(); // Get the selected person from the model
-        if (selectedPerson != null) {
-            personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
-        }
+        personListPanel.setSelectedPerson(selectedPerson); // Update ContentPanel with selected person's details
 
         // Reset content panel if the AddressBook is empty
-        if (logic.getAddressBook().getPersonList().isEmpty()) {
+        if (selectedPerson == null) {
             contentPanelPlaceholder.getChildren().clear();
             contentPanel = new ContentPanel();
             contentPanelPlaceholder.getChildren().add(contentPanel.getRoot());

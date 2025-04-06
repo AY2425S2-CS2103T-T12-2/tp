@@ -51,7 +51,8 @@ public class HealthcareStaff extends Person {
                 && department.equals(otherStaff.department)
                 && getPhone().equals(otherStaff.getPhone())
                 && getEmail().equals(otherStaff.getEmail())
-                && getAddress().equals(otherStaff.getAddress());
+                && getAddress().equals(otherStaff.getAddress())
+                && getRemark().equals(otherStaff.getRemark());
     }
 
     @Override
@@ -68,6 +69,7 @@ public class HealthcareStaff extends Person {
             .add("phone", this.getPhone())
             .add("email", this.getEmail())
             .add("address", this.getAddress())
+            .add("remark", this.getRemark())
             .toString();
     }
 }

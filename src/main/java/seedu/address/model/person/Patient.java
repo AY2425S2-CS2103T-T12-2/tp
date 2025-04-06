@@ -59,13 +59,14 @@ public class Patient extends Person {
                 && getAddress().equals(otherPatient.getAddress())
                 && getDoctorInCharge().equals(otherPatient.getDoctorInCharge())
                 && getNextofKin().equals(otherPatient.getNextofKin())
-                && getDepartment().equals(otherPatient.getDepartment());
+                && getDepartment().equals(otherPatient.getDepartment())
+                && getRemark().equals(otherPatient.getRemark());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                 doctorInCharge, nextOfKin, department);
+                 doctorInCharge, nextOfKin, department, this.getRemark());
     }
 
     @Override
@@ -78,6 +79,7 @@ public class Patient extends Person {
             .add("doctor in charge", doctorInCharge)
             .add("next of kin", nextOfKin) // Display null if no guardian
             .add("department", department)
+            .add("remark", this.getRemark())
             .toString();
     }
 }
