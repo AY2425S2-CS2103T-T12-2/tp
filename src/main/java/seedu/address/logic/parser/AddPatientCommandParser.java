@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOKPHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -38,14 +37,14 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     public AddPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_DOCTOR, PREFIX_NOKNAME, PREFIX_NOKPHONE, PREFIX_DEPARTMENT);
+                        PREFIX_DOCTOR, PREFIX_NOKNAME, PREFIX_NOKPHONE, PREFIX_DEPARTMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_NOKNAME, PREFIX_NOKPHONE);
+                PREFIX_NOKNAME, PREFIX_NOKPHONE, PREFIX_DEPARTMENT, PREFIX_DOCTOR);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
@@ -56,6 +55,9 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                 : ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
         String inputNokName = argMultimap.getValue(PREFIX_NOKNAME).orElse("NA");
         String inputNokPhone = argMultimap.getValue(PREFIX_NOKPHONE).orElse("NA");
+        if (!phone.toString().equals("NA") && !inputNokPhone.equals("NA") && phone.toString().equals(inputNokPhone)) {
+            throw new ParseException("Patient contact not allowed to have same phone number as NOK!");
+        }
         NextOfKin nextOfKin = ParserUtil.parseNextOfKin(inputNokName, inputNokPhone);
         Department department = argMultimap.getValue(PREFIX_DEPARTMENT).isEmpty() ? new Department("NA")
                 : ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());

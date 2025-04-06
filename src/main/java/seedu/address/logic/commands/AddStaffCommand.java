@@ -21,15 +21,20 @@ public class AddStaffCommand extends Command {
 
     public static final CommandType COMMAND_TYPE = CommandType.ADDSTAFF;
 
-    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Adds a staff to the Caring Book. "
-            + "Parameters: "
-            + PREFIX_ROLE + "ROLE "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_DEPARTMENT + "DEPARTMENT "
+    public static final String MESSAGE_USAGE = COMMAND_TYPE + ": Adds a staff to the Caring Book. \n"
+            + "Compulsory parameters: "
             + PREFIX_PHONE + "PHONE "
+            + PREFIX_NAME + "NAME \n"
+            + "Optinal parameters: "
+            + PREFIX_ROLE + "ROLE "
+            + PREFIX_DEPARTMENT + "DEPARTMENT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "Example: " + COMMAND_TYPE + " "
+            + "Example 1: "
+            + COMMAND_TYPE + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 \n"
+            + "Example 2: " + COMMAND_TYPE + " "
             + PREFIX_ROLE + "doctor "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DEPARTMENT + "Internal Medicine "
@@ -38,7 +43,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This contact already exists in the address book!";
 
     private final HealthcareStaff toAdd;
 

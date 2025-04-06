@@ -33,17 +33,17 @@ public class AddStaffCommandParserTest {
     @Test
     public void parse_validArgs_returnsAddStaffCommand() throws ParseException {
         // Arrange
-        String userInput = " n/John Doe p/12345678 r/doctor dp/Cardiology "
-                + "e/johndoe@example.com a/123 Main St rm/off";
+        String userInput = " n/John Doe p/82345678 r/doctor dp/Cardiology "
+                + "e/johndoe@example.com a/123 Main St";
 
         // Create expected HealthcareStaff object
         Name name = new Name("John Doe");
         ProviderRole role = ParserUtil.parseRoleType("doctor"); // Use same parsing as parser
-        Phone phone = new Phone("12345678");
+        Phone phone = new Phone("82345678");
         Department department = ParserUtil.parseDepartment("Cardiology");
         Email email = new Email("johndoe@example.com");
         Address address = new Address("123 Main St");
-        Remark remark = new Remark("off");
+        Remark remark = new Remark("NIL");
 
         HealthcareStaff expectedStaff = new HealthcareStaff(name, role, department,
                 phone, email, address, remark);

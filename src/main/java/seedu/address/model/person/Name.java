@@ -10,13 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Name must be 1 to 66 characters long, contain at least one letter (A-Z, a-z), "
+                    + "start and end with an alphanumeric character (A-Z, a-z, 0-9), "
+                    + "and may contain spaces and the following special characters in between: , ( ) / . @ - '";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?=[\\p{Alnum} ,()./@\\-']"
+            + "{1,66}$)(?=.*[A-Za-z])[\\p{Alnum}](?:[\\p{Alnum} ,()./@\\-']{0,64}[\\p{Alnum}])?$";
 
     public final String fullName;
 
@@ -56,7 +59,9 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        String otherFullName = otherName.fullName.replaceAll("\\s+", "").toLowerCase();
+        String thisFullName = fullName.replaceAll("\\s+", "").toLowerCase();
+        return otherFullName.equals(thisFullName);
     }
 
     @Override

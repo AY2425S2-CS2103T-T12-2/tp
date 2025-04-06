@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Phone {
 
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers (at least 3 digits) or be 'NA'";
-    public static final String VALIDATION_REGEX = "(\\d{3,}|NA)";
+    public static final String MESSAGE_CONSTRAINTS = "Singapore local phone number is required with exactly 8 digits"
+            + " (starting with 3, 6, 8, or 9) or 'NA' if unavailable.";
+    public static final String VALIDATION_REGEX = "(3|6|8|9)\\d{7}|NA";
     public final String value;
 
     /**

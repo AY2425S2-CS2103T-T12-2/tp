@@ -38,7 +38,7 @@ class AddPatientCommandParserTest {
                 + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
                 + PREFIX_DOCTOR + "Dr. Smith "
                 + PREFIX_NOKNAME + "Jane Doe "
-                + PREFIX_NOKPHONE + "98765432 "
+                + PREFIX_NOKPHONE + "98765438 "
                 + PREFIX_DEPARTMENT + "Cardiology ";
 
         AddPatientCommand expectedCommand = new AddPatientCommand(
@@ -49,7 +49,7 @@ class AddPatientCommandParserTest {
                         new Address("311, Clementi Ave 2, #02-25"),
                         new Remark(""),
                         "Dr. Smith",
-                        new NextOfKin(new Name("Jane Doe"), new Phone("98765432")),
+                        new NextOfKin(new Name("Jane Doe"), new Phone("98765438")),
                         new Department("Cardiology")
 
                 )

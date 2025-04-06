@@ -12,8 +12,6 @@ import seedu.address.model.person.HealthcareStaff;
  */
 public class StaffCard extends PersonCard {
 
-    private static final String FXML = "StaffListCard.fxml";
-
     private static final Logger logger = LogsCenter.getLogger(StaffCard.class);
 
     /**
@@ -33,7 +31,7 @@ public class StaffCard extends PersonCard {
      * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
      */
     public StaffCard(HealthcareStaff staff, int displayedIndex) {
-        super(staff, displayedIndex, FXML);
+        super(staff, displayedIndex);
         this.staff = staff;
 
         // Add Label only if its not "NA"
