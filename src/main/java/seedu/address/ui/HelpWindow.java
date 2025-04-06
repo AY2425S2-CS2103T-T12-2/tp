@@ -51,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
           Usage: delete INDEX
           Example: delete 3
         - edit (e): Edit an existing contact
-          Usage: edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [do/DOCTOR_IN_CHARGE] [nn/NOK_NAME]
+          Usage: edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME]
            [np/NOK_PHONE] [dp/DEPARTMENT]
           Example: edit 2 n/James Lee e/jameslee@example.com
         - exit (quit): Exit the application
