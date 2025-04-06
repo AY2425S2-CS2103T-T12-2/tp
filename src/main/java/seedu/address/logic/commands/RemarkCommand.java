@@ -57,6 +57,7 @@ public class RemarkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson;
+        Person selectedPerson = model.getSelectedPerson();
 
         if (personToEdit instanceof Patient) {
             Patient p = (Patient) personToEdit;
@@ -77,10 +78,8 @@ public class RemarkCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setSelectedPerson(personToEdit.equals(selectedPerson) ? editedPerson : selectedPerson);
 
-        if (personToEdit.equals(model.getSelectedPerson())) {
-            model.setSelectedPerson(editedPerson);
-        }
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
