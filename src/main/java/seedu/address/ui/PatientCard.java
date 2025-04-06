@@ -9,8 +9,6 @@ import seedu.address.model.person.Patient;
  */
 public class PatientCard extends PersonCard {
 
-    private static final String FXML = "PatientListCard.fxml"; // Update to the correct FXML file for patient cards
-
     public final Patient patient;
 
     @FXML
@@ -20,7 +18,7 @@ public class PatientCard extends PersonCard {
      * Creates a {@code PatientCard} with the given {@code Person} to display.
      */
     public PatientCard(Patient patient, int displayedIndex) {
-        super(patient, displayedIndex, FXML);
+        super(patient, displayedIndex);
         this.patient = patient;
 
         // Add label only if it's not "NA"

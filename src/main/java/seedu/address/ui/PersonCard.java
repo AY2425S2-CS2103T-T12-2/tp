@@ -47,18 +47,10 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
 
     /**
-     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
-     * Uses the default FXML if no custom FXML is provided.
-     */
-    public PersonCard(Person person, int displayedIndex) {
-        this(person, displayedIndex, FXML);
-    }
-
-    /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, String fxml) {
-        super(fxml);
+    public PersonCard(Person person, int displayedIndex) {
+        super(FXML);
         this.person = person;
 
         // Default Person Details
