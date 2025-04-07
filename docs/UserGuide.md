@@ -68,7 +68,7 @@ Refer to the [Features](#features) below for details of each command.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -113,7 +113,7 @@ Upon successful addition, the details for the `Patient` will be shown like so
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Adding a staff: `addstaff`
 
@@ -134,7 +134,7 @@ Upon successful addition, the details for the `HealthcareStaff` will be shown li
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Listing all persons : `list`
 
@@ -189,7 +189,7 @@ Upon successful addition, the details for the edited `Person` will be shown like
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating person by name: `find`
 
@@ -213,7 +213,7 @@ Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose nam
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating a contact by department: `finddep`
 
@@ -239,7 +239,7 @@ then
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating a healthcare provider by role: `findstaff`
 
@@ -267,7 +267,7 @@ then
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Adding remark to a person : `remark`
 
@@ -292,7 +292,7 @@ Remark field will be updated immediately and details of the Person will be shown
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Deleting a person : `delete`
 
@@ -316,7 +316,7 @@ The details of the deleted Person will be shown on the right side of the screen.
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Select a contact to view details : `select`
 
