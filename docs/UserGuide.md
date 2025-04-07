@@ -406,8 +406,8 @@ Next, copy the addressbook.json file from your previous computer and paste it in
 
 Action | Shortcut command | Format, Examples
 --------|------------------|------------------
-**Add Patient** | `ap`             | `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] dp/DEPARTMENT]​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak nn/Mrs Ho dp/Conology`
-**Add Staff** | `as`             | `addstaff [r/ROLE] n/NAME [dp/DEPARTMENT] p/PHONE [e/EMAIL] [a/ADDRESS]​` <br> e.g., `addstaff r/doctor n/James Ho dp/Internal Medicine p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Add Patient** | `ap`             | `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] dp/DEPARTMENT]​` <br> e.g., `addpatient n/James Ho p/92224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak nn/Mrs Ho dp/Conology`
+**Add Staff** | `as`             | `addstaff [r/ROLE] n/NAME [dp/DEPARTMENT] p/PHONE [e/EMAIL] [a/ADDRESS]​` <br> e.g., `addstaff r/doctor n/James Ho dp/Internal Medicine p/92224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **Clear** | `cls`            | `clear`
 **Delete** | `del`, `d`       | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `e`              | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] [dp/DEPARTMENT]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
@@ -425,7 +425,7 @@ Action | Shortcut command | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter Constrains
+## Parameter Constraints
 
 **Name Constraints `n/`:**
 * Name must be 1 to 66 characters long, contain at least one letter (A-Z, a-z). 
