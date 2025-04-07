@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is adapted based on [AB-3](https://github.com/nus-cs2103-AY2425S2/tp), an address book GUI desktop application created by [SE_EDU](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -421,12 +421,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Above average typing speed**: Typing speeds above the [global average](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) of 41.4 words per minute
-* **Patient care coordinator**: A healthcare professional responsible for managing patient information and coordinating communication between medical staff and patients
-* **Contact**: An entry representing a patient, doctor, nurse or medical staff member within ACaringBook
-* **NOK (Next-of-Kin)**: Primary emergency contact for a patient
+* **Above average typing speed**: Typing speeds above the [global average](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) of 41.4 words per minute.
+* **Patient care coordinator**: A healthcare professional responsible for managing patient information and coordinating communication between medical staff and patients.
+* **Contact**: An entry representing a patient, doctor, nurse or medical staff member within ACaringBook.
+* **Patient**: A contact that is a patient must have phone and name field, other fields such as email, address, doctor in charge, NOK name and phone, department are optional.
+* **Healthcare Staff**: Staff can be a Doctor, Nurse, Therapist, fields such as role, department, email and address are optional. A Staff must have a name and phone.
+* **NOK (Next-of-Kin)**: Primary emergency contact for a patient, has a name and phone number. Having a NOK is not mandatory for every patient.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -481,9 +481,32 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Effort**
+The ACaringBook project builds upon the base functionality of AddressBook-Level3 (AB3), but significantly expands its complexity by introducing multiple entity types and specialized features tailored to healthcare staff and streamlining their workflows.
+
+**Increased Complexity Compared to AB3**  
+While AB3 manages only one type of entity (`Person`), our application handles **two distinct subtypes**: `Patient` and `HealthcareStaff`. These subtypes have different attributes, behaviors, and validation rules. This includes department assignment, doctor-in-charge linkage, and healthcare provider roles. The addition of 2 additional subtypes required more effort in designing flexible model classes, command parsing logic, as well as UI display logic.
+
+**Challenges Faced**  
+* Implementing conditional fields and behaviors (e.g., guardian only applies to patients, provider roles only to staff).
+* Modified the storage and loading mechanisms to correctly serialize and deserialize two different subtypes (Patient and HealthcareStaff), which required custom logic in JsonAdaptedPerson and careful handling of role-specific fields.
+* Ensuring a smooth user experience via features like theme toggling, filtered list displays, and shortcut commands.
+
+**Effort Highlights**  
+* The development team spent considerable effort on the `addpatient`, `addstaff`, `edit`, and `find` command families to handle polymorphic behaviors cleanly.
+* Particular care was taken in writing parsers that accept optional fields without crashing or misbehaving, while still rejecting invalid inputs.
+* Storage and serialization (via JSON) had to be modified to support role-specific fields, which was non-trivial due to type casting and null handling.
+
+**Reused Components**  
+* We reused AB3’s core structure and base `Person` class. However, to support multiple roles and dynamic fields, we **refactored the model hierarchy** and introduced subclasses (`Patient`, `HealthcareStaff`).
+
+**Estimated Effort**  
+* Compared to AB3, we estimate an **additional 60–70% effort** was spent adapting the codebase to support subtype-based features.
+* Around 10% of the project effort was saved through reuse of the existing AB3 storage and command infrastructure. For example, the JsonAdaptedPerson class from AB3 was extended rather than rewritten, allowing us to retain the existing JSON parsing logic for common Person fields while layering subtype-specific deserialization on top. Similarly, command structure and parser utilities (e.g., ParserUtil.java) were reused and adapted to handle multiple entity types without breaking the original structure.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
 Team size: 5
 
@@ -506,3 +529,4 @@ This appendix outlines potential future enhancements to improve the ACaringBook 
     - Replace the current `Remark` field with a list of `Remark` entries in the `Person` class.
     - Update relevant commands and parsers to support adding, editing, and deleting specific remarks.
     - Display multiple remarks cleanly in the UI (e.g., as a bullet list).
+

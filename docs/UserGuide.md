@@ -385,6 +385,7 @@ Next, copy the addressbook.json file from your previous computer and paste it in
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 Action | Shortcut command | Format, Examples
 --------|------------------|------------------
 **Add Patient** | `ap`             | `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] dp/DEPARTMENT]​` <br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak nn/Mrs Ho dp/Conology`
@@ -403,3 +404,22 @@ Action | Shortcut command | Format, Examples
 **Remark** | `re`             | `remark INDEX rm/REMARK` <br> e.g. `remark 1 rm/Banana allergy`
 **Select** | `s`              | `select INDEX` <br> e.g. `select 2`
 **Toggle light/dark theme** | `tt`             | `toggletheme`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+**Command**: An instruction typed into the command box to perform an action, such as `addpatient` or `delete`.
+**Command Box**: The input area at the bottom of the GUI where users type commands.
+**Command Format**: The expected structure of a command, showing required and optional fields using prefixes.
+**Displayed Person List**: The current list of persons shown in the GUI after using commands like `list`, `find`, or `liststaff`.
+**Error Message**: Text shown when something is wrong with the input or when the command cannot be executed. Usually helps guide the user to correct the mistake.
+**Field**: A section of a contact’s details. Examples include name, phone, address, remark, and email.
+**Help Window**: A pop-up window showing a full list of commands, shortcuts, and usage instructions.
+**Index**: A number that identifies a person in the current list view. Used in commands like `delete 2` to refer to the 2nd person shown.
+**Input**: The text entered by the user into the command box.
+**JSON File**: The file (`addressbook.json`) where all contacts are stored. Located in the `/data` folder and automatically updated after each command.
+**Output**: The result displayed after entering a command. This includes success messages, error messages, or updated contact details in the GUI.
+**Prefix**: A short label used to indicate a specific field in a command. For example, `n/` is the prefix for name, `p/` for phone.
+**Remark**: A short note attached to a person, updated using the `remark` command, e.g., `remark 2 rm/Needs wheelchair`.
+**Shortcut Command**: A shortened alias for a full command. For example, `ap` is the shortcut for `addpatient`.

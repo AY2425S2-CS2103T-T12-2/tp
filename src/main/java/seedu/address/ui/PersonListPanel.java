@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -52,7 +50,9 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     public void setSelectedPerson(Person personToSelect) {
-        requireNonNull(personToSelect);
+        if (personToSelect == null) {
+            personListView.getSelectionModel().clearSelection();
+        }
 
         // Get the index of the person you want to select
         int indexToSelect = personListView.getItems().indexOf(personToSelect);
