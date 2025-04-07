@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is adapted based on [AB-3](https://github.com/nus-cs2103-AY2425S2/tp), an address book GUI desktop application created by [SE_EDU](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -425,12 +425,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Above average typing speed**: Typing speeds above the [global average](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) of 41.4 words per minute
-* **Patient care coordinator**: A healthcare professional responsible for managing patient information and coordinating communication between medical staff and patients
-* **Contact**: An entry representing a patient, doctor, nurse or medical staff member within ACaringBook
-* **NOK (Next-of-Kin)**: Primary emergency contact for a patient
+* **Above average typing speed**: Typing speeds above the [global average](https://www.ratatype.com/learn/average-typing-speed/#:~:text=The%20average%20wpm%20speed%20is,successful%20in%20the%20working%20world.) of 41.4 words per minute.
+* **Patient care coordinator**: A healthcare professional responsible for managing patient information and coordinating communication between medical staff and patients.
+* **Contact**: An entry representing a patient, doctor, nurse or medical staff member within ACaringBook.
+* **Patient**: A contact that is a patient must have phone and name field, other fields such as email, address, doctor in charge, NOK name and phone, department are optional.
+* **Healthcare Staff**: Staff can be a Doctor, Nurse, Therapist, fields such as role, department, email and address are optional. A Staff must have a name and phone.
+* **NOK (Next-of-Kin)**: Primary emergency contact for a patient, has a name and phone number. Having a NOK is not mandatory for every patient.
 
 --------------------------------------------------------------------------------------------------------------------
 
