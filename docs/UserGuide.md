@@ -3,14 +3,30 @@ layout: page
 title: User Guide
 ---
 
-A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
+A Caring Book! Your trusted tool for efficient patient and staff contact management.<br>
+
+Designed specifically for Patient Care Coordinators, A Caring Book is a desktop application that helps you manage contact details for both patients and staff with ease, so you can focus on providing excellent care.<br>
+
 Optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI),
 A Caring Book enables faster contact management compared to traditional GUI apps, especially for users who type quickly.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: About A Caring Book:** We understand that Patient Care Coordinators need quick access to accurate contact information for a variety of people, including staff, patients, and departments. A Caring Book is built to save time and streamline your workflow, especially for those who are fast typers and comfortable with technology.
+</div>
+
 Unlike conventional systems that require manual entering of details for each category (e.g. Name, Phone, Department),
-A Caring Book streamlines the process with `addpatient` and `addstaff` commands. Filtering commands such as
-`find`, `findstaff` and `finddep` allow for quick lookup, particularly in emergency situations, making contact management more efficient.
-A Caring Book also employs the use of shortcut commands, which further elevates the user experience.
+
+**A Caring Book** allows you to:
+- Effortlessly manage contact details for both patients and staff
+- Use simple commands to add, find, and filter information quickly
+- Access important data in emergencies with optimized search features
+
+This guide will take you step-by-step through:
+- Installing and setting up your A Caring Book desktop application
+- Navigating the intuitive Command Line Interface (CLI) and the user-friendly Graphical User Interface (GUI)
+- Mastering essential commands and time-saving shortcuts for seamless contact and information management
+
+After completing this guide, you'll be fully equipped to use **A Caring Book** confidently, allowing you to manage patient and staff communications with ease and precision.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -19,6 +35,8 @@ The current version of ACaringBook is designed to only support the **English lan
 Using it with other languages or other countries may lead to unexpected behaviour.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+### Table of Contents
 * Table of Content
 {:toc}
 
@@ -252,12 +270,15 @@ Deletes the specified person from the address book.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 **Examples**:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd person in the address book.
 
 **Expected output**:
 
 The details of the deleted Person will be shown on the right side of the screen.
+
+![Delete](images/delete3.png)
+
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
@@ -272,6 +293,8 @@ Selects a `Patient` or `HealthcareStaff` to view the details on the right side o
 **Shortcut command**: `s`
 
 **Example**: `select 4` shows the details of the contact whose index is 4 in the list.
+
+![Select](images/select4.png)
 
 
 ### Listing all persons : `list`
