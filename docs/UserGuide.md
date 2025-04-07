@@ -468,7 +468,7 @@ Action | Shortcut command | Format, Examples
 - **Command Format**: The expected structure of a command, showing required and optional fields using prefixes.
 - **Displayed Person List**: The current list of persons shown in the GUI after using commands like `list`, `find`, or `liststaff`.
 - **Error Message**: Text shown when something is wrong with the input or when the command cannot be executed. Usually helps guide the user to correct the mistake.
-- - **Parameter**: Information that you are required to provide to the command.
+- **Parameter**: Information that you are required to provide to the command.
 - **Field**: A section of a contact’s details. Examples include name, phone, address, remark, and email.
 - **Help Window**: A pop-up window showing a full list of commands, shortcuts, and usage instructions.
 - **Index**: A number that identifies a person in the current list view. Used in commands like `delete 2` to refer to the 2nd person shown.
