@@ -37,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
         STAFF COMMANDS:
         - addstaff (as): Add a staff contact
           Usage: addstaff [r/ROLE] n/NAME p/PHONE [dp/DEPARTMENT] [e/EMAIL] [a/ADDRESS]
-          Example: addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street,
+          Example: addstaff r/doctor n/Mary Jane dp/General Surgery p/99291267 e/maryJ@example.com a/Spider street,
            block 333, #03-03
         - findstaff (fs): Search staff by role
           Usage: findstaff KEYWORD

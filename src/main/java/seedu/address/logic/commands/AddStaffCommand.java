@@ -29,7 +29,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_ROLE + "ROLE "
             + PREFIX_DEPARTMENT + "DEPARTMENT "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_ADDRESS + "ADDRESS \n"
             + "Example 1: "
             + COMMAND_TYPE + " "
             + PREFIX_NAME + "John Doe "
