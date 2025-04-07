@@ -151,6 +151,7 @@ If you encounter the warning message "Invalid command format!" and your input on
 Shows a list of all persons in the address book.
 
 **Format**: `list`
+![result of `list`](images/List.png)
 
 **Shortcut command**: `ls`
 
@@ -161,6 +162,7 @@ Shows a list of all persons in the address book.
 Shows a list of all patients in the address book.
 
 **Format**: `listpatient`
+![result of `listpatient`](images/Listpatient.png)
 
 **Shortcut command**: `lsp`
 
@@ -171,6 +173,7 @@ Shows a list of all patients in the address book.
 Shows a list of all staff in the address book.
 
 **Format**: `liststaff`
+![result of `liststaff`](images/Liststaff.png)
 
 **Shortcut command**: `lss`
 
@@ -189,7 +192,7 @@ Edits an existing person in the address book.
 * A patient's nok_phone cannot be the same as a patient's phone number.
 
 **Examples**:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 4 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 
 **Shortcut command**: `e`
 
@@ -245,6 +248,7 @@ If these two commands are executed,
 
 then
 * `finddep conology` returns `John Doe` and `Betsy Crowe`.
+  ![result for 'finddep conology'](images/Finddp.png)
 
 **Shortcut command**: `fd`
 
@@ -272,7 +276,8 @@ If these two `addstaff` commands are executed,
 then
 * `findstaff doctor` returns `Mary Jane`
 * `findstaff nurse` returns `Mark Markerburg`
-* `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
+* `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`. See example Ui below:
+  ![result for 'fs doctor nurse'](images/fsdocnurse.png)
 
 **Shortcut command**: `fs`
 
@@ -294,6 +299,8 @@ Adds or updates the remark of the specified person from the address book.
 * `list` followed by `remark 2 rm/Needs wheelchair` updates the 2nd person in the address book.
 * `find Betsy` followed by `remark 1 rm/Banana allergy` updates the 1st person in the results of the `find` command.
 * `remark 3 rm/` clears the remark for the 3rd person.
+* Example Ui for `remark 2 rm/Needs wheelchair`
+  ![result for 'remark 2 rm/Needs wheelchair'](images/remark2wheelchair.png)
 
 **Shortcut command**: `re`
 
@@ -338,7 +345,7 @@ Selects a `Patient` or `HealthcareStaff` to view the details on the right side o
 **Shortcut command**: `s`
 
 **Example**: `select 4` shows the details of the contact whose index is 4 in the list.
-
+![result for `select 4`](images/select4.png)
 ### Toggle between light and dark mode : `toggletheme`
 
 Toggles between light and dark mode theme based on user preference.
