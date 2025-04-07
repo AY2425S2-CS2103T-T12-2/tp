@@ -484,3 +484,28 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+The ACaringBook project builds upon the base functionality of AddressBook-Level3 (AB3), but significantly expands its complexity by introducing multiple entity types and specialized features tailored to healthcare staff and streamlining their workflows.
+
+**Increased Complexity Compared to AB3**  
+While AB3 manages only one type of entity (`Person`), our application handles **two distinct subtypes**: `Patient` and `HealthcareStaff`. These subtypes have different attributes, behaviors, and validation rules. This includes department assignment, doctor-in-charge linkage, and healthcare provider roles. The addition of 2 additional subtypes required more effort in designing flexible model classes, command parsing logic, as well as UI display logic.
+
+**Challenges Faced**  
+* Implementing conditional fields and behaviors (e.g., guardian only applies to patients, provider roles only to staff).
+* Modified the storage and loading mechanisms to correctly serialize and deserialize two different subtypes (Patient and HealthcareStaff), which required custom logic in JsonAdaptedPerson and careful handling of role-specific fields.
+* Ensuring a smooth user experience via features like theme toggling, filtered list displays, and shortcut commands.
+
+**Effort Highlights**  
+* The development team spent considerable effort on the `addpatient`, `addstaff`, `edit`, and `find` command families to handle polymorphic behaviors cleanly.
+* Particular care was taken in writing parsers that accept optional fields without crashing or misbehaving, while still rejecting invalid inputs.
+* Storage and serialization (via JSON) had to be modified to support role-specific fields, which was non-trivial due to type casting and null handling.
+
+**Reused Components**  
+* We reused AB3’s core structure and base `Person` class. However, to support multiple roles and dynamic fields, we **refactored the model hierarchy** and introduced subclasses (`Patient`, `HealthcareStaff`).
+
+**Estimated Effort**  
+* Compared to AB3, we estimate an **additional 60–70% effort** was spent adapting the codebase to support subtype-based features.
+* Around 10% of the project effort was saved through reuse of the existing AB3 storage and command infrastructure. For example, the JsonAdaptedPerson class from AB3 was extended rather than rewritten, allowing us to retain the existing JSON parsing logic for common Person fields while layering subtype-specific deserialization on top. Similarly, command structure and parser utilities (e.g., ParserUtil.java) were reused and adapted to handle multiple entity types without breaking the original structure.
