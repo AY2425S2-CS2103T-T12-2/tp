@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for A Caring Book (TP T12-2)
+title: User Guide for A Caring Book
 ---
 
 A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
