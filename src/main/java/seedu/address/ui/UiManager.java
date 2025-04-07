@@ -21,7 +21,7 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/caringbook.png";
-    private static final String EXTENSIONS_CSS = "/view/Extensions.css";
+    private static final String EXTENSIONS_CSS = "/view/Styles.css";
 
     private Logic logic;
     private MainWindow mainWindow;

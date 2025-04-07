@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for A Caring Book (TP T12-2)
+title: User Guide for A Caring Book
 ---
 
 A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
@@ -44,7 +44,7 @@ or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to 
 
    * `list` : Lists all contacts.
 
-   * `addstaff r/doctor n/Mary Jane p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
+   * `addstaff r/doctor n/Mary Jane p/99291268 e/maryJ@example.com a/Spider street, block 333, #03-03` : Adds a doctor named `Mary Jane` to the Address Book.
 
    * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak nn/Mrs Doe dp/Conology` : Adds a patient named `John Doe` to the Address Book.
 
@@ -68,9 +68,9 @@ Refer to the [Features](#features) below for details of each command.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -83,6 +83,29 @@ Refer to the [Features](#features) below for details of each command.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
+**Phone Number Constraints:**<br>
+
+* A Singapore local phone number is required with exactly 8 digits.
+
+* It must start with 3, 6, 8, or 9.
+
+**Email Address Constraints:**<br>
+
+* Email address must either follow the format `local-part@domain` with these rules:
+
+1. Local Part:
+   * Can contain alphanumeric characters and special characters (excluding parentheses):
+   `!#$%&'*+/=?^_{|}~-`
+   * Cannot start with a special character.
+
+2. Domain:
+   * Must contain domain labels separated by periods `(.)`.
+   * Each domain label must:
+     * Start and end with alphanumeric characters.
+     * Consist only of alphanumeric characters or hyphens `(-)`.
+   * The final domain label must be at least 2 characters long.
+
 </div>
 
 ### Viewing help : `help`
@@ -104,7 +127,7 @@ Adds a patient to the address book.
 **Examples**:
 
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak nn/Mrs Hong Doe np/98721322 dp/Conology`
-* `addpatient n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo nn/Mr Bui Crowe np/98268642 dp/Conology`
+* `addpatient n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/32345678 dr/Dr Teo nn/Mr Bui Crowe np/98268642 dp/Conology`
 
 **Shortcut command**: `ap`
 
@@ -115,7 +138,7 @@ Upon successful addition, the details for the `Patient` will be shown like so
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Adding a staff: `addstaff`
 
@@ -124,7 +147,7 @@ Adds a staff to the address book.
 **Format**: `addstaff [r/ROLE] n/NAME p/PHONE [dp/DEPARTMENT] [e/EMAIL] [a/ADDRESS]​`
 
 **Examples**:
-* `addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/doctor n/Mary Jane dp/General Surgery p/99291268 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
 
 **Shortcut command**: `as`
@@ -136,7 +159,7 @@ Upon successful addition, the details for the `HealthcareStaff` will be shown li
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Listing all persons : `list`
 
@@ -178,6 +201,7 @@ Edits an existing person in the address book.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Role field is only available for healthcare staff, doctor_in_charge, nok_name, nok_phone and department fields are only available for patients.
+* A patient's nok_phone cannot be the same as a patient's phone number.
 
 **Examples**:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -191,7 +215,7 @@ Upon successful addition, the details for the edited `Person` will be shown like
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating person by name: `find`
 
@@ -215,7 +239,7 @@ Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose nam
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating a contact by department: `finddep`
 
@@ -232,7 +256,7 @@ Finds a list of `Person` (including both `Patient` and `HealthcareStaff`) whose 
 
 If these two commands are executed,
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak nn/Mrs Hong Doe np/98721322 dp/Conology`
-* `addpatient n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 dr/Dr Teo nn/Mr Bui Crowe np/98268642 dp/Conology`
+* `addpatient n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/32345678 dr/Dr Teo nn/Mr Bui Crowe np/98268642 dp/Conology`
 
 then
 * `finddep conology` returns `John Doe` and `Betsy Crowe`.
@@ -241,7 +265,7 @@ then
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Locating a healthcare provider by role: `findstaff`
 
@@ -257,7 +281,7 @@ Find a list of `HealthcareStaff` whose roles matches with the keyword.
 **Examples and expected outputs**:
 
 If these two `addstaff` commands are executed,
-* `addstaff r/doctor n/Mary Jane dp/General Surgery p/9929126 e/maryJ@example.com a/Spider street, block 333, #03-03`
+* `addstaff r/doctor n/Mary Jane dp/General Surgery p/99291268 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
 
 then
@@ -269,7 +293,7 @@ then
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Adding remark to a person : `remark`
 
@@ -294,7 +318,7 @@ Remark field will be updated immediately and details of the Person will be shown
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Deleting a person : `delete`
 
@@ -318,7 +342,7 @@ The details of the deleted Person will be shown on the right side of the screen.
 
 **Warning**:
 
-If the user encounters the warning message "Invalid command format!" and their input turns red, they should check their input against the format and example provided on the right side of the screen.
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 
 ### Select a contact to view details : `select`
 
@@ -381,6 +405,8 @@ Next, copy the addressbook.json file from your previous computer and paste it in
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **Execute other commands after `find`, `findstaff`, `finddp`, `listpatient` or `liststaff` command** could reset the filter and full contact list will be shown.
+4. **Deleting selected contact (via `select` command)** sets the content panel on the top right to be the previous contact.
 
 --------------------------------------------------------------------------------------------------------------------
 

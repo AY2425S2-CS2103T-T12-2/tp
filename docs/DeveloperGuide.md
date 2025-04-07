@@ -150,6 +150,49 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add patient feature
+
+#### Implementation
+
+The image below shows the class diagram of a Patient object and its related class attributes.
+
+![Patient Class Diagram](images/PatientClassDiagram.png)
+
+The Patient object is made up of several attributes:
+* `Name`: The name of the patient.
+* `Phone`: The phone number of the patient.
+* `Email`: The email of the patient.
+* `Address`: The address of the patient.
+* `Doctor in charge`: The primary doctor assigned to the patient.
+* `Next of kin`: The next of kin information of the patient.
+
+The Next of kin Contact object is also made up of attributes:
+* `Name`: The name of the next of kin.
+* `Phone`: The phone number of the next of kin.
+
+<div style="page-break-after: always;"></div>
+
+#### Feature details
+
+1. ACaringBook will verify that the parameters supplied by the user follow a set of relevant restrictions for the respective parameters.
+2. If any invalid parameter is provided, an error will be thrown, informing the user which parameter violates the restrictions. The format for the valid input for that parameter will be displayed to the user.
+3. If all parameters are valid, a new `Patient` entry will be created and stored in the `ACaringBook`.
+
+#### Design Considerations:
+
+**Aspect: The required input of parameters:**
+
+* **Alternative 1:** Make all parameters compulsory.
+    * Pros: Will not have missing data when it is needed in an emergency.
+    * Cons: Addpatient Command is lengthy to type out, might be hard to remember the syntax.
+* **Alternative 2 (current choice):** Make only a few specific parameters compulsory (i.e. Name and Phone).
+    * Pros: Patient registration will be faster.
+    * Cons: If user forgets to update missing details, during an emergency there might not be an emergency contact to call.
+
+We opted for Alternative 2 as some information may not be available during emergency visit. Making some parameters optional also makes Addpatient Command fast.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -232,12 +275,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -272,56 +309,56 @@ improved workflows, and enhanced patient care.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-|----------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Patient Care Coordinator        | add a new patient's contact information            | easily store and access important patient details for future reference and communications |
-| `* * *`  | Patient Care Coordinator        | delete patient's contact information               | remove obsolete patient data to keep the address book organized and clean |
-| `* * *`  | Patient Care Coordinator        | see a list of assigned patients when logged in     | quickly manage and retrieve patient details without navigating multiple screens |
-| `* * *`  | Patient Care Coordinator        | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
-| `* * *`  | Patient Care Coordinator        | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
-| `* * *`  | Patient Care Coordinator        | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
-| `* * *`  | Patient Care Coordinator        | tag a patient to a primary  doctor     | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
-| `* * *`  | Patient Care Coordinator        | save contact details in a file locally             | ensure patient details are preserved even after the application is closed |
-| `* * *`  | Patient Care Coordinator        | load contact details from a local file             | load patient details at startup, preventing the need to re-enter information |
-| `* *`    | Patient Care Coordinator        | search for a specific contact by name, role, etc.  | quickly locate the right person or organization when urgent communication is needed |
-*{More to be added}*
+| Priority | As a...                   | I want to...                                                        | So that I can...                                                                                                                                                          |
+|----------|---------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ***      | Patient Care Coordinator  | add a new patient's contact information                             | easily store and access important patient details for future reference and communications                                                                                 |
+| ***      | Patient Care Coordinator  | delete patient's contact information                                | remove obsolete patient data to keep the address book organized and clean                                                                                                 |
+| ***      | Patient Care Coordinator  | view a list of patient contacts                                     | quickly manage and retrieve patient details without navigating multiple screens                                                                                           |
+| ***      | Patient Care Coordinator  | see contact detail of a certain patient                             | look for important information such as next of kin information and contact number for quick outreach and coordination                                                                                    |
+| ***      | Patient Care Coordinator  | add contact details for doctors, nurses, and other medical staff    | easily store and access important staff details for future reference and communications                                                                                   |
+| ***      | Patient Care Coordinator  | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean                                                                                                   |
+| ***      | Patient Care Coordinator  | see contact details for doctors, nurses, and other medical staff    | have immediate access to accurate contact information for quick outreach and coordination                                                                                 |
+| ***      | Patient Care Coordinator  | tag a patient to a primary doctor                                   | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
+| ***      | Patient Care Coordinator  | save contact details in a file locally                              | ensure patient details are preserved even after the application is closed                                                                                                 |
+| ***      | Patient Care Coordinator  | load contact details from a local file                              | load patient details at startup, preventing the need to re-enter information                                                                                              |
+| **       | Patient Care Coordinator  | search for a specific contact by name, role, etc.                   | quickly locate the right person or organization when urgent communication is needed                                                                                       |
+
 
 ### Use Cases
 
-(For all use cases below, the System is the ACaringBook and the Actor is the user, unless specified otherwise)
+(For all use cases below, the System is the ACaringBook and the user is the Patient Care Coordinator, unless specified otherwise)
 
-### Use case: Add a new patient’s contact information
+### Use case: Add a new patient/healthcare staff's contact information
 
 **Main Success Scenario (MSS)**
 
-1. User requests to add a new patient’s contact information.
-2. ACaringBook validates the input details.
-3. ACaringBook stores the patient’s details.
-4. ACaringBook confirms the successful addition.
+1. User requests to add a new patient/staff’s contact information.
+2. System validates the input details.
+3. System stores the patient/staff’s details.
+4. System confirms the successful addition.
 
 **Use case ends.**
 
 **Extensions**
 
 - 2a. The input format is incorrect.
-    - 2a1. ACaringBook shows an error message.
+    - 2a1. System shows an error message.
     - 2a2. User re-enters the correct details.
     - Use case resumes at step 2.
-- 3a. The patient already exists in the ACaringBook.
-    - 3a1. ACaringBook prompts the user to either update, delete, or keep both entries.
-    - 3a2. User makes a choice and ACaringBook proceeds accordingly.
-    - Use case resumes at step 4.
+- 3a. The patient/staff already exists in the System.
+    - 3a1. System rejects the entry and displays an error message.
+    - Use case ends.
 
 ---
 
-### Use case: Delete a patient’s contact information
+### Use case: Delete a patient/staff’s contact information
 
 **MSS**
 
-1. User requests to list patients.
-2. ACaringBook shows a list of patients.
-3. User requests to delete a specific patient in the list.
-4. ACaringBook deletes the patient and confirms the deletion.
+1. User requests to list patients/healthcare staff.
+2. System shows a list of patients/healthcare staff.
+3. User requests to delete a specific patient/staff in the list via its index.
+4. System deletes the patient/staff and confirms the deletion.
 
 **Use case ends.**
 
@@ -330,81 +367,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.
     - Use case ends.
 - 3a. The given index is invalid.
-    - 3a1. ACaringBook shows an error message.
-    - Use case resumes at step 2.
+    - 3a1. System shows an error message.
+    - 3a2. User input a valid index.
+    - Use case resumes at step 3.
 
 ---
 
-### Use case: View list of patients
+### Use case: View list of patients/staffs
 
 **MSS**
 
-1. User requests to view a list of patients.
-2. ACaringBook displays all patients in a tabular format.
+1. User requests to view a list of patients/staffs.
+2. System displays all patients/staffs in a tabular format.
 
 **Use case ends.**
-
-**Extensions**
-
-- 2a. No patients are found in the ACaringBook.
-    - 2a1. ACaringBook displays "No patient data is found."
-    - Use case ends.
-- 2b. Patient data is corrupted.
-    - 2b1. ACaringBook displays "Patient data corrupted!"
-    - Use case ends.
 
 ---
 
-### Use case: Add healthcare staff contact
+### Use case: Find contacts by name
 
 **MSS**
 
-1. User requests to add a new healthcare staff contact.
-2. ACaringBook validates the input details.
-3. ACaringBook stores the staff contact.
-4. ACaringBook confirms the successful addition.
+1. User requests to find a contact by name.
+2. System validates the input.
+3. System shows a list of contacts matches the name.
 
 **Use case ends.**
-
-**Extensions**
-
-- 2a. The input format is incorrect.
-    - 2a1. ACaringBook shows an error message.
-    - 2a2. User re-enters the correct details.
-    - Use case resumes at step 2.
-- 3a. The staff contact already exists in the ACaringBook.
-    - 3a1. ACaringBook rejects the entry and displays an error message: "Duplicate entry. This contact already exists."
-    - Use case ends.
-
-### Use case: Delete healthcare staff contact
-
-**MSS**
-
-1. User requests to delete a healthcare staff contact.
-2. ACaringBook validates the input staff name.
-3. ACaringBook checks if the staff exists.
-4. ACaringBook deletes the contact.
-5. ACaringBook confirms the successful deletion.
-
-**Use case ends.**
-
-**Extensions**
-
-- 2a. The input staff name is missing.
-    - 2a1. ACaringBook shows an error message: "Error: Missing required fields. Format: delete staff NAME."
-    - 2a2. User re-enters the correct staff name.
-    - Use case resumes at step 2.
-- 3a. The staff member with the provided name does not exist.
-    - 3a1. ACaringBook shows an error message: "Error: Staff contact not found. Name: John_Doe does not exist."
-    - Use case ends.
-- 4a. An error occurs while deleting the staff contact.
-    - 4a1. ACaringBook shows an error message: "Error: Failed to delete the staff contact. Please try again."
-    - Use case ends.
 
 ---
 
+### Use case: Find contacts by department
 
-*{More to be added}*
+**MSS**
+
+1. User requests to find contacts by department.
+2. System validates the input.
+3. System shows a list of contacts matches the department.
+
+**Use case ends.**
+
+---
+
+### Use case: Find healthCare staff contacts by role
+
+**MSS**
+
+1. User requests to find healthcare staff contacts by role.
+2. System validates the input.
+3. System shows a list of contacts matches the department.
+
+**Use case ends.**
+
+---
+
+### Use case: Add remark to a contact
+
+**MSS**
+
+1. User requests to add remark to a contact.
+2. System validates the input.
+3. System adds the remark to the contact and shows remark has been added successfully. 
+
+**Extensions**
+
+- 2a. The input remark is invalid.
+    - 2a1. System shows an error message.
+    - 2a2. User re-enters a valid remark.
+    - Use case resumes at step 2.
+
+**Use case ends.**
+
+---
 
 ### Non-Functional Requirements
 
@@ -438,47 +471,225 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
-1. Initial launch
+### Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `.jar` file.
+   2. Place it into an empty folder.
+   3. Double-click the `.jar` file.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+**Expected:**
+- GUI launches with a set of **sample contacts**.
+- **Window size may not be optimized** by default.
 
-1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Saving Window Preferences
+1. Resize and reposition the application window.
+2. Close the application.
+3. Re-launch the app by double-clicking the `.jar` again.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Expected:**
+- App opens with the **last used window size and position** retained.
 
-1. _{ more test cases …​ }_
+---
+## Adding a patient (`addpatient`, `ap`)
 
-### Deleting a person
+### Valid Entry
 
-1. Deleting a person while all persons are being shown
+**Command:**
+`addpatient n/Jane Doe p/32345678 e/jane@example.com a/456 Serangoon Rd dr/Dr Tan nn/Mr Lim np/98765432 dp/Orthopedics`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+**Expected:**
+- Patient is added to the list.
+- All details are displayed correctly.
+- Success message in the status bar.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Invalid Entry
+**Command:**
+`addpatient n/Jane Doe p/abcd`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+**Expected:**
+- Error message is displayed.
+- No patient is added.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+---
 
-1. _{ more test cases …​ }_
+## Deleting a Person (`delete`, `del`, `d`)
 
-### Saving data
+### Valid Deletion
 
-1. Dealing with missing/corrupted data files
+**Precondition:** Run `list` or `listpatient`. Ensure at least one contact exists.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+**Command:**
+`delete 1`
 
-1. _{ more test cases …​ }_
+**Expected:**
+- Contact at index 1 is deleted.
+- Confirmation message shown.
+
+### Invalid Deletion
+**Command:**
+`delete 0`
+
+**Expected:**
+- Error message is shown.
+- No changes made to contact list.
+
+---
+
+## Editing a Contact (`edit`, `e`)
+
+### Valid Edit
+
+**Precondition:** At least two contacts exist.
+
+**Command:**
+`edit 2 n/John Tan p/87654321`
+
+**Expected:**
+- Contact at index 2 is updated.
+- Confirmation message displayed.
+
+### Invalid Edit
+**Command:**
+`edit two x/abc`
+
+**Expected:**
+- Error message shown.
+- No changes made.
+
+---
+
+## Finding Entries
+
+### Find by Name (`find`, `f`)
+
+**Precondition:** A contact named "Jane" exists.
+
+**Command:**
+`find Jane`
+
+**Expected:**
+- All contacts with "Jane" in the name are listed.
+
+### Find by Department (`finddep`, `fd`)
+
+**Precondition:** A contact exists in the Surgery department.
+
+**Command:**
+`finddep Surgery`
+
+**Expected:**
+- All contacts under the "Surgery" department are shown.
+
+### Find Staff by Role (`findstaff`, `fs`)
+
+**Precondition:** A staff member with role "nurse" exists.
+
+**Command:**
+`findstaff nurse`
+
+**Expected:**
+- All staff with the role "nurse" are listed.
+
+---
+
+## Listing Commands
+- `list` / `ls`: Lists all contacts
+- `listpatient` / `lsp`: Lists only patients
+- `liststaff` / `lss`: Lists only staff
+
+**Expected:**
+- Displays the correct subset of contacts.
+
+---
+
+## Adding Remarks (`remark`, `re`)
+
+### Valid Remark
+
+**Precondition:** At least once contact exists.
+
+**Command:**
+`remark 1 rm/Peanut allergy`
+
+**Expected:**
+- Remark is displayed under the contact.
+- Status message confirms update.
+
+### Invalid Remark
+**Command:**
+`remark 0 rm/Test`
+
+**Expected:**
+- Error message is shown.
+- No updates made.
+
+---
+
+## Toggle Theme (`toggletheme`, `tt`)
+
+**Command:**
+`toggletheme`
+
+**Expected:**
+- Switches between **light** and **dark** themes.
+
+---
+
+## Clear All Contacts (`clear`, `cls`)
+
+**Command:**
+`clear`
+
+**Expected:**
+- All contacts are deleted.
+- Status bar shows confirmation message.
+
+---
+
+## Help (`help`, `h`)
+
+**Command:**
+`help`
+
+**Expected:**
+- Opens the help window with a list of commands and usage formats.
+
+---
+
+## Exit (`exit`, `quit`)
+
+**Command:**
+`exit`
+
+**Expected:**
+- Application closes.
+- All changes are saved.
+
+---
+
+## Saving and Loading Data
+
+### Normal Save
+1. Add or edit a contact.
+2. Close the app using `exit`.
+3. Relaunch the app.
+
+**Expected:**
+- Most recent data is shown.
+
+---
+
+### Missing or Corrupted Data Files
+
+**How to Simulate:**
+- Delete or rename the `data` folder or '.json' file.
+
+**Expected:**
+- Application detects issue.
+- Loads with an **empty or sample dataset**.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -504,3 +715,28 @@ While AB3 manages only one type of entity (`Person`), our application handles **
 **Estimated Effort**  
 * Compared to AB3, we estimate an **additional 60–70% effort** was spent adapting the codebase to support subtype-based features.
 * Around 10% of the project effort was saved through reuse of the existing AB3 storage and command infrastructure. For example, the JsonAdaptedPerson class from AB3 was extended rather than rewritten, allowing us to retain the existing JSON parsing logic for common Person fields while layering subtype-specific deserialization on top. Similarly, command structure and parser utilities (e.g., ParserUtil.java) were reused and adapted to handle multiple entity types without breaking the original structure.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+Team size: 5
+
+This appendix outlines potential future enhancements to improve the ACaringBook application. These ideas aim to add more value for users and developers, and serve as a starting point for future contributors.
+
+### 1. Confirmation Prompt Before Deleting or Clearing Contacts
+
+- **Overview**: Prompt the user for confirmation before executing potentially destructive commands like `delete` or `clear`.
+- **Motivation**: Prevents accidental loss of data by requiring explicit user confirmation.
+- **Proposed Implementation**:
+    - Modify the `DeleteCommand` and `ClearCommand` to trigger a confirmation dialog before proceeding.
+    - Use JavaFX alert dialogs to capture user confirmation.
+    - Include a configuration toggle to enable/disable confirmations for power users.
+
+### 2. Support for Multiple Remarks per Contact
+
+- **Overview**: Allow users to tag multiple remarks to a single contact, such as reminders or notes.
+- **Motivation**: Increases flexibility and supports richer contact profiles.
+- **Proposed Implementation**:
+    - Replace the current `Remark` field with a list of `Remark` entries in the `Person` class.
+    - Update relevant commands and parsers to support adding, editing, and deleting specific remarks.
+    - Display multiple remarks cleanly in the UI (e.g., as a bullet list).
+
