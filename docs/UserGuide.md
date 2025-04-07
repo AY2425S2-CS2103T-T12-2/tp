@@ -12,6 +12,13 @@ A Caring Book streamlines the process with `addpatient` and `addstaff` commands.
 `find`, `findstaff` and `finddep` allow for quick lookup, particularly in emergency situations, making contact management more efficient.
 A Caring Book also employs the use of shortcut commands, which further elevates the user experience.
 
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Disclaimer**
+The current version of ACaringBook is designed to only support the **English language** and for use in **Singapore**.
+Using it with other languages or other countries may lead to unexpected behaviour.
+</div>
+
 * Table of Content
 {:toc}
 
