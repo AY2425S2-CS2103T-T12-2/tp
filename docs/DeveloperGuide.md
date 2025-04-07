@@ -485,6 +485,7 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
+Team size: 5
 
 This appendix outlines potential future enhancements to improve the ACaringBook application. These ideas aim to add more value for users and developers, and serve as a starting point for future contributors.
 
