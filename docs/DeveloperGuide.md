@@ -295,7 +295,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Is comfortable using command-line interface (CLI) apps for efficiency
 
 **Value proposition**: Our product streamlines patient coordination by providing instant access to patient details,
-tagging patients to assigned doctors or caretakers, and tracking guardian or next-of-kin information.
+tagging patients to assigned doctors or caretakers, and tracking next-of-kin information.
 It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication,
 improved workflows, and enhanced patient care.
 
@@ -695,7 +695,7 @@ The ACaringBook project builds upon the base functionality of AddressBook-Level3
 While AB3 manages only one type of entity (`Person`), our application handles **two distinct subtypes**: `Patient` and `HealthcareStaff`. These subtypes have different attributes, behaviors, and validation rules. This includes department assignment, doctor-in-charge linkage, and healthcare provider roles. The addition of 2 additional subtypes required more effort in designing flexible model classes, command parsing logic, as well as UI display logic.
 
 **Challenges Faced**  
-* Implementing conditional fields and behaviors (e.g., guardian only applies to patients, provider roles only to staff).
+* Implementing conditional fields and behaviors (e.g., NOK only applies to patients, provider roles only to staff).
 * Modified the storage and loading mechanisms to correctly serialize and deserialize two different subtypes (Patient and HealthcareStaff), which required custom logic in JsonAdaptedPerson and careful handling of role-specific fields.
 * Ensuring a smooth user experience via features like theme toggling, filtered list displays, and shortcut commands.
 
