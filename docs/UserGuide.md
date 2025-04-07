@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide for A Caring Book
+title: User Guide
 ---
 
 A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
@@ -83,28 +83,6 @@ Refer to the [Features](#features) below for details of each command.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-
-**Phone Number Constraints:**<br>
-
-* A Singapore local phone number is required with exactly 8 digits.
-
-* It must start with 3, 6, 8, or 9.
-
-**Email Address Constraints:**<br>
-
-* Email address must either follow the format `local-part@domain` with these rules:
-
-1. Local Part:
-   * Can contain alphanumeric characters and special characters (excluding parentheses):
-   `!#$%&'*+/=?^_{|}~-`
-   * Cannot start with a special character.
-
-2. Domain:
-   * Must contain domain labels separated by periods `(.)`.
-   * Each domain label must:
-     * Start and end with alphanumeric characters.
-     * Consist only of alphanumeric characters or hyphens `(-)`.
-   * The final domain label must be at least 2 characters long.
 
 </div>
 
@@ -433,19 +411,60 @@ Action | Shortcut command | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Parameter Constrains
+
+**Name Constraints `n/`:**
+* Name must be 1 to 66 characters long, contain at least one letter (A-Z, a-z). 
+* It must start and end with an alphanumeric character (A-Z, a-z, 0-9). 
+* It may contain spaces and the following special characters in between: `, ( ) / . @ - '`
+
+**Phone Number Constraints `p/`:**
+* A Singapore local phone number is required with exactly 8 digits.
+* It must start with 3, 6, 8, or 9.
+* It may be `NA` if not available.
+
+**Email Address Constraints `e/`:**
+* Email address must either be `NA` if not available or follow the format `local-part@domain-label.domain-label` with these rules:
+
+1. Local Part:
+    * Can contain alphanumeric characters and special characters (excluding parentheses):`(+_.)`
+    * Cannot start with a special character.
+
+2. Domain:
+    * Must contain domain labels separated by periods `(.)`.
+    * Each domain label must:
+        * Start and end with alphanumeric characters.
+        * Consist only of alphanumeric characters separated only by hyphens `(-)` if any.
+    * The final domain label must be at least 2 characters long.
+
+**Healthcare Staff ProviderRole Constraints `r/`:**
+* Healthcare staff provider-role must either be `NA` if not available or one of the following: 
+  * `doctor`
+  * `nurse`
+  * `therapist`
+
+**Department Constraints `dp/`:**
+* Department name must be 1 to 50 characters contain only letters, digits, spaces, or the following special characters: `-_,.()/&@.`.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
-**Command**: An instruction typed into the command box to perform an action, such as `addpatient` or `delete`.
-**Command Box**: The input area at the bottom of the GUI where users type commands.
-**Command Format**: The expected structure of a command, showing required and optional fields using prefixes.
-**Displayed Person List**: The current list of persons shown in the GUI after using commands like `list`, `find`, or `liststaff`.
-**Error Message**: Text shown when something is wrong with the input or when the command cannot be executed. Usually helps guide the user to correct the mistake.
-**Field**: A section of a contact’s details. Examples include name, phone, address, remark, and email.
-**Help Window**: A pop-up window showing a full list of commands, shortcuts, and usage instructions.
-**Index**: A number that identifies a person in the current list view. Used in commands like `delete 2` to refer to the 2nd person shown.
-**Input**: The text entered by the user into the command box.
-**JSON File**: The file (`addressbook.json`) where all contacts are stored. Located in the `/data` folder and automatically updated after each command.
-**Output**: The result displayed after entering a command. This includes success messages, error messages, or updated contact details in the GUI.
-**Prefix**: A short label used to indicate a specific field in a command. For example, `n/` is the prefix for name, `p/` for phone.
-**Remark**: A short note attached to a person, updated using the `remark` command, e.g., `remark 2 rm/Needs wheelchair`.
-**Shortcut Command**: A shortened alias for a full command. For example, `ap` is the shortcut for `addpatient`.
+- **Command**: An instruction typed into the command box to perform an action, such as `addpatient` or `delete`.
+- **Command Box**: The input area at the bottom of the GUI where users type commands.
+- **Command Format**: The expected structure of a command, showing required and optional fields using prefixes.
+- **Displayed Person List**: The current list of persons shown in the GUI after using commands like `list`, `find`, or `liststaff`.
+- **Error Message**: Text shown when something is wrong with the input or when the command cannot be executed. Usually helps guide the user to correct the mistake.
+- - **Parameter**: Information that you are required to provide to the command.
+- **Field**: A section of a contact’s details. Examples include name, phone, address, remark, and email.
+- **Help Window**: A pop-up window showing a full list of commands, shortcuts, and usage instructions.
+- **Index**: A number that identifies a person in the current list view. Used in commands like `delete 2` to refer to the 2nd person shown.
+- **Input**: The text entered by the user into the command box.
+- **JSON File**: The file (`addressbook.json`) where all contacts are stored. Located in the `/data` folder and automatically updated after each command.
+- **Output**: The result displayed after entering a command. This includes success messages, error messages, or updated contact details in the GUI.
+- **Prefix**: A short label used to indicate a specific field in a command. For example, `n/` is the prefix for name, `p/` for phone.
+- **Remark**: A short note attached to a person, updated using the `remark` command, e.g., `remark 2 rm/Needs wheelchair`.
+- **Shortcut Command**: A shortened alias for a full command. For example, `ap` is the shortcut for `addpatient`.
+- **Command Line Interface (CLI)**: A Command Line Interface allows users to interact with an application by typing commands to execute actions.
+- **Graphical User Interface (GUI)**: A Graphical User Interface allows users to interact with an application through graphics like buttons or icons.
+- **Alphanumeric**: Characters that are either numbers or letters.
+
