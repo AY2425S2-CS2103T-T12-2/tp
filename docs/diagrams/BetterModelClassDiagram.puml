@@ -4,26 +4,24 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+AddressBook *-down-> "1" UniquePersonList
+UniquePersonList -down-> Person
 
-UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
-
-Person -up-> "*" Tag
-
-Person *--> Role
-Person *--> Name
+Person *-left-> "1" Role
+Person *--> "1" Name
 Person *--> "1" Phone
-Person *--> "1" Email
-Person *--> Address
-Person *--> Remark
+Person *--> "0..1" Email
+Person *--> "0..1" Address
+Person *--> "0..1" Remark
 
 HealthcareStaff -left-|> Person
-HealthcareStaff *--> ProviderRole
+HealthcareStaff *--> "0..1" ProviderRole
+HealthcareStaff *--> "0..1" Department
 
-Patient -right-|> Person
-Patient *--> "1" Department
+Patient --|> Person
+Patient *--> "0..1" Department
+Patient *--> "0..1" NextOfKin
+Patient *--> "0..1" DoctorInChrge
+
+HealthcareStaff -[hidden]up--> Patient
 @enduml

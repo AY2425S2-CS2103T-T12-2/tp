@@ -14,13 +14,18 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class HealthcareStaff
+Class Patient
 Class Role
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Remark
-Class Tag
+Class NextOfKin
+Class Department
+Class ProviderRole
+Class DoctorInCharge
 
 Class I #FFFFFF
 }
@@ -39,23 +44,32 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person <|.left. Patient
-Person <|.right. HealthcareStaff
-Person *--> "1" Name
-Person *--> "1" Phone
-Person *--> "1" Role
-Person *--> "0..1" Email
-Person *--> "0..1" Address
-Person *--> "0..1" Remark
-Person *--> "*" Tag
+Person <|-down- Patient
+Person <|-down- HealthcareStaff
+Person *-right-> "1" Name
+Person *-right-> "1" Phone
+Person *-right-> "1" Role
+Person *-right-> "0..1" Email
+Person *-right-> "0..1" Address
+Person *-right-> "0..1" Remark
+
+Patient *--> "0..1" NextOfKin
+Patient *--> "0..1" DoctorInCharge
+Patient *--> "0..1" Department
+
+HealthcareStaff *--> "0..1" ProviderRole
+HealthcareStaff *--> "0..1" Department
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Role -[hidden]right-> Name
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Patient -[hidden]left--> HealthcareStaff
+
+Role -[hidden]right--> Name
+Name -[hidden]right--> Phone
+Phone -[hidden]right--> Email
+Email -[hidden]right--> Address
+Address -[hidden]right--> Remark
 
 ModelManager --> "~* filtered" Person
 @enduml
