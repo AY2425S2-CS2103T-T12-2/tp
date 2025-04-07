@@ -70,7 +70,7 @@ public class HelpWindow extends UiPart<Stage> {
         - select (s): Select a contact to show full contact information
           Usage: select INDEX
           Example: select 1
-        - toggletheme (tt):</b> Toggle between light and dark mode
+        - toggletheme (tt): Toggle between light and dark mode
           Usage: toggletheme
         """;
 
