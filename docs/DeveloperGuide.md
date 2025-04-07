@@ -277,56 +277,56 @@ improved workflows, and enhanced patient care.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a...                   | I want to...                                         | So that I can...                                                                 |
-|----------|---------------------------|------------------------------------------------------|----------------------------------------------------------------------------------|
-| ***      | Patient Care Coordinator  | add a new patient's contact information              | easily store and access important patient details for future reference and communications |
-| ***      | Patient Care Coordinator  | delete patient's contact information                 | remove obsolete patient data to keep the address book organized and clean       |
-| ***      | Patient Care Coordinator  | see a list of assigned patients when logged in       | quickly manage and retrieve patient details without navigating multiple screens |
-| ***      | Patient Care Coordinator  | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
-| ***      | Patient Care Coordinator  | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
-| ***      | Patient Care Coordinator  | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
-| ***      | Patient Care Coordinator  | tag a patient to a primary doctor                    | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
-| ***      | Patient Care Coordinator  | save contact details in a file locally               | ensure patient details are preserved even after the application is closed       |
-| ***      | Patient Care Coordinator  | load contact details from a local file               | load patient details at startup, preventing the need to re-enter information     |
-| **       | Patient Care Coordinator  | search for a specific contact by name, role, etc.    | quickly locate the right person or organization when urgent communication is needed |
-*{More to be added}*
+| Priority | As a...                   | I want to...                                                        | So that I can...                                                                                                                                                          |
+|----------|---------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ***      | Patient Care Coordinator  | add a new patient's contact information                             | easily store and access important patient details for future reference and communications                                                                                 |
+| ***      | Patient Care Coordinator  | delete patient's contact information                                | remove obsolete patient data to keep the address book organized and clean                                                                                                 |
+| ***      | Patient Care Coordinator  | view a list of patient contacts                                     | quickly manage and retrieve patient details without navigating multiple screens                                                                                           |
+| ***      | Patient Care Coordinator  | see contact detail of a certain patient                             | look for important information such as next of kin information and contact number for quick outreach and coordination                                                                                    |
+| ***      | Patient Care Coordinator  | add contact details for doctors, nurses, and other medical staff    | easily store and access important staff details for future reference and communications                                                                                   |
+| ***      | Patient Care Coordinator  | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean                                                                                                   |
+| ***      | Patient Care Coordinator  | see contact details for doctors, nurses, and other medical staff    | have immediate access to accurate contact information for quick outreach and coordination                                                                                 |
+| ***      | Patient Care Coordinator  | tag a patient to a primary doctor                                   | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
+| ***      | Patient Care Coordinator  | save contact details in a file locally                              | ensure patient details are preserved even after the application is closed                                                                                                 |
+| ***      | Patient Care Coordinator  | load contact details from a local file                              | load patient details at startup, preventing the need to re-enter information                                                                                              |
+| **       | Patient Care Coordinator  | search for a specific contact by name, role, etc.                   | quickly locate the right person or organization when urgent communication is needed                                                                                       |
+
 
 ### Use Cases
 
-(For all use cases below, the System is the ACaringBook and the Actor is the user, unless specified otherwise)
+(For all use cases below, the System is the ACaringBook and the user is the Patient Care Coordinator, unless specified otherwise)
 
-### Use case: Add a new patient’s contact information
+### Use case: Add a new patient/healthcare staff's contact information
 
 **Main Success Scenario (MSS)**
 
-1. User requests to add a new patient’s contact information.
-2. ACaringBook validates the input details.
-3. ACaringBook stores the patient’s details.
-4. ACaringBook confirms the successful addition.
+1. User requests to add a new patient/staff’s contact information.
+2. System validates the input details.
+3. System stores the patient/staff’s details.
+4. System confirms the successful addition.
 
 **Use case ends.**
 
 **Extensions**
 
 - 2a. The input format is incorrect.
-    - 2a1. ACaringBook shows an error message.
+    - 2a1. System shows an error message.
     - 2a2. User re-enters the correct details.
     - Use case resumes at step 2.
-- 3a. The patient already exists in the ACaringBook.
-    - 3a1. ACaringBook prompts the user of duplicated entry.
-    - 3a2. User re-enters the correct details or edit existing contact
-    - Use case resumes at step 2.
+- 3a. The patient/staff already exists in the System.
+    - 3a1. System rejects the entry and displays an error message.
+    - Use case ends.
 
 ---
 
-### Use case: Delete a patient’s contact information
+### Use case: Delete a patient/staff’s contact information
 
 **MSS**
 
-1. User requests to list patients.
-2. ACaringBook shows a list of patients.
-3. User requests to delete a specific patient in the list.
-4. ACaringBook deletes the patient and confirms the deletion.
+1. User requests to list patients/healthcare staff.
+2. System shows a list of patients/healthcare staff.
+3. User requests to delete a specific patient/staff in the list via its index.
+4. System deletes the patient/staff and confirms the deletion.
 
 **Use case ends.**
 
@@ -335,81 +335,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.
     - Use case ends.
 - 3a. The given index is invalid.
-    - 3a1. ACaringBook shows an error message.
-    - Use case resumes at step 2.
+    - 3a1. System shows an error message.
+    - 3a2. User input a valid index.
+    - Use case resumes at step 3.
 
 ---
 
-### Use case: View list of patients
+### Use case: View list of patients/staffs
 
 **MSS**
 
-1. User requests to view a list of patients.
-2. ACaringBook displays all patients in a tabular format.
+1. User requests to view a list of patients/staffs.
+2. System displays all patients/staffs in a tabular format.
 
 **Use case ends.**
-
-**Extensions**
-
-- 2a. No patients are found in the ACaringBook.
-    - 2a1. ACaringBook displays "No patient data is found."
-    - Use case ends.
-- 2b. Patient data is corrupted.
-    - 2b1. ACaringBook displays "Patient data corrupted!"
-    - Use case ends.
 
 ---
 
-### Use case: Add healthcare staff contact
+### Use case: Find contacts by name
 
 **MSS**
 
-1. User requests to add a new healthcare staff contact.
-2. ACaringBook validates the input details.
-3. ACaringBook stores the staff contact.
-4. ACaringBook confirms the successful addition.
+1. User requests to find a contact by name.
+2. System validates the input.
+3. System shows a list of contacts matches the name.
 
 **Use case ends.**
-
-**Extensions**
-
-- 2a. The input format is incorrect.
-    - 2a1. ACaringBook shows an error message.
-    - 2a2. User re-enters the correct details.
-    - Use case resumes at step 2.
-- 3a. The staff contact already exists in the ACaringBook.
-    - 3a1. ACaringBook rejects the entry and displays an error message: "Duplicate entry. This contact already exists."
-    - Use case ends.
-
-### Use case: Delete healthcare staff contact
-
-**MSS**
-
-1. User requests to delete a healthcare staff contact.
-2. ACaringBook validates the input staff name.
-3. ACaringBook checks if the staff exists.
-4. ACaringBook deletes the contact.
-5. ACaringBook confirms the successful deletion.
-
-**Use case ends.**
-
-**Extensions**
-
-- 2a. The input staff name is missing.
-    - 2a1. ACaringBook shows an error message: "Error: Missing required fields. Format: delete staff NAME."
-    - 2a2. User re-enters the correct staff name.
-    - Use case resumes at step 2.
-- 3a. The staff member with the provided name does not exist.
-    - 3a1. ACaringBook shows an error message: "Error: Staff contact not found. Name: John_Doe does not exist."
-    - Use case ends.
-- 4a. An error occurs while deleting the staff contact.
-    - 4a1. ACaringBook shows an error message: "Error: Failed to delete the staff contact. Please try again."
-    - Use case ends.
 
 ---
 
+### Use case: Find contacts by department
 
-*{More to be added}*
+**MSS**
+
+1. User requests to find contacts by department.
+2. System validates the input.
+3. System shows a list of contacts matches the department.
+
+**Use case ends.**
+
+---
+
+### Use case: Find healthCare staff contacts by role
+
+**MSS**
+
+1. User requests to find healthcare staff contacts by role.
+2. System validates the input.
+3. System shows a list of contacts matches the department.
+
+**Use case ends.**
+
+---
+
+### Use case: Add remark to a contact
+
+**MSS**
+
+1. User requests to add remark to a contact.
+2. System validates the input.
+3. System adds the remark to the contact and shows remark has been added successfully. 
+
+**Extensions**
+
+- 2a. The input remark is invalid.
+    - 2a1. System shows an error message.
+    - 2a2. User re-enters a valid remark.
+    - Use case resumes at step 2.
+
+**Use case ends.**
+
+---
 
 ### Non-Functional Requirements
 
