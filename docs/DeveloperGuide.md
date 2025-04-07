@@ -277,18 +277,18 @@ improved workflows, and enhanced patient care.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-|----------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Patient Care Coordinator        | add a new patient's contact information            | easily store and access important patient details for future reference and communications |
-| `* * *`  | Patient Care Coordinator        | delete patient's contact information               | remove obsolete patient data to keep the address book organized and clean |
-| `* * *`  | Patient Care Coordinator        | see a list of assigned patients when logged in     | quickly manage and retrieve patient details without navigating multiple screens |
-| `* * *`  | Patient Care Coordinator        | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
-| `* * *`  | Patient Care Coordinator        | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
-| `* * *`  | Patient Care Coordinator        | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
-| `* * *`  | Patient Care Coordinator        | tag a patient to a primary  doctor     | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
-| `* * *`  | Patient Care Coordinator        | save contact details in a file locally             | ensure patient details are preserved even after the application is closed |
-| `* * *`  | Patient Care Coordinator        | load contact details from a local file             | load patient details at startup, preventing the need to re-enter information |
-| `* *`    | Patient Care Coordinator        | search for a specific contact by name, role, etc.  | quickly locate the right person or organization when urgent communication is needed |
+| Priority | As a...                   | I want to...                                         | So that I can...                                                                 |
+|----------|---------------------------|------------------------------------------------------|----------------------------------------------------------------------------------|
+| ***      | Patient Care Coordinator  | add a new patient's contact information              | easily store and access important patient details for future reference and communications |
+| ***      | Patient Care Coordinator  | delete patient's contact information                 | remove obsolete patient data to keep the address book organized and clean       |
+| ***      | Patient Care Coordinator  | see a list of assigned patients when logged in       | quickly manage and retrieve patient details without navigating multiple screens |
+| ***      | Patient Care Coordinator  | add contact details for doctors, nurses, and other medical staff | easily store and access important staff details for future reference and communications |
+| ***      | Patient Care Coordinator  | delete contact details for doctors, nurses, and other medical staff | remove obsolete staff data to keep the address book organized and clean |
+| ***      | Patient Care Coordinator  | see contact details for doctors, nurses, and other medical staff | have immediate access to accurate contact information for quick outreach and coordination |
+| ***      | Patient Care Coordinator  | tag a patient to a primary doctor                    | keep track of which medical professional is assigned to each patient for better organization and ensure that the right medical professional is notified for every patient |
+| ***      | Patient Care Coordinator  | save contact details in a file locally               | ensure patient details are preserved even after the application is closed       |
+| ***      | Patient Care Coordinator  | load contact details from a local file               | load patient details at startup, preventing the need to re-enter information     |
+| **       | Patient Care Coordinator  | search for a specific contact by name, role, etc.    | quickly locate the right person or organization when urgent communication is needed |
 *{More to be added}*
 
 ### Use Cases
@@ -313,9 +313,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a2. User re-enters the correct details.
     - Use case resumes at step 2.
 - 3a. The patient already exists in the ACaringBook.
-    - 3a1. ACaringBook prompts the user to either update, delete, or keep both entries.
-    - 3a2. User makes a choice and ACaringBook proceeds accordingly.
-    - Use case resumes at step 4.
+    - 3a1. ACaringBook prompts the user of duplicated entry.
+    - 3a2. User re-enters the correct details or edit existing contact
+    - Use case resumes at step 2.
 
 ---
 
