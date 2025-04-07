@@ -21,11 +21,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -740,3 +735,39 @@ This appendix outlines potential future enhancements to improve the ACaringBook 
     - Update relevant commands and parsers to support adding, editing, and deleting specific remarks.
     - Display multiple remarks cleanly in the UI (e.g., as a bullet list).
 
+### 3. Allow Remark to Be Edited Using the Edit Command
+
+- **Overview**: Integrate remark editing into the existing `edit` command.
+- **Motivation**: Makes editing remarks more intuitive and consistent with how other fields are edited.
+- **Proposed Implementation**:
+  - Modify `EditCommandParser` to support the `rm/` prefix for remarks.
+  - Update the `EditCommand` to allow replacing or appending remarks.
+  - Ensure compatibility with the multiple-remarks enhancement if both are implemented.
+
+### 4. Undo Command
+
+- **Overview**: Allows users to revert the most recent changes made to the address book.
+- **Motivation**: Enhances user experience by offering a safety net to reverse unintended actions.
+- **Proposed Implementation**:
+  - Implement an `undo` command that leverages the `VersionedAddressBook` class.
+  - Use a command history mechanism to track and revert state changes.
+  - If the user is already at the earliest state (`currentStatePointer == 0`), return an appropriate error.
+  - For more technical details, refer to the [proposed undo/redo feature](#proposed-undoredo-feature) section in this document.
+
+### 5. Redo Command
+
+- **Overview**: Allows users to redo actions that were previously undone.
+- **Motivation**: Complements the undo functionality and increases flexibility.
+- **Proposed Implementation**:
+  - Implement a `redo` command using the same `VersionedAddressBook` system.
+  - Redo re-applies changes that were reverted using `undo`, unless a new command was executed after `undo`.
+  - Refer to the [proposed undo/redo feature](#proposed-undoredo-feature) for a deeper dive into the implementation and sequence diagrams.
+
+### 6. Data File Protection
+
+- **Overview**: Protect against data loss or corruption if the JSON data file is accidentally erased or modified.
+- **Motivation**: Ensures robustness and prevents total data loss due to file corruption or user errors.
+- **Proposed Implementation**:
+  - Implement file backup and recovery mechanisms (e.g., auto-save to a `.bak` file).
+  - Validate JSON structure before loading; if corrupted, prompt user to restore from backup.
+  - Optionally, introduce versioning to keep track of past data states.
