@@ -443,47 +443,225 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
-1. Initial launch
+### Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `.jar` file.
+   2. Place it into an empty folder.
+   3. Double-click the `.jar` file.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+**Expected:**
+- GUI launches with a set of **sample contacts**.
+- **Window size may not be optimized** by default.
 
-1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Saving Window Preferences
+1. Resize and reposition the application window.
+2. Close the application.
+3. Re-launch the app by double-clicking the `.jar` again.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Expected:**
+- App opens with the **last used window size and position** retained.
 
-1. _{ more test cases …​ }_
+---
+## Adding a patient (`addpatient`, `ap`)
 
-### Deleting a person
+### Valid Entry
 
-1. Deleting a person while all persons are being shown
+**Command:**
+`addpatient n/Jane Doe p/32345678 e/jane@example.com a/456 Serangoon Rd dr/Dr Tan nn/Mr Lim np/98765432 dp/Orthopedics`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+**Expected:**
+- Patient is added to the list.
+- All details are displayed correctly.
+- Success message in the status bar.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Invalid Entry
+**Command:**
+`addpatient n/Jane Doe p/abcd`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+**Expected:**
+- Error message is displayed.
+- No patient is added.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+---
 
-1. _{ more test cases …​ }_
+## Deleting a Person (`delete`, `del`, `d`)
 
-### Saving data
+### Valid Deletion
 
-1. Dealing with missing/corrupted data files
+**Precondition:** Run `list` or `listpatient`. Ensure at least one contact exists.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+**Command:**
+`delete 1`
 
-1. _{ more test cases …​ }_
+**Expected:**
+- Contact at index 1 is deleted.
+- Confirmation message shown.
+
+### Invalid Deletion
+**Command:**
+`delete 0`
+
+**Expected:**
+- Error message is shown.
+- No changes made to contact list.
+
+---
+
+## Editing a Contact (`edit`, `e`)
+
+### Valid Edit
+
+**Precondition:** At least two contacts exist.
+
+**Command:**
+`edit 2 n/John Tan p/87654321`
+
+**Expected:**
+- Contact at index 2 is updated.
+- Confirmation message displayed.
+
+### Invalid Edit
+**Command:**
+`edit two x/abc`
+
+**Expected:**
+- Error message shown.
+- No changes made.
+
+---
+
+## Finding Entries
+
+### Find by Name (`find`, `f`)
+
+**Precondition:** A contact named "Jane" exists.
+
+**Command:**
+`find Jane`
+
+**Expected:**
+- All contacts with "Jane" in the name are listed.
+
+### Find by Department (`finddep`, `fd`)
+
+**Precondition:** A contact exists in the Surgery department.
+
+**Command:**
+`finddep Surgery`
+
+**Expected:**
+- All contacts under the "Surgery" department are shown.
+
+### Find Staff by Role (`findstaff`, `fs`)
+
+**Precondition:** A staff member with role "nurse" exists.
+
+**Command:**
+`findstaff nurse`
+
+**Expected:**
+- All staff with the role "nurse" are listed.
+
+---
+
+## Listing Commands
+- `list` / `ls`: Lists all contacts
+- `listpatient` / `lsp`: Lists only patients
+- `liststaff` / `lss`: Lists only staff
+
+**Expected:**
+- Displays the correct subset of contacts.
+
+---
+
+## Adding Remarks (`remark`, `re`)
+
+### Valid Remark
+
+**Precondition:** At least once contact exists.
+
+**Command:**
+`remark 1 rm/Peanut allergy`
+
+**Expected:**
+- Remark is displayed under the contact.
+- Status message confirms update.
+
+### Invalid Remark
+**Command:**
+`remark 0 rm/Test`
+
+**Expected:**
+- Error message is shown.
+- No updates made.
+
+---
+
+## Toggle Theme (`toggletheme`, `tt`)
+
+**Command:**
+`toggletheme`
+
+**Expected:**
+- Switches between **light** and **dark** themes.
+
+---
+
+## Clear All Contacts (`clear`, `cls`)
+
+**Command:**
+`clear`
+
+**Expected:**
+- All contacts are deleted.
+- Status bar shows confirmation message.
+
+---
+
+## Help (`help`, `h`)
+
+**Command:**
+`help`
+
+**Expected:**
+- Opens the help window with a list of commands and usage formats.
+
+---
+
+## Exit (`exit`, `quit`)
+
+**Command:**
+`exit`
+
+**Expected:**
+- Application closes.
+- All changes are saved.
+
+---
+
+## Saving and Loading Data
+
+### Normal Save
+1. Add or edit a contact.
+2. Close the app using `exit`.
+3. Relaunch the app.
+
+**Expected:**
+- Most recent data is shown.
+
+---
+
+### Missing or Corrupted Data Files
+
+**How to Simulate:**
+- Delete or rename the `data` folder or '.json' file.
+
+**Expected:**
+- Application detects issue.
+- Loads with an **empty or sample dataset**.
 
 --------------------------------------------------------------------------------------------------------------------
 
