@@ -38,7 +38,7 @@
   text-align: right;
 
   .nav-trigger {
-      display: none;
+    display: none;
   }
 
   .menu-icon {
@@ -78,6 +78,7 @@
     line-height: $base-line-height;
     display: block;
     padding: 5px 10px;
+    text-align: justify; /* Added justification here */
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
@@ -124,6 +125,7 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1 0 auto;
+  text-align: justify;  /* Added text justification for content */
 }
 
 .page-heading {
@@ -151,6 +153,7 @@
 .post-link {
   display: block;
   @include relative-font-size(1.5);
+  text-align: justify; /* Added text justification for post link */
 }
 
 
@@ -175,6 +178,7 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
+  text-align: justify;  /* Justify text in post content */
 
   h1, h2, h3 { margin-top: $spacing-unit * 2 }
   h4, h5, h6 { margin-top: $spacing-unit }
