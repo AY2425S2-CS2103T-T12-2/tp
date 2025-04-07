@@ -474,4 +474,3 @@ Action | Shortcut command | Format, Examples
 - **Command Line Interface (CLI)**: A Command Line Interface allows users to interact with an application by typing commands to execute actions.
 - **Graphical User Interface (GUI)**: A Graphical User Interface allows users to interact with an application through graphics like buttons or icons.
 - **Alphanumeric**: Characters that are either numbers or letters.
-

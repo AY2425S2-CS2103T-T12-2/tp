@@ -771,3 +771,4 @@ This appendix outlines potential future enhancements to improve the ACaringBook 
   - Implement file backup and recovery mechanisms (e.g., auto-save to a `.bak` file).
   - Validate JSON structure before loading; if corrupted, prompt user to restore from backup.
   - Optionally, introduce versioning to keep track of past data states.
+  - 
