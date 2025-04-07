@@ -23,7 +23,7 @@ A Caring Book also employs the use of shortcut commands, which further elevates 
 open a command terminal, type `java --version` and press Enter.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/tag/v1.3).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book app.
 
@@ -51,6 +51,8 @@ or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to 
    * `remark 3 rm/Needs wheelchair` : Remarks that the 3rd contact shown in the current list needs a wheelchair.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+   * `select 3` : Displays the details of the 3rd contact shown in the current list.
 
    * `toggletheme` : Toggles between light and dark mode.
 
