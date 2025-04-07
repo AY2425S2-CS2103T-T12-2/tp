@@ -155,6 +155,49 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add patient feature
+
+#### Implementation
+
+The image below shows the class diagram of a Patient object and its related class attributes.
+
+![Patient Class Diagram](images/PatientClassDiagram.png)
+
+The Patient object is made up of several attributes:
+* `Name`: The name of the patient.
+* `Phone`: The phone number of the patient.
+* `Email`: The email of the patient.
+* `Address`: The address of the patient.
+* `Doctor in charge`: The primary doctor assigned to the patient.
+* `Next of kin`: The next of kin information of the patient.
+
+The Next of kin Contact object is also made up of attributes:
+* `Name`: The name of the next of kin.
+* `Phone`: The phone number of the next of kin.
+
+<div style="page-break-after: always;"></div>
+
+#### Feature details
+
+1. ACaringBook will verify that the parameters supplied by the user follow a set of relevant restrictions for the respective parameters.
+2. If any invalid parameter is provided, an error will be thrown, informing the user which parameter violates the restrictions. The format for the valid input for that parameter will be displayed to the user.
+3. If all parameters are valid, a new `Patient` entry will be created and stored in the `ACaringBook`.
+
+#### Design Considerations:
+
+**Aspect: The required input of parameters:**
+
+* **Alternative 1:** Make all parameters compulsory.
+    * Pros: Will not have missing data when it is needed in an emergency.
+    * Cons: Addpatient Command is lengthy to type out, might be hard to remember the syntax.
+* **Alternative 2 (current choice):** Make only a few specific parameters compulsory (i.e. Name and Phone).
+    * Pros: Patient registration will be faster.
+    * Cons: If user forgets to update missing details, during an emergency there might not be an emergency contact to call.
+
+We opted for Alternative 2 as some information may not be available during emergency visit. Making some parameters optional also makes Addpatient Command fast.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -236,12 +279,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------

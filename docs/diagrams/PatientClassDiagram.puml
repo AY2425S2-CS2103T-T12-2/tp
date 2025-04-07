@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Patient *--> "1"Name
+Patient *--> "1"Phone
+Patient *--> "0..1"Email
+Patient *-->  "0..1"NextOfKin
+Patient *-->  "0..1"Doctor
+Patient *--> "0..1"Address
+Patient *--> "0..1"Remark
+
+@enduml
