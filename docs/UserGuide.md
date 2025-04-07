@@ -505,28 +505,28 @@ Next, copy the addressbook.json file from your previous computer and paste it in
 
 ## Command summary
 
-| Action                      | Shortcut command | Format, Examples                                                                                                                                                                                                                                         |
-|-----------------------------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**             | `ap`             | `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] dp/DEPARTMENT]​` <br><br> e.g., `addpatient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak nn/Mrs Ho dp/Conology` |
-| **Add Staff**               | `as`             | `addstaff [r/ROLE] n/NAME [dp/DEPARTMENT] p/PHONE [e/EMAIL] [a/ADDRESS]​` <br><br> e.g., `addstaff r/doctor n/James Ho dp/Internal Medicine p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                |
-| **Clear**                   | `cls`            | `clear`                                                                                                                                                                                                                                                  |
-| **Delete**                  | `del`, `d`       | `delete INDEX`<br><br> e.g., `delete 3`                                                                                                                                                                                                                  |
-| **Edit**                    | `e`              | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] [dp/DEPARTMENT]​`<br><br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                              |
-| **Exit**                    | none             | `exit` or `quit`                                                                                                                                                                                                                                         |
-| **Find By Name**            | `f`              | `find KEYWORD [MORE_KEYWORDS]`<br><br> e.g., `find James Jake`                                                                                                                                                                                           |
-| **Find By Department**      | `fd`             | `finddep KEYWORD`<br><br> e.g., `finddep surgery`                                                                                                                                                                                                        |
-| **Find Staff By Role**      | `fs`             | `findstaff KEYWORD`<br><br> e.g., `findstaff nurse`                                                                                                                                                                                                      |
-| **List**                    | `ls`             | `list`                                                                                                                                                                                                                                                   |
-| **List Patient**            | `lsp`            | `listpatient`                                                                                                                                                                                                                                            |
-| **List Staff**              | `lss`            | `liststaff`                                                                                                                                                                                                                                              |
-| **Help**                    | `h`              | `help`                                                                                                                                                                                                                                                   |
-| **Remark**                  | `re`             | `remark INDEX rm/REMARK` <br><br> e.g. `remark 1 rm/Banana allergy`                                                                                                                                                                                      |
-| **Select**                  | `s`              | `select INDEX` <br><br> e.g. `select 2`                                                                                                                                                                                                                  |
-| **Toggle light/dark theme** | `tt`             | `toggletheme`                                                                                                                                                                                                                                            |
+Action | Shortcut command | Format, Examples
+--------|------------------|------------------
+**Add Patient** | `ap`             | `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] dp/DEPARTMENT]​` <br> e.g., `addpatient n/James Ho p/92224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 dr/Dr Mak nn/Mrs Ho dp/Conology`
+**Add Staff** | `as`             | `addstaff [r/ROLE] n/NAME [dp/DEPARTMENT] p/PHONE [e/EMAIL] [a/ADDRESS]​` <br> e.g., `addstaff r/doctor n/James Ho dp/Internal Medicine p/92224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Clear** | `cls`            | `clear`
+**Delete** | `del`, `d`       | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `e`              | `edit INDEX [r/ROLE] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] [dp/DEPARTMENT]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | none             | `exit` or `quit`
+**Find By Name** | `f`              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find By Department** | `fd`             | `finddep KEYWORD`<br> e.g., `finddep surgery`
+**Find Staff By Role** | `fs`             | `findstaff KEYWORD`<br> e.g., `findstaff nurse`
+**List** | `ls`             | `list`
+**List Patient** | `lsp`            | `listpatient`
+**List Staff** | `lss`            | `liststaff`
+**Help** | `h`              | `help`
+**Remark** | `re`             | `remark INDEX rm/REMARK` <br> e.g. `remark 1 rm/Banana allergy`
+**Select** | `s`              | `select INDEX` <br> e.g. `select 2`
+**Toggle light/dark theme** | `tt`             | `toggletheme`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter constraints
+## Parameter Constraints
 
 **Name Constraints `n/`:**
 * Name must be 1 to 66 characters long, contain at least one letter (A-Z, a-z). 
@@ -569,7 +569,7 @@ Next, copy the addressbook.json file from your previous computer and paste it in
 - **Command Format**: The expected structure of a command, showing required and optional fields using prefixes.
 - **Displayed Person List**: The current list of persons shown in the GUI after using commands like `list`, `find`, or `liststaff`.
 - **Error Message**: Text shown when something is wrong with the input or when the command cannot be executed. Usually helps guide the user to correct the mistake.
-- - **Parameter**: Information that you are required to provide to the command.
+- **Parameter**: Information that you are required to provide to the command.
 - **Field**: A section of a contact’s details. Examples include name, phone, address, remark, and email.
 - **Help Window**: A pop-up window showing a full list of commands, shortcuts, and usage instructions.
 - **Index**: A number that identifies a person in the current list view. Used in commands like `delete 2` to refer to the 2nd person shown.
