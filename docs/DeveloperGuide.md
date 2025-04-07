@@ -480,3 +480,28 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+This appendix outlines potential future enhancements to improve the ACaringBook application. These ideas aim to add more value for users and developers, and serve as a starting point for future contributors.
+
+### 1. Confirmation Prompt Before Deleting or Clearing Contacts
+
+- **Overview**: Prompt the user for confirmation before executing potentially destructive commands like `delete` or `clear`.
+- **Motivation**: Prevents accidental loss of data by requiring explicit user confirmation.
+- **Proposed Implementation**:
+    - Modify the `DeleteCommand` and `ClearCommand` to trigger a confirmation dialog before proceeding.
+    - Use JavaFX alert dialogs to capture user confirmation.
+    - Include a configuration toggle to enable/disable confirmations for power users.
+
+### 2. Support for Multiple Remarks per Contact
+
+- **Overview**: Allow users to tag multiple remarks to a single contact, such as reminders or notes.
+- **Motivation**: Increases flexibility and supports richer contact profiles.
+- **Proposed Implementation**:
+    - Replace the current `Remark` field with a list of `Remark` entries in the `Person` class.
+    - Update relevant commands and parsers to support adding, editing, and deleting specific remarks.
+    - Display multiple remarks cleanly in the UI (e.g., as a bullet list).
