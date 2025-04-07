@@ -29,7 +29,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final String LIGHT_THEME = "view/LightTheme.css";
     private static final String DARK_THEME = "view/DarkTheme.css";
-    private static final String EXTENSIONS_CSS = "view/Extensions.css";
+    private static final String EXTENSIONS_CSS = "view/Styles.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
