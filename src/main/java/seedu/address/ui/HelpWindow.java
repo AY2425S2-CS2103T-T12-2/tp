@@ -67,6 +67,7 @@ public class HelpWindow extends UiPart<Stage> {
             Example: remark 1 rm/likes to eat
           - Remove
             Usage: remark INDEX rm/
+            Example: remark 1 rm/
         - select (s): Select a contact to show full contact information
           Usage: select INDEX
           Example: select 1
