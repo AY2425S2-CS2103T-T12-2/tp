@@ -125,8 +125,11 @@ Refer to the [Features](#features) below for details of each command.
 </div>
 
 <div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-* If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</div>
+
+<div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
 
 <div style="page-break-before: always;"></div>
