@@ -6,16 +6,23 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * This project is adapted based on [AB-3](https://github.com/nus-cs2103-AY2425S2/tp), an address book GUI desktop application created by [SE_EDU](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -105,7 +112,6 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
@@ -116,7 +122,6 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -279,16 +284,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-before: always;"></div>
-
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
