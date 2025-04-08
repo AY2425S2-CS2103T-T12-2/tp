@@ -559,8 +559,8 @@ Action | Shortcut command | Format, Examples
 * Department name must be 1 to 50 characters contain only letters, digits, spaces, or the following special characters: `-_,.()/&@.`.
 
 **Next of Kin Constraints `nn/NOKNAME np/NOKPHONE`:**
-* NOK name must follow [Name Constraints](#name-constraints)
-* NOK phone must follow [Phone Number Constraints](#phone-number-constraints)
+* NOK name must follow Name Constraints.
+* NOK phone must follow Phone Number Constraints.
 
 --------------------------------------------------------------------------------------------------------------------
 
