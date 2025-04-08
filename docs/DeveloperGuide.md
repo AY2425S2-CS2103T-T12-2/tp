@@ -118,6 +118,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, `FindByNameCommandParser`...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-before: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -180,6 +182,8 @@ The Next of kin Contact object is also made up of attributes:
 1. ACaringBook will verify that the parameters supplied by the user follow a set of relevant restrictions for the respective parameters.
 2. If any invalid parameter is provided, an error will be thrown, informing the user which parameter violates the restrictions. The format for the valid input for that parameter will be displayed to the user.
 3. If all parameters are valid, a new `Patient` entry will be created and stored in the `ACaringBook`.
+
+<div style="page-break-before: always;"></div>
 
 #### Design Considerations:
 
@@ -266,6 +270,8 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
+
+<div style="page-break-before: always;"></div>
 
 #### Design considerations:
 
@@ -371,6 +377,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ### Use case: View list of patients/staffs
 
 **MSS**
@@ -417,6 +425,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case ends.**
 
 ---
+
+<div style="page-break-before: always;"></div>
 
 ### Use case: Add remark to a contact
 
