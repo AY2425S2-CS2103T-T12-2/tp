@@ -3,14 +3,30 @@ layout: page
 title: User Guide
 ---
 
-A Caring Book is a **desktop app designed for Patient Care Coordinators to manage patient and staff contact details efficiently**.
+A Caring Book! Your trusted tool for efficient patient and staff contact management.<br>
+
+Designed specifically for Patient Care Coordinators, A Caring Book is a desktop application that helps you manage contact details for both patients and staff with ease, so you can focus on providing excellent care.<br>
+
 Optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI),
 A Caring Book enables faster contact management compared to traditional GUI apps, especially for users who type quickly.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: About A Caring Book:** We understand that Patient Care Coordinators need quick access to accurate contact information for a variety of people, including staff, patients, and departments. A Caring Book is built to save time and streamline your workflow, especially for those who are fast typers and comfortable with technology.
+</div>
+
 Unlike conventional systems that require manual entering of details for each category (e.g. Name, Phone, Department),
-A Caring Book streamlines the process with `addpatient` and `addstaff` commands. Filtering commands such as
-`find`, `findstaff` and `finddep` allow for quick lookup, particularly in emergency situations, making contact management more efficient.
-A Caring Book also employs the use of shortcut commands, which further elevates the user experience.
+
+**A Caring Book** allows you to:
+- Effortlessly manage contact details for both patients and staff
+- Use simple commands to add, find, and filter information quickly
+- Access important data in emergencies with optimized search features
+
+This guide will take you step-by-step through:
+- Installing and setting up your A Caring Book desktop application
+- Navigating the intuitive Command Line Interface (CLI) and the user-friendly Graphical User Interface (GUI)
+- Mastering essential commands and time-saving shortcuts for seamless contact and information management
+
+After completing this guide, you'll be fully equipped to use **A Caring Book** confidently, allowing you to manage patient and staff communications with ease and precision.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -19,31 +35,46 @@ The current version of ACaringBook is designed to only support the **English lan
 Using it with other languages or other countries may lead to unexpected behaviour.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
+
+### Table of Contents
 * Table of Content
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## Quick start
-
-1. Ensure you have Java `17` or above installed in your Computer. To check your local Java version,
-open a command terminal, type `java --version` and press Enter.<br>
+### Installing A Caring Book
+1. Ensure you have Java `17` or above installed in your Computer.<br>
+   To check your local Java version, open a command terminal, type `java --version` and press Enter.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/).
+1. Download the latest `acaringbook.jar` file from [here](https://github.com/AY2425S2-CS2103T-T12-2/tp/releases/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your A Caring Book app.
+1. Move the `acaringbook.jar` file to the folder you want to use as the _home folder_ for your A Caring Book app.
 
-1. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal:
+ * Windows: Press `Win + R`, type cmd, and press Enter
+ * Mac: Press `Cmd + Space`, type Terminal and press Enter
+ * Linux: Press `Ctrl + Alt + T`<br><br>
 
-2. You can toggle between Light and Dark mode by clicking on "File" in the top left corner of the app window, and select
+1. `cd` into the folder you placed the jar file in, and use the `java -jar acaringbook.jar` command to run the application.<br>
+   
+    A GUI similar to the below should appear in a few seconds.<br>
+    <div markdown="block" class="alert alert-info">
+    :blue_book: **Note how the app contains some sample data.** 
+    </div>
+   
+   ![Ui](images/Ui.png)<br><br>
+
+1. You can toggle between Light and Dark mode by clicking on "File" in the top left corner of the app window, and select
 or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to toggle between modes.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
 
    * `liststaff` : Lists all staffs.
 
@@ -67,15 +98,15 @@ or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to 
 
    * `exit` : Exits the app.
 
+
 Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**Notes about the command format:**<br>
+<div markdown="block" class="alert alert-info">:blue_book: **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addpatient n/NAME`, `NAME` is a parameter which can be used as `addpatient n/John Doe`.
@@ -89,19 +120,31 @@ Refer to the [Features](#features) below for details of each command.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-
 </div>
+
+<div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</div>
+
+<div style="page-break-before: always;"></div>
 
 ### Viewing help : `help`
 
-Shows a full list of available commands including shortcuts, descriptions and example usages.
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
 
-![help message](images/helpWindow.png)
+Shows a full list of available commands including shortcuts, descriptions and example usages.
 
 **Format**: `help`
 
 **Shortcut command**: `h`
+
+**Expected output**:
+
+![help message](images/helpWindow.png)
+
+<div style="page-break-before: always;"></div>
 
 ### Adding a patient: `addpatient`
 
@@ -109,21 +152,24 @@ Adds a patient to the address book.
 
 **Format**: `addpatient n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] [dp/DEPARTMENT]​`
 
+**Shortcut command**: `ap`
+
 **Examples**:
 
 * `addpatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 dr/Dr Mak nn/Mrs Hong Doe np/98721322 dp/Conology`
 * `addpatient n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/32345678 dr/Dr Teo nn/Mr Bui Crowe np/98268642 dp/Conology`
 
-**Shortcut command**: `ap`
 
 **Expected output**:
 
-Upon successful addition, the details for the `Patient` will be shown like so
 ![Confirmation](images/SuccessfulAddPatient.png)
 
-**Warning**:
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div style="page-break-before: always;"></div>
 
 ### Adding a staff: `addstaff`
 
@@ -131,59 +177,29 @@ Adds a staff to the address book.
 
 **Format**: `addstaff [r/ROLE] n/NAME p/PHONE [dp/DEPARTMENT] [e/EMAIL] [a/ADDRESS]​`
 
+**Shortcut command**: `as`
+
 **Examples**:
 * `addstaff r/doctor n/Mary Jane dp/General Surgery p/99291268 e/maryJ@example.com a/Spider street, block 333, #03-03`
 * `addstaff r/nurse n/Mark Markerburg dp/Emergency p/99137653 e/theMUCK@example.com a/Zaney street, block 666, #01-06`
 
-**Shortcut command**: `as`
-
 **Expected output**:
 
-Upon successful addition, the details for the `HealthcareStaff` will be shown like so
 ![Confirmation](images/SuccessfulAddStaff.png)
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-**Warning**:
-
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-**Format**: `list`
-![result of `list`](images/List.png)
-
-**Shortcut command**: `ls`
-
-**Expected output**: Listed all persons
-
-### Listing all patients : `listpatient`
-
-Shows a list of all patients in the address book.
-
-**Format**: `listpatient`
-![result of `listpatient`](images/Listpatient.png)
-
-**Shortcut command**: `lsp`
-
-**Expected output**: Listed all patients
-
-### Listing all staffs : `liststaff`
-
-Shows a list of all staff in the address book.
-
-**Format**: `liststaff`
-![result of `liststaff`](images/Liststaff.png)
-
-**Shortcut command**: `lss`
-
-**Expected output**: Listed all staff
+<div style="page-break-before: always;"></div>
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
 **Format**: `edit INDEX [r/role] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [dr/DOCTOR_IN_CHARGE] [nn/NOK_NAME] [np/NOK_PHONE] [dp/DEPARTMENT]`
+
+**Shortcut command**: `e`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -192,24 +208,155 @@ Edits an existing person in the address book.
 * A patient's nok_phone cannot be the same as a patient's phone number.
 
 **Examples**:
-*  `edit 4 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-
-**Shortcut command**: `e`
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 
 **Expected output**:
 
-Upon successful addition, the details for the edited `Person` will be shown like so
 ![Confirmation](images/SuccessfulEdit.png)
 
-**Warning**:
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div style="page-break-before: always;"></div>
+
+### Adding remark to a person : `remark`
+
+Adds or updates the remark of the specified person from the address book.
+
+**Format**: `remark INDEX rm/REMARK`
+
+**Shortcut command**: `re`
+
+* Adds or updates the remark of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+**Examples**:
+* `list` followed by `remark 2 rm/Needs wheelchair` updates the 2nd person in the address book.
+* `find Betsy` followed by `remark 1 rm/Banana allergy` updates the 1st person in the results of the `find` command.
+* `remark 3 rm/` clears the remark for the 3rd person.
+
+**Expected output**:
+
+![Remark](images/remark2wheelchair.png)
+
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
+
+<div style="page-break-before: always;"></div>
+
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+**Format**: `delete INDEX`
+
+**Shortcut command**: `del` or `d`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+**Examples**:
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd person in the address book.
+
+**Expected output**:
+
+![Delete](images/delete3.png)
+
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+</div>
+
+<div style="page-break-before: always;"></div>
+
+### Select a contact to view details : `select`
+
+Selects a `Patient` or `HealthcareStaff` to view the details on the right side of the screen.
+
+**Format**: `select INDEX`
+
+**Shortcut command**: `s`
+
+**Example**: `select 4` shows the details of the contact whose index is 4 in the list.
+
+**Expected Output**:
+
+![Select](images/select4.png)
+
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
+
+<div style="page-break-before: always;"></div>
+
+### Listing all persons : `list`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
+
+Shows a list of all persons in the address book.
+
+**Format**: `list`
+
+**Shortcut command**: `ls`
+
+**Expected output**: Listed all persons
+
+![result of `list`](images/List.png)
+
+<div style="page-break-before: always;"></div>
+
+### Listing all patients : `listpatient`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
+
+Shows a list of all patients in the address book.
+
+**Format**: `listpatient`
+
+**Shortcut command**: `lsp`
+
+**Expected output**: Listed all patients
+
+![result of `listpatient`](images/Listpatient.png)
+
+<div style="page-break-before: always;"></div>
+
+### Listing all staffs : `liststaff`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
+
+Shows a list of all staff in the address book.
+
+**Format**: `liststaff`
+
+**Shortcut command**: `lss`
+
+**Expected output**: Listed all staff
+
+![result of `liststaff`](images/Liststaff.png)
+
+<div style="page-break-before: always;"></div>
 
 ### Locating person by name: `find`
 
 Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose names contain any of the given keywords.
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
+
+**Shortcut command**: `f`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -222,18 +369,20 @@ Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose nam
 * `find John` returns `john` and `John Doe`
 * `find alex charlotte` returns `Alex Yeoh`, `Charlotte Oliveiro`<br>
   ![result for 'find alex charlotte'](images/findAlexCharlotteResult.png)
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-**Shortcut command**: `f`
-
-**Warning**:
-
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div style="page-break-before: always;"></div>
 
 ### Locating a contact by department: `finddep`
 
 Finds a list of `Person` (including both `Patient` and `HealthcareStaff`) whose departments match with the keyword.
 
 **Format**: `finddep KEYWORD [MORE_KEYWORDS]`
+
+**Shortcut command**: `fd`
 
 * The search is case-insensitive. e.g `Conology` will match `conology`
 * Only the department of the contact is searched.
@@ -248,19 +397,23 @@ If these two commands are executed,
 
 then
 * `finddep conology` returns `John Doe` and `Betsy Crowe`.
-  ![result for 'finddep conology'](images/Finddp.png)
 
-**Shortcut command**: `fd`
+![result for 'finddep conology'](images/Finddp.png)
 
-**Warning**:
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div style="page-break-before: always;"></div>
 
 ### Locating a healthcare provider by role: `findstaff`
 
 Find a list of `HealthcareStaff` whose roles matches with the keyword.
 
 **Format**: `findstaff KEYWORD [MORE_KEYWORDS]`
+
+**Shortcut command**: `fs`
 
 * The search is case-insensitive. e.g `Doctor` will match `doctor`
 * Only the role of the healthcare provider is searched.
@@ -275,78 +428,21 @@ If these two `addstaff` commands are executed,
 
 then
 * `findstaff doctor` returns `Mary Jane`
-* `findstaff nurse` returns `Mark Markerburg`
-* `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`. See example Ui below:
-  ![result for 'fs doctor nurse'](images/fsdocnurse.png)
+* `findstaff doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
 
-**Shortcut command**: `fs`
+![result for 'fs doctor nurse'](images/fsdocnurse.png)
 
-**Warning**:
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
 
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div style="page-break-before: always;"></div>
 
-### Adding remark to a person : `remark`
-
-Adds or updates the remark of the specified person from the address book.
-
-**Format**: `remark INDEX rm/REMARK`
-
-* Adds or updates the remark of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-**Examples**:
-* `list` followed by `remark 2 rm/Needs wheelchair` updates the 2nd person in the address book.
-* `find Betsy` followed by `remark 1 rm/Banana allergy` updates the 1st person in the results of the `find` command.
-* `remark 3 rm/` clears the remark for the 3rd person.
-* Example Ui for `remark 2 rm/Needs wheelchair`
-  ![result for 'remark 2 rm/Needs wheelchair'](images/remark2wheelchair.png)
-
-**Shortcut command**: `re`
-
-**Expected output**:
-
-Remark field will be updated immediately and details of the Person will be shown on the right side of the screen.
-
-**Warning**:
-
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-**Format**: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-**Examples**:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-**Shortcut command**: `del` or `d`
-
-**Expected output**:
-
-The details of the deleted Person will be shown on the right side of the screen.
-
-**Warning**:
-
-If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-
-### Select a contact to view details : `select`
-
-Selects a `Patient` or `HealthcareStaff` to view the details on the right side of the screen.
-
-**Format**: `select INDEX`
-
-**Shortcut command**: `s`
-
-**Example**: `select 4` shows the details of the contact whose index is 4 in the list.
-![result for `select 4`](images/select4.png)
 ### Toggle between light and dark mode : `toggletheme`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
 
 Toggles between light and dark mode theme based on user preference.
 
@@ -356,19 +452,35 @@ Toggles between light and dark mode theme based on user preference.
 
 ### Clearing all entries : `clear`
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
+
 Clears all entries from the address book.
 
 **Format**: `clear`
 
 **Shortcut command**: `cls`
 
+**Expected output**: The entire address book will be cleared.
+<br>
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+</div>
+
 ### Exiting the program : `exit`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information:**  This command ignores any additional parameters received
+</div>
 
 Exits the program.
 
 **Format**: `exit`
 
 **Alternative command**: `quit`
+
+<div style="page-break-before: always;"></div>
 
 ### Saving the data
 
@@ -378,8 +490,8 @@ A Caring Book data are saved automatically after any command that changes the da
 
 A Caring Book data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, A Caring Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution**<br><br>
+If your changes to the data file makes its format invalid, A Caring Book will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br><br>
 Furthermore, certain edits can cause A Caring Book to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -425,6 +537,8 @@ Action | Shortcut command | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-before: always;"></div>
+
 ## Parameter Constraints
 
 **Name Constraints `n/`:**
@@ -461,6 +575,9 @@ Action | Shortcut command | Format, Examples
 * Department name must be 1 to 50 characters contain only letters, digits, spaces, or the following special characters: `-_,.()/&@.`.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
+
 ## Glossary
 
 - **Command**: An instruction typed into the command box to perform an action, such as `addpatient` or `delete`.
