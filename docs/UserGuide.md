@@ -106,7 +106,7 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 <div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** Please read this section carefully before proceeding.
+:exclamation: **Important:** Please read this section carefully before proceeding.
 </div>
 <div markdown="block" class="alert alert-info">:blue_book: **Notes about the command format:**<br>
 
@@ -128,8 +128,8 @@ Refer to the [Features](#features) below for details of each command.
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+<div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
+If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
 
 <div style="page-break-before: always;"></div>
@@ -266,7 +266,7 @@ Deletes the specified person from the address book.
 
 <br>
 <div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted data.
 </div>
 
 <div style="page-break-before: always;"></div>
@@ -449,7 +449,7 @@ Clears all entries from the address book.
 **Expected output**: The entire address book will be cleared.
 <br>
 <div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted data.
 </div>
 
 ### Exiting the program : `exit`

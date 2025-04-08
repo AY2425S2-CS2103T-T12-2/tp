@@ -112,6 +112,7 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
