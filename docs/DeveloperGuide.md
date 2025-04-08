@@ -6,16 +6,23 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * This project is adapted based on [AB-3](https://github.com/nus-cs2103-AY2425S2/tp), an address book GUI desktop application created by [SE_EDU](https://se-education.org/).
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,8 +48,7 @@ The bulk of the app's work is done by the following four components:
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+* [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 **How the architecture components interact with each other**
 
@@ -52,8 +58,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* Defines its *API* in an `interface` with the same name as the Component.
+* Implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -80,6 +86,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-before: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T12-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -104,7 +112,6 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
@@ -116,13 +123,14 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-before: always;"></div>
 
 ### Storage component
 
@@ -140,6 +148,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
 
 ## **Implementation**
 
@@ -165,8 +175,6 @@ The Next of kin Contact object is also made up of attributes:
 * `Name`: The name of the next of kin.
 * `Phone`: The phone number of the next of kin.
 
-<div style="page-break-after: always;"></div>
-
 #### Feature details
 
 1. ACaringBook will verify that the parameters supplied by the user follow a set of relevant restrictions for the respective parameters.
@@ -187,6 +195,8 @@ The Next of kin Contact object is also made up of attributes:
 We opted for Alternative 2 as some information may not be available during emergency visit. Making some parameters optional also makes Addpatient Command fast.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -273,15 +283,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -299,6 +301,7 @@ tagging patients to assigned doctors or caretakers, and tracking next-of-kin inf
 It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication,
 improved workflows, and enhanced patient care.
 
+<div style="page-break-before: always;"></div>
 
 ### User stories
 
@@ -433,6 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case ends.**
 
 ---
+<div style="page-break-before: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -456,6 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **NOK (Next-of-Kin)**: Primary emergency contact for a patient, has a name and phone number. Having a NOK is not mandatory for every patient.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -488,6 +493,8 @@ testers are expected to do more *exploratory* testing.
 - App opens with the **last used window size and position** retained.
 
 ---
+<div style="page-break-before: always;"></div>
+
 ## Adding a patient (`addpatient`, `ap`)
 
 ### Valid Entry
@@ -532,6 +539,7 @@ testers are expected to do more *exploratory* testing.
 - No changes made to contact list.
 
 ---
+<div style="page-break-before: always;"></div>
 
 ## Editing a Contact (`edit`, `e`)
 
@@ -555,6 +563,7 @@ testers are expected to do more *exploratory* testing.
 - No changes made.
 
 ---
+<div style="page-break-before: always;"></div>
 
 ## Finding Entries
 
@@ -590,6 +599,8 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ## Listing Commands
 - `list` / `ls`: Lists all contacts
 - `listpatient` / `lsp`: Lists only patients
@@ -622,6 +633,8 @@ testers are expected to do more *exploratory* testing.
 - No updates made.
 
 ---
+
+<div style="page-break-before: always;"></div>
 
 ## Toggle Theme (`toggletheme`, `tt`)
 
@@ -665,6 +678,8 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ## Saving and Loading Data
 
 ### Normal Save
@@ -687,6 +702,8 @@ testers are expected to do more *exploratory* testing.
 - Loads with an **empty or sample dataset**.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
 
 ## **Appendix: Effort**
 The ACaringBook project builds upon the base functionality of AddressBook-Level3 (AB3), but significantly expands its complexity by introducing multiple entity types and specialized features tailored to healthcare staff and streamlining their workflows.
@@ -712,6 +729,8 @@ While AB3 manages only one type of entity (`Person`), our application handles **
 * Around 10% of the project effort was saved through reuse of the existing AB3 storage and command infrastructure. For example, the JsonAdaptedPerson class from AB3 was extended rather than rewritten, allowing us to retain the existing JSON parsing logic for common Person fields while layering subtype-specific deserialization on top. Similarly, command structure and parser utilities (e.g., ParserUtil.java) were reused and adapted to handle multiple entity types without breaking the original structure.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 Team size: 5
 
@@ -753,6 +772,8 @@ This appendix outlines potential future enhancements to improve the ACaringBook 
   - Use a command history mechanism to track and revert state changes.
   - If the user is already at the earliest state (`currentStatePointer == 0`), return an appropriate error.
   - For more technical details, refer to the [proposed undo/redo feature](#proposed-undoredo-feature) section in this document.
+
+<div style="page-break-before: always;"></div>
 
 ### 5. Redo Command
 
