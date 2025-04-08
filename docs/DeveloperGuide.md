@@ -493,6 +493,8 @@ testers are expected to do more *exploratory* testing.
 - App opens with the **last used window size and position** retained.
 
 ---
+<div style="page-break-before: always;"></div>
+
 ## Adding a patient (`addpatient`, `ap`)
 
 ### Valid Entry
@@ -537,6 +539,7 @@ testers are expected to do more *exploratory* testing.
 - No changes made to contact list.
 
 ---
+<div style="page-break-before: always;"></div>
 
 ## Editing a Contact (`edit`, `e`)
 
@@ -560,6 +563,7 @@ testers are expected to do more *exploratory* testing.
 - No changes made.
 
 ---
+<div style="page-break-before: always;"></div>
 
 ## Finding Entries
 
@@ -595,6 +599,8 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ## Listing Commands
 - `list` / `ls`: Lists all contacts
 - `listpatient` / `lsp`: Lists only patients
@@ -627,6 +633,8 @@ testers are expected to do more *exploratory* testing.
 - No updates made.
 
 ---
+
+<div style="page-break-before: always;"></div>
 
 ## Toggle Theme (`toggletheme`, `tt`)
 
@@ -669,6 +677,8 @@ testers are expected to do more *exploratory* testing.
 - All changes are saved.
 
 ---
+
+<div style="page-break-before: always;"></div>
 
 ## Saving and Loading Data
 
@@ -762,6 +772,8 @@ This appendix outlines potential future enhancements to improve the ACaringBook 
   - Use a command history mechanism to track and revert state changes.
   - If the user is already at the earliest state (`currentStatePointer == 0`), return an appropriate error.
   - For more technical details, refer to the [proposed undo/redo feature](#proposed-undoredo-feature) section in this document.
+
+<div style="page-break-before: always;"></div>
 
 ### 5. Redo Command
 
