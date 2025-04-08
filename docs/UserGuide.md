@@ -36,11 +36,15 @@ Using it with other languages or other countries may lead to unexpected behaviou
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
+
 ### Table of Contents
 * Table of Content
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## Quick start
 ### Installing A Caring Book
@@ -64,7 +68,7 @@ Using it with other languages or other countries may lead to unexpected behaviou
     :blue_book: **Note how the app contains some sample data.** 
     </div>
    
-   ![Ui](images/Ui.png)<br>
+   ![Ui](images/Ui.png)<br><br>
 
 1. You can toggle between Light and Dark mode by clicking on "File" in the top left corner of the app window, and select
 or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to toggle between modes.
@@ -98,6 +102,7 @@ or deselect the option "Dark Mode". Alternatively, type `tt` and press Enter to 
 Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## Features
 
@@ -115,33 +120,13 @@ Refer to the [Features](#features) below for details of each command.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-**Phone Number Constraints:**<br>
-
-* A Singapore local phone number is required with exactly 8 digits.
-
-* It must start with 3, 6, 8, or 9.
-
-**Email Address Constraints:**<br>
-
-* Email address must either follow the format `local-part@domain` with these rules:
-
-1. Local Part:
-   * Can contain alphanumeric characters and special characters (excluding parentheses):
-   `!#$%&'*+/=?^_{|}~-`
-   * Cannot start with a special character.
-
-2. Domain:
-   * Must contain domain labels separated by periods `(.)`.
-   * Each domain label must:
-     * Start and end with alphanumeric characters.
-     * Consist only of alphanumeric characters or hyphens `(-)`.
-   * The final domain label must be at least 2 characters long.
-
 </div>
 
 <div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Viewing help : `help`
 
@@ -159,6 +144,8 @@ Shows a full list of available commands including shortcuts, descriptions and ex
 
 ![help message](images/helpWindow.png)
 
+<div style="page-break-before: always;"></div>
+
 ### Adding a patient: `addpatient`
 
 Adds a patient to the address book.
@@ -175,13 +162,14 @@ Adds a patient to the address book.
 
 **Expected output**:
 
-Upon successful addition, the details for the `Patient` will be shown like so
-
 ![Confirmation](images/SuccessfulAddPatient.png)
+
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Adding a staff: `addstaff`
 
@@ -197,13 +185,13 @@ Adds a staff to the address book.
 
 **Expected output**:
 
-Upon successful addition, the details for the `HealthcareStaff` will be shown like so
-
 ![Confirmation](images/SuccessfulAddStaff.png)
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Editing a person : `edit`
 
@@ -224,13 +212,14 @@ Edits an existing person in the address book.
 
 **Expected output**:
 
-Upon successful addition, the details for the edited `Person` will be shown like so
-
 ![Confirmation](images/SuccessfulEdit.png)
+
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Adding remark to a person : `remark`
 
@@ -251,11 +240,14 @@ Adds or updates the remark of the specified person from the address book.
 
 **Expected output**:
 
-Remark field will be updated immediately and details of the Person will be shown on the right side of the screen.
+![Remark](images/remark2wheelchair.png)
+
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Deleting a person : `delete`
 
@@ -275,14 +267,14 @@ Deletes the specified person from the address book.
 
 **Expected output**:
 
-The details of the deleted Person will be shown on the right side of the screen.
-
 ![Delete](images/delete3.png)
 
 <br>
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Select a contact to view details : `select`
 
@@ -294,8 +286,15 @@ Selects a `Patient` or `HealthcareStaff` to view the details on the right side o
 
 **Example**: `select 4` shows the details of the contact whose index is 4 in the list.
 
+**Expected Output**:
+
 ![Select](images/select4.png)
 
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
+</div>
+
+<div style="page-break-before: always;"></div>
 
 ### Listing all persons : `list`
 
@@ -313,6 +312,8 @@ Shows a list of all persons in the address book.
 
 ![result of `list`](images/List.png)
 
+<div style="page-break-before: always;"></div>
+
 ### Listing all patients : `listpatient`
 
 <div markdown="block" class="alert alert-info">
@@ -328,6 +329,8 @@ Shows a list of all patients in the address book.
 **Expected output**: Listed all patients
 
 ![result of `listpatient`](images/Listpatient.png)
+
+<div style="page-break-before: always;"></div>
 
 ### Listing all staffs : `liststaff`
 
@@ -345,6 +348,7 @@ Shows a list of all staff in the address book.
 
 ![result of `liststaff`](images/Liststaff.png)
 
+<div style="page-break-before: always;"></div>
 
 ### Locating person by name: `find`
 
@@ -369,6 +373,8 @@ Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose nam
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Locating a contact by department: `finddep`
 
@@ -399,6 +405,8 @@ then
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
 
+<div style="page-break-before: always;"></div>
+
 ### Locating a healthcare provider by role: `findstaff`
 
 Find a list of `HealthcareStaff` whose roles matches with the keyword.
@@ -420,14 +428,15 @@ If these two `addstaff` commands are executed,
 
 then
 * `findstaff doctor` returns `Mary Jane`
-* `findstaff nurse` returns `Mark Markerburg`
-* `fs doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
+* `findstaff doctor nurse` returns `Mary Jane` and `Mark Markerburg`.
 
 ![result for 'fs doctor nurse'](images/fsdocnurse.png)
 
 <div markdown="block" class="alert alert-warning"> 
 :exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
+
+<div style="page-break-before: always;"></div>
 
 ### Toggle between light and dark mode : `toggletheme`
 
@@ -470,6 +479,8 @@ Exits the program.
 **Format**: `exit`
 
 **Alternative command**: `quit`
+
+<div style="page-break-before: always;"></div>
 
 ### Saving the data
 
@@ -526,6 +537,8 @@ Action | Shortcut command | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-before: always;"></div>
+
 ## Parameter Constraints
 
 **Name Constraints `n/`:**
@@ -562,6 +575,9 @@ Action | Shortcut command | Format, Examples
 * Department name must be 1 to 50 characters contain only letters, digits, spaces, or the following special characters: `-_,.()/&@.`.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
+
 ## Glossary
 
 - **Command**: An instruction typed into the command box to perform an action, such as `addpatient` or `delete`.
