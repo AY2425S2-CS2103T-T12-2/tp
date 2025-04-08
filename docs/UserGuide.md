@@ -105,7 +105,9 @@ Refer to the [Features](#features) below for details of each command.
 <div style="page-break-before: always;"></div>
 
 ## Features
-
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** Please read this section carefully before proceeding.
+</div>
 <div markdown="block" class="alert alert-info">:blue_book: **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
@@ -124,6 +126,10 @@ Refer to the [Features](#features) below for details of each command.
 
 <div markdown="block" class="alert alert-warning"> :exclamation: **Warning:**
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</div>
+
+<div markdown="block" class="alert alert-warning"> 
+:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
 </div>
 
 <div style="page-break-before: always;"></div>
@@ -165,9 +171,6 @@ Adds a patient to the address book.
 ![Confirmation](images/SuccessfulAddPatient.png)
 
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -187,9 +190,7 @@ Adds a staff to the address book.
 
 ![Confirmation](images/SuccessfulAddStaff.png)
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
+
 
 <div style="page-break-before: always;"></div>
 
@@ -215,9 +216,6 @@ Edits an existing person in the address book.
 ![Confirmation](images/SuccessfulEdit.png)
 
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -243,9 +241,6 @@ Adds or updates the remark of the specified person from the address book.
 ![Remark](images/remark2wheelchair.png)
 
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -290,9 +285,6 @@ Selects a `Patient` or `HealthcareStaff` to view the details on the right side o
 
 ![Select](images/select4.png)
 
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -370,9 +362,7 @@ Finds a list of `Person` (which can be `Patient` or `HealthcareStaff`) whose nam
 * `find alex charlotte` returns `Alex Yeoh`, `Charlotte Oliveiro`<br>
   ![result for 'find alex charlotte'](images/findAlexCharlotteResult.png)
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
+
 
 <div style="page-break-before: always;"></div>
 
@@ -401,9 +391,6 @@ then
 ![result for 'finddep conology'](images/Finddp.png)
 
 <br>
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -432,9 +419,6 @@ then
 
 ![result for 'fs doctor nurse'](images/fsdocnurse.png)
 
-<div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** If you encounter the warning message "Invalid command format!" and your input on the command line turns red, you should check your input against the format and example provided on the right side of the screen.
-</div>
 
 <div style="page-break-before: always;"></div>
 
@@ -541,17 +525,17 @@ Action | Shortcut command | Format, Examples
 
 ## Parameter Constraints
 
-**Name Constraints `n/`:**
+**Name Constraints `n/NAME`:**
 * Name must be 1 to 66 characters long, contain at least one letter (A-Z, a-z). 
 * It must start and end with an alphanumeric character (A-Z, a-z, 0-9). 
 * It may contain spaces and the following special characters in between: `, ( ) / . @ - '`
 
-**Phone Number Constraints `p/`:**
+**Phone Number Constraints `p/PHONE`:**
 * A Singapore local phone number is required with exactly 8 digits.
 * It must start with 3, 6, 8, or 9.
 * It may be `NA` if not available.
 
-**Email Address Constraints `e/`:**
+**Email Address Constraints `e/EMAIL`:**
 * Email address must either be `NA` if not available or follow the format `local-part@domain-label.domain-label` with these rules:
 
 1. Local Part:
@@ -565,14 +549,18 @@ Action | Shortcut command | Format, Examples
         * Consist only of alphanumeric characters separated only by hyphens `(-)` if any.
     * The final domain label must be at least 2 characters long.
 
-**Healthcare Staff ProviderRole Constraints `r/`:**
+**Healthcare Staff ProviderRole Constraints `r/ROLE`:**
 * Healthcare staff provider-role must either be `NA` if not available or one of the following: 
   * `doctor`
   * `nurse`
   * `therapist`
 
-**Department Constraints `dp/`:**
+**Department Constraints `dp/DEPARTMENT`:**
 * Department name must be 1 to 50 characters contain only letters, digits, spaces, or the following special characters: `-_,.()/&@.`.
+
+**Next of Kin Constraints `nn/NOKNAME np/NOKPHONE`:**
+* NOK name must follow [Name Constraints](#name-constraints)
+* NOK phone must follow [Phone Number Constraints](#phone-number-constraints)
 
 --------------------------------------------------------------------------------------------------------------------
 
