@@ -80,6 +80,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-before: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-T12-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -124,6 +126,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-before: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -140,6 +144,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
 
 ## **Implementation**
 
@@ -165,8 +171,6 @@ The Next of kin Contact object is also made up of attributes:
 * `Name`: The name of the next of kin.
 * `Phone`: The phone number of the next of kin.
 
-<div style="page-break-after: always;"></div>
-
 #### Feature details
 
 1. ACaringBook will verify that the parameters supplied by the user follow a set of relevant restrictions for the respective parameters.
@@ -187,6 +191,8 @@ The Next of kin Contact object is also made up of attributes:
 We opted for Alternative 2 as some information may not be available during emergency visit. Making some parameters optional also makes Addpatient Command fast.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-before: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -273,6 +279,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-before: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -299,6 +307,7 @@ tagging patients to assigned doctors or caretakers, and tracking next-of-kin inf
 It also keeps contact information for doctors, nurses, and staff up-to-date, ensuring faster communication,
 improved workflows, and enhanced patient care.
 
+<div style="page-break-before: always;"></div>
 
 ### User stories
 
@@ -433,6 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case ends.**
 
 ---
+<div style="page-break-before: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -456,6 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **NOK (Next-of-Kin)**: Primary emergency contact for a patient, has a name and phone number. Having a NOK is not mandatory for every patient.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -688,6 +699,8 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-before: always;"></div>
+
 ## **Appendix: Effort**
 The ACaringBook project builds upon the base functionality of AddressBook-Level3 (AB3), but significantly expands its complexity by introducing multiple entity types and specialized features tailored to healthcare staff and streamlining their workflows.
 
@@ -712,6 +725,8 @@ While AB3 manages only one type of entity (`Person`), our application handles **
 * Around 10% of the project effort was saved through reuse of the existing AB3 storage and command infrastructure. For example, the JsonAdaptedPerson class from AB3 was extended rather than rewritten, allowing us to retain the existing JSON parsing logic for common Person fields while layering subtype-specific deserialization on top. Similarly, command structure and parser utilities (e.g., ParserUtil.java) were reused and adapted to handle multiple entity types without breaking the original structure.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 Team size: 5
 
