@@ -266,7 +266,7 @@ Deletes the specified person from the address book.
 
 <br>
 <div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted data.
 </div>
 
 <div style="page-break-before: always;"></div>
@@ -449,7 +449,7 @@ Clears all entries from the address book.
 **Expected output**: The entire address book will be cleared.
 <br>
 <div markdown="block" class="alert alert-warning"> 
-:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted "Person" data.
+:exclamation: **Warning:** This action is **IRREVERSIBLE**. You cannot retrieve deleted data.
 </div>
 
 ### Exiting the program : `exit`
